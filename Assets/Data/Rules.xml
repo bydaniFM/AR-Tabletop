@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Rules>
+
+	<Deck>
+		<Size>15</Size> 
+		<Cards> <!--If not enough cards here they will be generated automatically-->
+			<Card>
+				<attr>-4</attr>
+				<attr>4</attr>
+				<attr>0</attr>
+            </Card>
+			<Card>
+				<attr>-4</attr>
+				<attr>0</attr>
+				<attr>4</attr>
+			</Card>
+		</Cards>
+	</Deck>
+	
+    <Attributes>
+        <Attribute name = "Strength" min = "1" max = "14"/>
+		<Attribute name = "Agility" min = "1" max = "14"/>
+		<Attribute name = "Range" min = "1" max = "14"/>
+    </Attributes>
+    
+	<Stats>
+		<Stat name = "Dmg" attr = "Strength">
+			<Calc>
+				<value>4</value> <!--Can be a math expression!-->
+				<value>6</value>
+				<value>8</value>
+				<value>9</value>
+				<value>10</value>
+				<value>12</value>
+				<value>14</value>
+				<value>16</value>
+				<value>18</value>
+				<value>20</value>
+				<value>22</value>
+				<value>24</value>
+				<value>26</value>
+				<value>34</value>
+			</Calc>
+		</Stat>
+		
+		<Stat name = "HP" attr = "Strength">	
+			<Calc>	
+				<value>20</value>
+				<value>30</value>
+				<value>40</value>
+				<value>60</value>
+				<value>80</value>
+				<value>100</value>
+				<value>130</value>
+				<value>150</value>
+				<value>180</value>
+				<value>190</value>
+				<value>210</value>
+				<value>230</value>
+				<value>240</value>
+				<value>250</value>
+			</Calc>
+		</Stat>
+	</Stats>
+	
+	<Units>
+		<!--Empty for now^^-->
+	</Units>
+	
+	<Player>
+		<Hand>3</Hand>
+		<Units>3</Units>
+		<CommandPoints>1</CommandPoints>
+	</Player>
+</Rules>
