@@ -63,8 +63,8 @@
 		</Stat>
 	</Stats>
 	
-	<Units>
-		<!--Empty for now^^-->
+	<Units formula = "(ValueDmg+ValueAtk+ValueRan)*Atk">
+		<!--DamageFormula formula = "(ValueDmg+ValueAtk+ValueRan)*Atk"/-->
 	</Units>
 	
 	<Player>
