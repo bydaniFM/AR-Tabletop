@@ -61,6 +61,114 @@
 				<value>250</value>
 			</Calc>
 		</Stat>
+        <Stat name = "Atk" attr = "Agility">	
+			<Calc>	
+				<value>1</value>
+				<value>2</value>
+				<value>2</value>
+				<value>2</value>
+				<value>3</value>
+				<value>3</value>
+				<value>3</value>
+				<value>4</value>
+				<value>4</value>
+				<value>4</value>
+				<value>5</value>
+				<value>5</value>
+				<value>5</value>
+				<value>6</value>
+			</Calc>
+		</Stat>
+                <Stat name = "ValueAtk" attr = "Agility">	
+			<Calc>	
+				<value>0</value>
+				<value>0</value>
+				<value>0</value>
+				<value>0</value>
+				<value>0</value>
+				<value>1</value>
+				<value>2</value>
+				<value>1</value>
+				<value>2</value>
+				<value>3</value>
+				<value>1</value>
+				<value>2</value>
+				<value>3</value>
+				<value>4</value>
+			</Calc>
+		</Stat>
+                <Stat name = "Mov" attr = "Agility">	
+			<Calc>	
+				<value>1</value>
+				<value>1</value>
+				<value>1</value>
+				<value>2</value>
+				<value>2</value>
+				<value>2</value>
+				<value>3</value>
+				<value>3</value>
+				<value>3</value>
+				<value>4</value>
+				<value>4</value>
+				<value>4</value>
+				<value>5</value>
+				<value>6</value>
+			</Calc>
+		</Stat>
+        <Stat name = "Ran" attr = "Range">	
+			<Calc>	
+				<value>1</value>
+				<value>1</value>
+				<value>1</value>
+				<value>2</value>
+				<value>2</value>
+				<value>2</value>
+				<value>3</value>
+				<value>3</value>
+				<value>3</value>
+				<value>4</value>
+				<value>4</value>
+				<value>5</value>
+				<value>5</value>
+				<value>6</value>
+			</Calc>
+		</Stat>
+                <Stat name = "ValueRan" attr = "Range">	
+			<Calc>	
+				<value>0</value>
+				<value>1</value>
+				<value>1</value>
+				<value>2</value>
+				<value>2</value>
+				<value>3</value>
+				<value>4</value>
+				<value>4</value>
+				<value>5</value>
+				<value>6</value>
+				<value>6</value>
+				<value>7</value>
+				<value>8</value>
+				<value>10</value>
+			</Calc>
+		</Stat>
+                <Stat name = "Ini" attr = "Range">	
+			<Calc>	
+				<value>14</value>
+				<value>13</value>
+				<value>12</value>
+				<value>11</value>
+				<value>10</value>
+				<value>9</value>
+				<value>8</value>
+				<value>7</value>
+				<value>6</value>
+				<value>5</value>
+				<value>4</value>
+				<value>3</value>
+				<value>2</value>
+				<value>1</value>
+			</Calc>
+		</Stat>
 	</Stats>
 	
 	<Units formula = "(ValueDmg+ValueAtk+ValueRan)*Atk">
