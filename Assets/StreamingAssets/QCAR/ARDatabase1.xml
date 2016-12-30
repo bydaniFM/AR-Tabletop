@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="Pattern_test_24bit" size="1.000000 1.000000" />
+    <ImageTarget name="Pattern_test_1" size="1.000000 1.000000" />
+    <ImageTarget name="AR_element_6" size="1.000000 1.000000" />
+    <ImageTarget name="AR_element_5" size="1.000000 1.000000" />
+    <ImageTarget name="AR_element_4" size="1.000000 1.000000" />
+    <ImageTarget name="AR_element_14" size="1.000000 1.000000" />
+    <ImageTarget name="AR_element_13" size="1.000000 1.000000" />
+    <ImageTarget name="AR_element_12" size="1.000000 1.000000" />
+    <ImageTarget name="AR_element_10" size="1.000000 1.000000" />
+    <ImageTarget name="AR_element_9" size="1.000000 1.000000" />
+    <ImageTarget name="AR_element_8" size="1.000000 1.000000" />
+    <ImageTarget name="AR_element_7" size="1.000000 1.000000" />
+    <ImageTarget name="AR_element_3" size="1.000000 1.000000" />
+    <ImageTarget name="AR_element_2" size="1.000000 1.000000" />
+    <ImageTarget name="AR_element_11" size="5.000000 5.000000" />
+    <ImageTarget name="AR_element_1" size="5.000000 5.000000" />
+    <ImageTarget name="carta" size="5.000000 7.004310" />
+    <ImageTarget name="die_neue_20_euro-banknote-hero-1_bearbeitet-1" size="5.000000 3.750000" />
+    <ImageTarget name="uncharted4cover" size="5.000000 6.226054" />
+    <ImageTarget name="fifa17cover" size="5.000000 6.234015" />
+  </Tracking>
+</QCARConfig>
