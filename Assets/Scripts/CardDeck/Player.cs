@@ -16,7 +16,7 @@ public class Player : MonoBehaviour {
 		//float result = (float) solver.EvaluateExpression(expr);
 		//Debug.Log("Damage is "+expr+" = "+result);
 		PlayingCard[] testdeck = RulesLoader.GetPregenCards().ToArray();
-		deck = new CardDeck(RulesLoader.deckSize);
+		deck = new CardDeck(testdeck, RulesLoader.deckSize);
 		hand = new PlayingCard[RulesLoader.handSize];
 
 		units = new Unit[RulesLoader.unitNumber];
