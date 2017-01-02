@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 4da09b056afcf944792c25fae383e786
-timeCreated: 1483391422
+timeCreated: 1483393865
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -501,19 +501,6 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: dUI_HUD_dia1
-      rect:
-        serializedVersion: 2
-        x: 1320
-        y: 781
-        width: 49
-        height: 80
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
       name: dUI_line_up
       rect:
         serializedVersion: 2
@@ -530,10 +517,10 @@ TextureImporter:
       name: dUI_topline1
       rect:
         serializedVersion: 2
-        x: 620
-        y: 826
-        width: 664
-        height: 31
+        x: 618
+        y: 825
+        width: 669
+        height: 34
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -543,10 +530,10 @@ TextureImporter:
       name: dUI_HUD_bottomline1
       rect:
         serializedVersion: 2
-        x: 1370
-        y: 790
-        width: 663
-        height: 31
+        x: 1311
+        y: 782
+        width: 724
+        height: 88
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
