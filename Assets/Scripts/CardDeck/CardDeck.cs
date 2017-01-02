@@ -16,11 +16,13 @@ namespace ARTCards
 			grave = new Stack<PlayingCard>();
 			for (int i = 0; i < pregen.Length; i++) {
 				cards.Push(pregen[i]);
+				//Debug.Log("Added a card");
 			}
 
 			for (int i = 0; i < number-pregen.Length; i++) {
 				cards.Push(PlayingCard.GetBalancedCard(3, 9));
 			}
+			cards = Shuffle(cards);
 		}
 
 		public PlayingCard Draw(){
