@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 4da09b056afcf944792c25fae383e786
-timeCreated: 1483390404
+timeCreated: 1483391422
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -17,46 +17,46 @@ TextureImporter:
     21300020: dUI_button_menu
     21300022: dUI_button_marker
     21300024: dUI_button_options
-    21300026: deepmind_UI_spritesheet_0
-    21300028: deepmind_UI_spritesheet_1
-    21300030: deepmind_UI_spritesheet_2
-    21300032: deepmind_UI_spritesheet_3
+    21300026: dUI_HUD_target
+    21300028: dUI_button_settings
+    21300030: dUI_hex_quartertrans
+    21300032: dUI_hex_halftrans
     21300034: dUI_infobox
     21300036: dUI_grid
-    21300038: deepmind_UI_spritesheet_6
-    21300040: deepmind_UI_spritesheet_7
-    21300042: deepmind_UI_spritesheet_8
+    21300038: dUI_hex_2colored
+    21300040: dUI_button_arrows
+    21300042: dUI_button_exmark
     21300044: deepmind_UI_spritesheet_9
     21300046: deepmind_UI_spritesheet_10
-    21300048: deepmind_UI_spritesheet_11
-    21300050: deepmind_UI_spritesheet_12
-    21300052: deepmind_UI_spritesheet_13
+    21300048: dUI_lines_split
+    21300050: dUI_button_planet
+    21300052: dUI_button_bulletpoints
     21300054: deepmind_UI_spritesheet_14
     21300056: deepmind_UI_spritesheet_15
-    21300058: deepmind_UI_spritesheet_16
-    21300060: deepmind_UI_spritesheet_17
-    21300062: deepmind_UI_spritesheet_18
+    21300058: dUI_hex_greycolor
+    21300060: dUI_button_half
+    21300062: dUI_button_radar
     21300064: deepmind_UI_spritesheet_19
     21300066: dUI_char_info
     21300068: deepmind_UI_spritesheet_21
     21300070: deepmind_UI_spritesheet_22
     21300072: deepmind_UI_spritesheet_23
-    21300074: deepmind_UI_spritesheet_24
+    21300074: dUI_hud_top
     21300076: deepmind_UI_spritesheet_25
     21300078: deepmind_UI_spritesheet_26
-    21300080: deepmind_UI_spritesheet_27
+    21300080: dUI_line_dots_whatever
     21300082: dUI_HUD_centre
-    21300084: deepmind_UI_spritesheet_29
+    21300084: dUI_bottom_halfhex
     21300086: dUI_infocircle
     21300088: deepmind_UI_spritesheet_31
     21300090: deepmind_UI_spritesheet_32
-    21300092: dUI_arrows
-    21300094: deepmind_UI_spritesheet_34
-    21300096: deepmind_UI_spritesheet_35
-    21300098: deepmind_UI_spritesheet_36
+    21300092: dUI_menu_4arrows
+    21300094: dUI_line_down
+    21300096: dUI_dot_line2
+    21300098: duUI_dot_line
     21300100: dUI_HUD_dia2
     21300102: dUI_HUD_dia1
-    21300104: deepmind_UI_spritesheet_39
+    21300104: dUI_line_up
     21300106: dUI_topline1
     21300108: deepmind_UI_spritesheet_41
     21300110: dUI_HUD_bottomline1
@@ -73,12 +73,12 @@ TextureImporter:
     21300132: dUI_menu_top
     21300134: dUI_topinfo_extended
     21300136: dUI_topinfo_button
-    21300138: deepmind_UI_spritesheet_56
+    21300138: dUI_plus_white
     21300140: deepmind_UI_spritesheet_57
     21300142: deepmind_UI_spritesheet_58
-    21300144: deepmind_UI_spritesheet_59
-    21300146: deepmind_UI_spritesheet_60
-    21300148: deepmind_UI_spritesheet_61
+    21300144: dUI_menu_3cubes
+    21300146: dUI_menu_3arrows
+    21300148: dUI_menu_settings
     21300150: dUI_menu_body
     21300152: dUI_menu_buttom
   serializedVersion: 4
@@ -163,7 +163,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: deepmind_UI_spritesheet_0
+      name: dUI_HUD_target
       rect:
         serializedVersion: 2
         x: 38
@@ -176,7 +176,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: deepmind_UI_spritesheet_1
+      name: dUI_button_settings
       rect:
         serializedVersion: 2
         x: 184
@@ -189,7 +189,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: deepmind_UI_spritesheet_2
+      name: dUI_hex_quartertrans
       rect:
         serializedVersion: 2
         x: 369
@@ -202,7 +202,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: deepmind_UI_spritesheet_3
+      name: dUI_hex_halftrans
       rect:
         serializedVersion: 2
         x: 436
@@ -241,7 +241,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: deepmind_UI_spritesheet_6
+      name: dUI_hex_2colored
       rect:
         serializedVersion: 2
         x: 33
@@ -254,12 +254,12 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: deepmind_UI_spritesheet_7
+      name: dUI_button_arrows
       rect:
         serializedVersion: 2
         x: 184
         y: 1693
-        width: 130
+        width: 151
         height: 134
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -267,59 +267,33 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: deepmind_UI_spritesheet_8
+      name: dUI_button_exmark
       rect:
         serializedVersion: 2
         x: 360
         y: 1716
         width: 134
-        height: 129
+        height: 143
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: deepmind_UI_spritesheet_9
-      rect:
-        serializedVersion: 2
-        x: 399
-        y: 1780
-        width: 56
-        height: 75
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: deepmind_UI_spritesheet_10
-      rect:
-        serializedVersion: 2
-        x: 244
-        y: 1742
-        width: 90
-        height: 35
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: deepmind_UI_spritesheet_11
+      name: dUI_lines_split
       rect:
         serializedVersion: 2
         x: 67
-        y: 1630
-        width: 36
-        height: 61
+        y: 1554
+        width: 44
+        height: 137
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: deepmind_UI_spritesheet_12
+      name: dUI_button_planet
       rect:
         serializedVersion: 2
         x: 184
@@ -332,7 +306,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: deepmind_UI_spritesheet_13
+      name: dUI_button_bulletpoints
       rect:
         serializedVersion: 2
         x: 360
@@ -345,33 +319,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: deepmind_UI_spritesheet_14
-      rect:
-        serializedVersion: 2
-        x: 102
-        y: 1619
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: deepmind_UI_spritesheet_15
-      rect:
-        serializedVersion: 2
-        x: 67
-        y: 1555
-        width: 36
-        height: 61
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: deepmind_UI_spritesheet_16
+      name: dUI_hex_greycolor
       rect:
         serializedVersion: 2
         x: 38
@@ -384,7 +332,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: deepmind_UI_spritesheet_17
+      name: dUI_button_half
       rect:
         serializedVersion: 2
         x: 186
@@ -397,26 +345,13 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: deepmind_UI_spritesheet_18
+      name: dUI_button_radar
       rect:
         serializedVersion: 2
         x: 360
         y: 1378
         width: 134
         height: 154
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: deepmind_UI_spritesheet_19
-      rect:
-        serializedVersion: 2
-        x: 425
-        y: 1383
-        width: 4
-        height: 42
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -436,91 +371,26 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: deepmind_UI_spritesheet_21
+      name: dUI_hud_top
       rect:
         serializedVersion: 2
-        x: 662
-        y: 1307
-        width: 26
-        height: 42
+        x: 658
+        y: 1223
+        width: 112
+        height: 132
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: deepmind_UI_spritesheet_22
+      name: dUI_line_dots_whatever
       rect:
         serializedVersion: 2
-        x: 881
-        y: 1265
-        width: 41
-        height: 71
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: deepmind_UI_spritesheet_23
-      rect:
-        serializedVersion: 2
-        x: 687
-        y: 1289
-        width: 83
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: deepmind_UI_spritesheet_24
-      rect:
-        serializedVersion: 2
-        x: 687
-        y: 1273
-        width: 83
-        height: 9
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: deepmind_UI_spritesheet_25
-      rect:
-        serializedVersion: 2
-        x: 662
-        y: 1229
-        width: 26
-        height: 43
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: deepmind_UI_spritesheet_26
-      rect:
-        serializedVersion: 2
-        x: 921
+        x: 878
         y: 1253
-        width: 173
-        height: 9
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: deepmind_UI_spritesheet_27
-      rect:
-        serializedVersion: 2
-        x: 1098
-        y: 1253
-        width: 172
-        height: 9
+        width: 392
+        height: 83
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -540,7 +410,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: deepmind_UI_spritesheet_29
+      name: dUI_bottom_halfhex
       rect:
         serializedVersion: 2
         x: 827
@@ -566,7 +436,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: dUI_arrows
+      name: dUI_menu_4arrows
       rect:
         serializedVersion: 2
         x: 826
@@ -579,7 +449,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: deepmind_UI_spritesheet_34
+      name: dUI_line_down
       rect:
         serializedVersion: 2
         x: 88
@@ -592,7 +462,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: deepmind_UI_spritesheet_35
+      name: dUI_dot_line2
       rect:
         serializedVersion: 2
         x: 128
@@ -605,7 +475,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: deepmind_UI_spritesheet_36
+      name: duUI_dot_line
       rect:
         serializedVersion: 2
         x: 305
@@ -644,7 +514,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: deepmind_UI_spritesheet_39
+      name: dUI_line_up
       rect:
         serializedVersion: 2
         x: 88
@@ -791,7 +661,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 8
-        y: 125
+        y: 124
         width: 900
         height: 78
       alignment: 0
@@ -826,7 +696,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: deepmind_UI_spritesheet_56
+      name: dUI_plus_white
       rect:
         serializedVersion: 2
         x: 1655
@@ -839,46 +709,20 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: deepmind_UI_spritesheet_57
+      name: dUI_menu_3cubes
       rect:
         serializedVersion: 2
-        x: 1719
-        y: 144
-        width: 27
-        height: 30
+        x: 1718
+        y: 142
+        width: 87
+        height: 35
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: deepmind_UI_spritesheet_58
-      rect:
-        serializedVersion: 2
-        x: 1748
-        y: 144
-        width: 27
-        height: 30
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: deepmind_UI_spritesheet_59
-      rect:
-        serializedVersion: 2
-        x: 1776
-        y: 144
-        width: 28
-        height: 30
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: deepmind_UI_spritesheet_60
+      name: dUI_menu_3arrows
       rect:
         serializedVersion: 2
         x: 1827
@@ -891,7 +735,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: deepmind_UI_spritesheet_61
+      name: dUI_menu_settings
       rect:
         serializedVersion: 2
         x: 1940
