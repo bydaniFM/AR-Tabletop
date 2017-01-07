@@ -26,9 +26,13 @@ public class RulesLoader : MonoBehaviour {
 			path = path.Replace('/', '\\');
 		#endif    
 
+		#if !UNITY_EDITOR
 		FirstRun();
 
 		rules = Rules.Load(File.ReadAllText(settingsPath+"_rules.xml"));
+		#else
+		rules = Rules.Load(Resources.Load<TextAsset>("Rules").text); 
+		#endif
 	}
 	void Start () {
 		
