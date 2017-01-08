@@ -21,19 +21,19 @@
         <attr>-4</attr>
       </Card>
       <Card>
-        <attr>6</attr>
-        <attr>-2</attr>
+        <attr>5</attr>
+        <attr>-1</attr>
         <attr>-4</attr>
       </Card>
       <Card>
-        <attr>-2</attr>
-        <attr>6</attr>
         <attr>-4</attr>
+        <attr>5</attr>
+        <attr>-1</attr>
       </Card>
       <Card>
-        <attr>-2</attr>
+        <attr>-1</attr>
         <attr>-4</attr>
-        <attr>+6</attr>
+        <attr>+5</attr>
       </Card>
       <Card>
         <attr>7</attr>
