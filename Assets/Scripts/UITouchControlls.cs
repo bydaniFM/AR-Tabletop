@@ -7,7 +7,7 @@ public class UITouchControlls : MonoBehaviour {
 
 	public Text announcer;
 
-	public AudioSource fightaudio;
+	//public AudioSource fightaudio;
 
 	public Animator topinfo;
 	public Animator actionButton;
@@ -79,7 +79,7 @@ public class UITouchControlls : MonoBehaviour {
 
 		case 3:
 			announcer.text = "Fight";
-			fightaudio.Play ();
+		//	fightaudio.Play ();
 			break;
 
 		case 4:
