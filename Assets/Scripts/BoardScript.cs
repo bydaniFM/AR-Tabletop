@@ -4,13 +4,9 @@ using UnityEngine;
 
 public class BoardScript : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public HexScript[] Hexes;
+
+    public bool findHex(int posX, int posY) {
+        return false;
+    }
 }

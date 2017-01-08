@@ -4,13 +4,9 @@ using UnityEngine;
 
 public class HexScript : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    public string color;
+    public int posX;
+    public int posY;
+
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
