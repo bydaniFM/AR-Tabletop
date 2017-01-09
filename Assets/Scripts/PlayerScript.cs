@@ -10,10 +10,16 @@ public class PlayerScript : MonoBehaviour {
     public UnitScript[] Units;
     public UnitScript unitToMove;
 
+<<<<<<< HEAD
     public PlayerScript() {
         for (int i = 0; i < nUnits; i++) {
             Units[i] = new UnitScript();
         }
+=======
+    public PlayerScript(int nPlayer) {
+        this.nPlayer = nPlayer;
+        this.nUnits = 0;
+>>>>>>> b8d994c944016bc13a8c2294fe7bd7dab76dc9cb
     }
 
     //Scann card in front of the player
