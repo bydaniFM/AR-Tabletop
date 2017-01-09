@@ -38,17 +38,17 @@ namespace HexMap{
 			
 			CreateGridObj();
 
-			GridUI gui = GameObject.Find("Canvas").GetComponent<GridUI>();
-
-
-			foreach (Vector3 vec in coords) {
-				
-				//Vector2 uv = vec.x * X_QR + vec.y * Y_QR;
-				//int u = (int) uv.x;
-				//int v = (int) uv.y;
-				HexCell hex = layout.WorldToHex(vec);
-				gui.FeedbackObj(vec, hex.q+":"+hex.r);
-			}
+//			GridUI gui = GameObject.Find("Canvas").GetComponent<GridUI>();
+//
+//
+//			foreach (Vector3 vec in coords) {
+//				
+//				//Vector2 uv = vec.x * X_QR + vec.y * Y_QR;
+//				//int u = (int) uv.x;
+//				//int v = (int) uv.y;
+//				HexCell hex = layout.WorldToHex(vec);
+//				gui.FeedbackObj(vec, hex.q+":"+hex.r);
+//			}
 			Destroy(gameObject);
 		}
 
