@@ -1,0 +1,185 @@
+fileFormatVersion: 2
+guid: ce4c81518aecf4a619979eaa2f960368
+timeCreated: 1483970295
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: ankle_l
+    100002: ankle_r
+    100004: arm_middle_l
+    100006: arm_middle_r
+    100008: back_spine_1
+    100010: back_spine_2
+    100012: back_spine_3
+    100014: Cube.001
+    100016: head_front
+    100018: head_middle
+    100020: heel_l
+    100022: heel_r
+    100024: hip_l
+    100026: hip_r
+    100028: //RootNode
+    100030: knee_l
+    100032: knee_r
+    100034: Leg_joint_l
+    100036: Leg_joint_r
+    100038: leg_start_l
+    100040: leg_start_r
+    100042: lower_leg_l
+    100044: lower_lower_arm_l
+    100046: lower_reg_r
+    100048: lower_rower_arm_r
+    100050: lower_upper_arm_l
+    100052: lower_upper_arm_r
+    100054: middle
+    100056: middle_lower_arm_l
+    100058: middle_rower_arm_r
+    100060: middle_upper_arm_l
+    100062: middle_upper_arm_r
+    100064: neck_end
+    100066: neck_start
+    100068: root
+    100070: shoulder
+    100072: tail
+    100074: toes_l
+    100076: toes_r
+    100078: upper_ankle_l
+    100080: upper_ankle_r
+    100082: upper_arm_l
+    100084: upper_arm_r
+    100086: upper_back
+    100088: upper_back1
+    100090: upper_leg_l
+    100092: upper_lower_arm_l
+    100094: upper_reg_r
+    100096: upper_rower_arm_r
+    100098: weapon_bacse_l
+    100100: weapon_bacse_r
+    100102: weapon_l
+    100104: weapon_r
+    400000: ankle_l
+    400002: ankle_r
+    400004: arm_middle_l
+    400006: arm_middle_r
+    400008: back_spine_1
+    400010: back_spine_2
+    400012: back_spine_3
+    400014: Cube.001
+    400016: head_front
+    400018: head_middle
+    400020: heel_l
+    400022: heel_r
+    400024: hip_l
+    400026: hip_r
+    400028: //RootNode
+    400030: knee_l
+    400032: knee_r
+    400034: Leg_joint_l
+    400036: Leg_joint_r
+    400038: leg_start_l
+    400040: leg_start_r
+    400042: lower_leg_l
+    400044: lower_lower_arm_l
+    400046: lower_reg_r
+    400048: lower_rower_arm_r
+    400050: lower_upper_arm_l
+    400052: lower_upper_arm_r
+    400054: middle
+    400056: middle_lower_arm_l
+    400058: middle_rower_arm_r
+    400060: middle_upper_arm_l
+    400062: middle_upper_arm_r
+    400064: neck_end
+    400066: neck_start
+    400068: root
+    400070: shoulder
+    400072: tail
+    400074: toes_l
+    400076: toes_r
+    400078: upper_ankle_l
+    400080: upper_ankle_r
+    400082: upper_arm_l
+    400084: upper_arm_r
+    400086: upper_back
+    400088: upper_back1
+    400090: upper_leg_l
+    400092: upper_lower_arm_l
+    400094: upper_reg_r
+    400096: upper_rower_arm_r
+    400098: weapon_bacse_l
+    400100: weapon_bacse_r
+    400102: weapon_l
+    400104: weapon_r
+    4300000: Cube.001
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Cube.001
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 6
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
