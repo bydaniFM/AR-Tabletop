@@ -53,12 +53,12 @@ namespace HexMap{
 		}
 
 		void Update(){
-			
-	//		Debug.DrawLine(Vector3.up+Vector3.back*hexRad, Vector3.up+Vector3.back*hexRad + Vector3.left * narrow_width, Color.blue); //Narrow width
-	//		Debug.DrawLine(Vector3.up+Vector3.zero, Vector3.up+Vector3.forward * hex_height, Color.red); // Hex height
-	//		Debug.DrawLine(Vector3.up+Vector3.right*0.01f, Vector3.up+Vector3.right*0.01f + Vector3.forward * hexRad*2, Color.yellow); // Hex height right calc
-	//		Debug.DrawLine(Vector3.up+Vector3.zero, Vector3.up+Vector3.left * wide_width, Color.cyan); // hex wide width
-		}
+
+            //		Debug.DrawLine(Vector3.up+Vector3.back*hexRad, Vector3.up+Vector3.back*hexRad + Vector3.left * narrow_width, Color.blue); //Narrow width
+            //		Debug.DrawLine(Vector3.up+Vector3.zero, Vector3.up+Vector3.forward * hex_height, Color.red); // Hex height
+            //		Debug.DrawLine(Vector3.up+Vector3.right*0.01f, Vector3.up+Vector3.right*0.01f + Vector3.forward * hexRad*2, Color.yellow); // Hex height right calc
+            //		Debug.DrawLine(Vector3.up+Vector3.zero, Vector3.up+Vector3.left * wide_width, Color.cyan); // hex wide width
+        }
 
 
 		public Vector3[] NewGridCoords(int width, int height, Vector3 offset){
@@ -118,6 +118,11 @@ namespace HexMap{
 
 		void CreateGridObj(){
 			gridHolder = new GameObject("TheGrid");
+            //gridHolder.transform.position = new Vector3(0, 0, 0);
+            if (GameObject.Find("ImageTarget 1") != null)
+                gridHolder.transform.parent = GameObject.Find("ImageTarget 1").transform;
+            //gridHolder.transform.position = new Vector3(80, 25, -90);
+
 			MeshFilter mf = gridHolder.AddComponent <MeshFilter>();
 			MeshRenderer mr = gridHolder.AddComponent <MeshRenderer>();
 
