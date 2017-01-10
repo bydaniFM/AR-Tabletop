@@ -1,18 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManagerSimplified : MonoBehaviour {
 
     public int nTurn;
     public int nPlayers;
+    public int nUnit;
     public int tTimer;
+    public bool timerRunning;
     public bool bNextPhase;
     public int nWinner;
     //      -1 -> No winner
     //       0 -> Tie
     // nPlayer -> Player "n" wins
     public bool exit;
+
+    public GameObject myUnit;
+
+    public Text TimerText;
 
     //private Vector2 touchOrigin = -Vector2.one; //Used to store location of screen touch origin for mobile controls.
 
@@ -22,11 +29,11 @@ public class GameManagerSimplified : MonoBehaviour {
         //do {
             nTurn = 1;
             nPlayers = 2;
+            nUnit = 0;
             tTimer = 0;
             bNextPhase = false;
+            timerRunning = false;
             nWinner = -1;
-
-            StartCoroutine(Timer());
 
             Setup();
 
@@ -37,6 +44,10 @@ public class GameManagerSimplified : MonoBehaviour {
             //    }
             //} while (nWinner == -1);
         //} while (!exit);
+    }
+
+    void Update () {
+        TimerText.text = tTimer.ToString();
     }
 	
 	//// Touch Controls
@@ -91,7 +102,32 @@ public class GameManagerSimplified : MonoBehaviour {
 
     public void PlanningPhase(int nUnit) {
         Debug.Log("Planing Phase");
-        GameObject.Find("UI_portraits").SetActive(false);
+        tTimer = 0;
+        if (!timerRunning)
+            StartCoroutine(Timer());
+        this.nUnit = nUnit;
+        Debug.Log("Unit selected: "+nUnit);
+        //GameObject.Find("UI_portraits").SetActive(false);
+    }
+
+    public void MovePhase() {
+        if(nUnit != 0) {
+            Debug.Log("Move Phase");
+            if(nUnit == 1) {
+                myUnit = GameObject.Find("Octo_base");
+            }
+            if (nUnit == 2) {
+                myUnit = GameObject.Find("scampi_base");
+            }
+            if (nUnit == 3) {
+                myUnit = GameObject.Find("Crab_base");
+            }
+            myUnit.transform.parent = GameObject.Find("ImageTarget 1").transform;
+            myUnit.transform.localPosition = new Vector3(0, 0, 0);
+            myUnit.transform.localRotation = new Quaternion(0, 0, 0, 0);
+            myUnit.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+        }
+        
     }
 
     public void ExecutePhase(int nPlayer) {
@@ -100,8 +136,14 @@ public class GameManagerSimplified : MonoBehaviour {
 
     IEnumerator Timer() {
         do {
+            timerRunning = true;
             yield return new WaitForSeconds(1);
             tTimer++;
+            //Debug.Log("Time: " + tTimer);
         } while (true);
+    }
+
+    public int GetTimer() {
+        return tTimer;
     }
 }
