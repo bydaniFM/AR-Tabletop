@@ -33,8 +33,8 @@ namespace HexMap{
 			float z = vec.z - (origin.z + offset.z);
 			int u = Mathf.RoundToInt(x / narrow_width);
 			int v = Mathf.RoundToInt(z / hex_height - u * 0.5f);
-			Debug.Log(x+"/"+narrow_width+ ":"+z+"/"+hex_height +"-"+u+"*0.5" );
-			Debug.Log("Vec "+vec + " u "+u + " v "+v);
+			//Debug.Log(x+"/"+narrow_width+ ":"+z+"/"+hex_height +"-"+u+"*0.5" );
+			//Debug.Log("Vec "+vec + " u "+u + " v "+v);
 			return new HexCell(u, v);
 		}
 

@@ -33,6 +33,7 @@ namespace HexMap{
 			frontier = new SimplePriorityQueue<int>();
 			frontier.Enqueue(start_id, 0);
 			InitGridData();
+            Debug.Log("Start: "+start);
 			came_from[start] = -2;
 			cost_so_far[start] = 0;
 			searchcount = 0;

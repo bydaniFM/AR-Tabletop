@@ -22,7 +22,8 @@ public class UITouchControlls : MonoBehaviour {
 	private int rounds;
 	// Use this for initialization
 	void Start () {
-		char_button_1.SetActive (false);
+
+        char_button_1.SetActive (false);
 		char_button_2.SetActive (false);
 		char_button_3.SetActive (false);
 
@@ -31,7 +32,6 @@ public class UITouchControlls : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
 			
 	}
 

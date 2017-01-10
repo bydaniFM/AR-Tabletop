@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 namespace HexMap{
 	public class GridBuilder : MonoBehaviour {
@@ -53,12 +54,12 @@ namespace HexMap{
 		}
 
 		void Update(){
-			
-	//		Debug.DrawLine(Vector3.up+Vector3.back*hexRad, Vector3.up+Vector3.back*hexRad + Vector3.left * narrow_width, Color.blue); //Narrow width
-	//		Debug.DrawLine(Vector3.up+Vector3.zero, Vector3.up+Vector3.forward * hex_height, Color.red); // Hex height
-	//		Debug.DrawLine(Vector3.up+Vector3.right*0.01f, Vector3.up+Vector3.right*0.01f + Vector3.forward * hexRad*2, Color.yellow); // Hex height right calc
-	//		Debug.DrawLine(Vector3.up+Vector3.zero, Vector3.up+Vector3.left * wide_width, Color.cyan); // hex wide width
-		}
+
+            //		Debug.DrawLine(Vector3.up+Vector3.back*hexRad, Vector3.up+Vector3.back*hexRad + Vector3.left * narrow_width, Color.blue); //Narrow width
+            //		Debug.DrawLine(Vector3.up+Vector3.zero, Vector3.up+Vector3.forward * hex_height, Color.red); // Hex height
+            //		Debug.DrawLine(Vector3.up+Vector3.right*0.01f, Vector3.up+Vector3.right*0.01f + Vector3.forward * hexRad*2, Color.yellow); // Hex height right calc
+            //		Debug.DrawLine(Vector3.up+Vector3.zero, Vector3.up+Vector3.left * wide_width, Color.cyan); // hex wide width
+        }
 
 
 		public Vector3[] NewGridCoords(int width, int height, Vector3 offset){
@@ -118,7 +119,10 @@ namespace HexMap{
 
 		void CreateGridObj(){
 			gridHolder = new GameObject("TheGrid");
-			MeshFilter mf = gridHolder.AddComponent <MeshFilter>();
+            if (GameObject.Find("ImageTarget 1") != null)
+                gridHolder.transform.parent = GameObject.Find("ImageTarget 1").transform;
+
+            MeshFilter mf = gridHolder.AddComponent <MeshFilter>();
 			MeshRenderer mr = gridHolder.AddComponent <MeshRenderer>();
 
 			mf.mesh = MeshGen.CreateGridMesh(MeshGen.Hex(layout.wide_width/2), coords);//MeshGen.Square(0.5f);
@@ -130,7 +134,18 @@ namespace HexMap{
 		}
 
 
+		void SaveGrid(){
+			using (MemoryStream memoryStream = new MemoryStream()){
+				using (BinaryWriter binaryWriter = new BinaryWriter(memoryStream)){
+					//binaryWriter.Write(HexGrid.instance);
 
+					//Your stuff here
+
+					byte[] saveArray = memoryStream.ToArray();
+					File.WriteAllBytes(Application.dataPath+"/grid_data.grd", saveArray);
+				}
+			}
+		}
 
 	}
 }
