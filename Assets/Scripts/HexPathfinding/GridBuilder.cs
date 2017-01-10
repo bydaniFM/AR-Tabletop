@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 namespace HexMap{
 	public class GridBuilder : MonoBehaviour {
@@ -133,7 +134,18 @@ namespace HexMap{
 		}
 
 
+		void SaveGrid(){
+			using (MemoryStream memoryStream = new MemoryStream()){
+				using (BinaryWriter binaryWriter = new BinaryWriter(memoryStream)){
+					//binaryWriter.Write(HexGrid.instance);
 
+					//Your stuff here
+
+					byte[] saveArray = memoryStream.ToArray();
+					File.WriteAllBytes(Application.dataPath+"/grid_data.grd", saveArray);
+				}
+			}
+		}
 
 	}
 }
