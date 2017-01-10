@@ -4,10 +4,16 @@ using UnityEngine;
 using HexMap;
 
 public class PathTester : MonoBehaviour {
+
 	GameObject[] markers;
 	AStarHex pathfinding;
 	public GameObject player;
+
     public bool active = false;
+    public bool movementAllowed = false;
+
+    public RaycastHit storedHit;
+
 	// Use this for initialization
 	void Start () {
 		if (HexGrid.instance == null){
@@ -16,27 +22,35 @@ public class PathTester : MonoBehaviour {
 		pathfinding = new AStarHex();
 		markers = new GameObject[10];
 	}
+
 	Vector3[] waypoints;
 	int pathcount;
 	LTDescr tween;
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update() {
         pathfinding = new AStarHex();
 
         if (active) {
             if (Input.GetMouseButtonDown(0)) {
                 RaycastHit hit = new RaycastHit();
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out hit)) {
-                    //Vector3 mpos = Input.mousePosition;	
+                if (Physics.Raycast(ray, out hit)) {	
                     Debug.Log("hit " + hit.point);
                 }
+                if(!movementAllowed)
+                    storedHit = hit;
 
+                active = false;
+            }
+
+            if (movementAllowed) {
+                movementAllowed = false;
                 //Debug.Log(Input.mousePosition);
-                HexCell target = HexGrid.instance.GetCell(hit.point);
+                HexCell target = HexGrid.instance.GetCell(storedHit.point);
                 //HexCell start = HexGrid.instance.GetCell(player.transform.position);
                 Debug.Log("Clicked " + target.q + ":" + target.r);
-                waypoints = pathfinding.FindPath(player.transform.position, hit.point);
+                waypoints = pathfinding.FindPath(player.transform.position, storedHit.point);
                 foreach (var item in markers) {
                     Destroy(item);
                 }
@@ -59,12 +73,7 @@ public class PathTester : MonoBehaviour {
 
             }
         }
-
-//		if (LeanTween.isTweening(player)){
-//			float ratio = tween.passed / tween.time;
-//			player.transform.rotation = Quaternion.Lerp();
-//		}
-	}
+    }
 
 	void TweenNext(){
 		pathcount++;
@@ -78,4 +87,10 @@ public class PathTester : MonoBehaviour {
 			//LeanTween.rotate(player, waypoints[pathcount+1], 0.1f);
 		}
 	}
+
+    public void AllowMovement() {
+        //if(active)
+        active = true;
+        movementAllowed = true;
+    }
 }
