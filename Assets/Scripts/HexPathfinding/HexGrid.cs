@@ -38,7 +38,7 @@ namespace HexMap{
 			HexCell[] result = new HexCell[points.Length];
 			for (int i = 0; i < points.Length; i++) {
 				result[i] = GetCell(points[i]);
-				Debug.Log("Added "+points[i]+" "+result[i].q+":"+result[i].r);
+				//Debug.Log("Added "+points[i]+" "+result[i].q+":"+result[i].r);
 			}
 			return result;
 		}
@@ -73,7 +73,8 @@ namespace HexMap{
 				if (celldict.ContainsKey(n_cell)){
 					results[i] = celldict[n_cell];
 				}
-				Debug.Log("Cell "+all_cells[id].q+":"+all_cells[id].r+" Neighbor "+i+"="+results[i]);
+				//Debug.Log("Cell "+all_cells[id].q+":"+all_cells[id].r+" Neighbor "+i+"="+results[i]);
+
 				//int cell_id = GetCellId(n_cell);
 				//invalidates neighbors with too much Z diff
 				/*if (cell_id != -1){
