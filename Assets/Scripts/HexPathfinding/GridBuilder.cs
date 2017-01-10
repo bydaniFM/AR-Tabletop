@@ -118,12 +118,10 @@ namespace HexMap{
 
 		void CreateGridObj(){
 			gridHolder = new GameObject("TheGrid");
-            //gridHolder.transform.position = new Vector3(0, 0, 0);
             if (GameObject.Find("ImageTarget 1") != null)
                 gridHolder.transform.parent = GameObject.Find("ImageTarget 1").transform;
-            //gridHolder.transform.position = new Vector3(80, 25, -90);
 
-			MeshFilter mf = gridHolder.AddComponent <MeshFilter>();
+            MeshFilter mf = gridHolder.AddComponent <MeshFilter>();
 			MeshRenderer mr = gridHolder.AddComponent <MeshRenderer>();
 
 			mf.mesh = MeshGen.CreateGridMesh(MeshGen.Hex(layout.wide_width/2), coords);//MeshGen.Square(0.5f);

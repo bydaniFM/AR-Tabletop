@@ -18,6 +18,9 @@ public class GameManagerSimplified : MonoBehaviour {
     public bool exit;
 
     public GameObject myUnit;
+    public GameObject Octo;
+    public GameObject Scampi;
+    public GameObject Crab;
 
     public Text TimerText;
 
@@ -35,7 +38,11 @@ public class GameManagerSimplified : MonoBehaviour {
             timerRunning = false;
             nWinner = -1;
 
-            Setup();
+        Octo = GameObject.Find("Octo_base");
+        Scampi = GameObject.Find("scampi_base");
+        Crab = GameObject.Find("Crab_base");
+
+        Setup();
 
             //do {
             //    for (int i = 0; i < nPlayers; i++) {
@@ -114,13 +121,13 @@ public class GameManagerSimplified : MonoBehaviour {
         if(nUnit != 0) {
             Debug.Log("Move Phase");
             if(nUnit == 1) {
-                myUnit = GameObject.Find("Octo_base");
+                myUnit = Octo;
             }
             if (nUnit == 2) {
-                myUnit = GameObject.Find("scampi_base");
+                myUnit = Scampi;
             }
             if (nUnit == 3) {
-                myUnit = GameObject.Find("Crab_base");
+                myUnit = Crab;
             }
             myUnit.transform.parent = GameObject.Find("ImageTarget 1").transform;
             myUnit.transform.localPosition = new Vector3(0, 0, 0);
@@ -132,6 +139,7 @@ public class GameManagerSimplified : MonoBehaviour {
 
     public void ExecutePhase(int nPlayer) {
         Debug.Log("Execute!");
+        //myUnit.GetComponent.path
     }
 
     IEnumerator Timer() {

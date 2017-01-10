@@ -7,6 +7,7 @@ public class PathTester : MonoBehaviour {
 	GameObject[] markers;
 	AStarHex pathfinding;
 	public GameObject player;
+    public bool active = false;
 	// Use this for initialization
 	void Start () {
 		if (HexGrid.instance == null){
@@ -20,40 +21,44 @@ public class PathTester : MonoBehaviour {
 	LTDescr tween;
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetMouseButtonDown(0)) {
-			RaycastHit hit = new RaycastHit();
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			if (Physics.Raycast(ray, out hit)){
-				//Vector3 mpos = Input.mousePosition;	
-				Debug.Log("hit "+hit.point);
-			}
+        pathfinding = new AStarHex();
 
-			//Debug.Log(Input.mousePosition);
-			HexCell target = HexGrid.instance.GetCell(hit.point);
-			//HexCell start = HexGrid.instance.GetCell(player.transform.position);
-			Debug.Log("Clicked "+ target.q+":"+target.r);
-			waypoints = pathfinding.FindPath(player.transform.position, hit.point);
-			foreach (var item in markers) {
-				Destroy(item);
-			}
-			markers = new GameObject[waypoints.Length];
-			for (int i = 0; i < waypoints.Length; i++) {
-				
-				markers[i] = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-				markers[i].transform.localScale = Vector3.one*0.3f;
-				markers[i].transform.position = waypoints[i];
-				markers[i].name = "Hex mark";
+        if (active) {
+            if (Input.GetMouseButtonDown(0)) {
+                RaycastHit hit = new RaycastHit();
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out hit)) {
+                    //Vector3 mpos = Input.mousePosition;	
+                    Debug.Log("hit " + hit.point);
+                }
 
-			}
+                //Debug.Log(Input.mousePosition);
+                HexCell target = HexGrid.instance.GetCell(hit.point);
+                //HexCell start = HexGrid.instance.GetCell(player.transform.position);
+                Debug.Log("Clicked " + target.q + ":" + target.r);
+                waypoints = pathfinding.FindPath(player.transform.position, hit.point);
+                foreach (var item in markers) {
+                    Destroy(item);
+                }
+                markers = new GameObject[waypoints.Length];
+                for (int i = 0; i < waypoints.Length; i++) {
 
-			pathcount = 0;
-			tween = LeanTween.move(player, waypoints[pathcount], 0.2f).setOnComplete(() => TweenNext());
-			// LeanTween.rotate(player, Vector3.zero, 1f);
-			Vector3 myRotation =  Quaternion.LookRotation(waypoints[pathcount]-player.transform.position).eulerAngles;
-			LeanTween.rotateLocal(player,myRotation, 0.2f).setEase(LeanTweenType.easeSpring);
+                    markers[i] = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                    markers[i].transform.localScale = Vector3.one * 0.3f;
+                    markers[i].transform.position = waypoints[i];
+                    markers[i].name = "Hex mark";
+
+                }
+
+                pathcount = 0;
+                tween = LeanTween.move(player, waypoints[pathcount], 0.2f).setOnComplete(() => TweenNext());
+                // LeanTween.rotate(player, Vector3.zero, 1f);
+                Vector3 myRotation = Quaternion.LookRotation(waypoints[pathcount] - player.transform.position).eulerAngles;
+                LeanTween.rotateLocal(player, myRotation, 0.2f).setEase(LeanTweenType.easeSpring);
 
 
-		}
+            }
+        }
 
 //		if (LeanTween.isTweening(player)){
 //			float ratio = tween.passed / tween.time;
