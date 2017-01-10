@@ -5,7 +5,7 @@ using HexMap;
 
 public class PathTester : MonoBehaviour {
 
-	GameObject[] markers;
+	//GameObject[] markers;
 	AStarHex pathfinding;
 	public GameObject player;
 
@@ -14,13 +14,15 @@ public class PathTester : MonoBehaviour {
 
     public RaycastHit storedHit;
 
-	// Use this for initialization
-	void Start () {
-		if (HexGrid.instance == null){
+    FieldOrientationAssistant assist;
+    // Use this for initialization
+    void Start () {
+        assist = FindObjectOfType<FieldOrientationAssistant>();
+        if (HexGrid.instance == null){
 			Debug.LogError("REEEE");
 		}
 		pathfinding = new AStarHex();
-		markers = new GameObject[10];
+		//markers = new GameObject[10];
 	}
 
 	Vector3[] waypoints;
@@ -29,7 +31,6 @@ public class PathTester : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        pathfinding = new AStarHex();
 
         if (active) {
             if (Input.GetMouseButtonDown(0)) {
@@ -46,36 +47,38 @@ public class PathTester : MonoBehaviour {
 
             if (movementAllowed) {
                 movementAllowed = false;
-                //Debug.Log(Input.mousePosition);
-                HexCell target = HexGrid.instance.GetCell(storedHit.point);
-                //HexCell start = HexGrid.instance.GetCell(player.transform.position);
+                //HexCell target = HexGrid.instance.GetCell(storedHit.point);
+                HexCell target = HexGrid.instance.GetCell(assist.WorldToGrid(storedHit.point));
                 Debug.Log("Clicked " + target.q + ":" + target.r);
-                waypoints = pathfinding.FindPath(player.transform.position, storedHit.point);
-                foreach (var item in markers) {
-                    Destroy(item);
-                }
-                markers = new GameObject[waypoints.Length];
-                for (int i = 0; i < waypoints.Length; i++) {
-
-                    markers[i] = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                    markers[i].transform.localScale = Vector3.one * 0.3f;
-                    markers[i].transform.position = waypoints[i];
-                    markers[i].name = "Hex mark";
-
-                }
+                //waypoints = pathfinding.FindPath(player.transform.position, storedHit.point);
+                waypoints = TransformWaypoints(pathfinding.FindPath(assist.WorldToGrid(player.transform.position), assist.WorldToGrid(storedHit.point)));
+                //foreach (var item in markers) {
+                //    Destroy(item);
+                //}
+                //markers = new GameObject[waypoints.Length];
+                //for (int i = 0; i < waypoints.Length; i++) {
+                //    markers[i] = SlapMarker(waypoints[i]);
+                //    markers[i].name = "Hex mark";
+                //}
 
                 pathcount = 0;
                 tween = LeanTween.move(player, waypoints[pathcount], 0.2f).setOnComplete(() => TweenNext());
                 // LeanTween.rotate(player, Vector3.zero, 1f);
                 Vector3 myRotation = Quaternion.LookRotation(waypoints[pathcount] - player.transform.position).eulerAngles;
                 LeanTween.rotateLocal(player, myRotation, 0.2f).setEase(LeanTweenType.easeSpring);
-
-
+                
             }
         }
     }
 
-	void TweenNext(){
+    GameObject SlapMarker(Vector3 pos) {
+        GameObject go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        go.transform.localScale = Vector3.one * 0.3f;
+        go.transform.position = pos;
+        return go;
+    }
+
+    void TweenNext(){
 		pathcount++;
 		if (pathcount < waypoints.Length){
 			LeanTween.move(player, waypoints[pathcount], 0.3f).setOnComplete(() => TweenNext());
@@ -87,6 +90,14 @@ public class PathTester : MonoBehaviour {
 			//LeanTween.rotate(player, waypoints[pathcount+1], 0.1f);
 		}
 	}
+
+    Vector3[] TransformWaypoints(Vector3[] waypoints) {
+        Vector3[] result = new Vector3[waypoints.Length];
+        for (int i = 0; i < result.Length; i++) {
+            result[i] = assist.GridToWorld(waypoints[i]);
+        }
+        return result;
+    }
 
     public void AllowMovement() {
         //if(active)

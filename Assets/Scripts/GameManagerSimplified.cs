@@ -60,23 +60,25 @@ public class GameManagerSimplified : MonoBehaviour {
 
     //Change into PlaceUnit()
     public void MovePhase() {
-        if(nUnit != 0) {
-            Debug.Log("Move Phase");
-            if(nUnit == 1) {
-                myUnit = Octo;
+        if (nPhase == 0) {
+            nPhase = 1;
+            if (nUnit != 0) {
+                Debug.Log("Move Phase");
+                if (nUnit == 1) {
+                    myUnit = Octo;
+                }
+                if (nUnit == 2) {
+                    myUnit = Scampi;
+                }
+                if (nUnit == 3) {
+                    myUnit = Crab;
+                }
+                myUnit.transform.parent = GameObject.Find("ImageTarget 1").transform;
+                myUnit.transform.localPosition = new Vector3(0, 0, 0);
+                myUnit.transform.localRotation = new Quaternion(0, 0, 0, 0);
+                myUnit.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
             }
-            if (nUnit == 2) {
-                myUnit = Scampi;
-            }
-            if (nUnit == 3) {
-                myUnit = Crab;
-            }
-            myUnit.transform.parent = GameObject.Find("ImageTarget 1").transform;
-            myUnit.transform.localPosition = new Vector3(0, 0, 0);
-            myUnit.transform.localRotation = new Quaternion(0, 0, 0, 0);
-            myUnit.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
         }
-        
     }
 
     public void ResetTimer() {
