@@ -23,6 +23,14 @@ public class UIPierreTouch: MonoBehaviour {
 	public GameObject char_button_7;
 	public GameObject char_button_8;
 
+	public GameObject AR_1;
+	public GameObject AR_2;
+	public GameObject AR_3;
+	public GameObject AR_4;
+	public GameObject AR_5;
+	public GameObject AR_6;
+	public GameObject AR_7;
+	public GameObject AR_8;
 	//	public GameObject rotate_button_left;
 	//	public GameObject rotate_button_right;
 	public Slider slider;
@@ -32,6 +40,7 @@ public class UIPierreTouch: MonoBehaviour {
 
 	private bool animationState = false;
 	private int rounds;
+	private int nextmodel = 1;
 	private bool rotate;
 	private bool counter_rotate;
 	private float rotationspeed;
@@ -64,6 +73,15 @@ public class UIPierreTouch: MonoBehaviour {
 		freeze_button.SetActive (false);
 		unfreeze_button.SetActive (false);
 		slider.value = 0f;
+
+		AR_1.SetActive (true);
+		AR_2.SetActive (false);
+		AR_3.SetActive (false);
+		AR_4.SetActive (false);
+		AR_5.SetActive (false);
+		AR_6.SetActive (false);
+		AR_7.SetActive (false);
+		AR_8.SetActive (false);
 
 		char_1_rotation = char_button_1.transform.rotation;
 		char_2_rotation = char_button_2.transform.rotation;
@@ -415,5 +433,105 @@ public class UIPierreTouch: MonoBehaviour {
 		freeze = false;
 		freeze_button.SetActive (true);
 		unfreeze_button.SetActive (false);
+	}
+
+
+	public void ARSwitch(){
+		nextmodel++;
+		switch (nextmodel){
+
+		case 1:
+			AR_1.SetActive (true);
+			AR_2.SetActive (false);
+			AR_3.SetActive (false);
+			AR_4.SetActive (false);
+			AR_5.SetActive (false);
+			AR_6.SetActive (false);
+			AR_7.SetActive (false);
+			AR_8.SetActive (false);
+			break;
+
+		case 2:
+			AR_1.SetActive (false);
+			AR_2.SetActive (true);
+			AR_3.SetActive (false);
+			AR_4.SetActive (false);
+			AR_5.SetActive (false);
+			AR_6.SetActive (false);
+			AR_7.SetActive (false);
+			AR_8.SetActive (false);
+			break;
+
+		case 3:
+			AR_1.SetActive (false);
+			AR_2.SetActive (false);
+			AR_3.SetActive (true);
+			AR_4.SetActive (false);
+			AR_5.SetActive (false);
+			AR_6.SetActive (false);
+			AR_7.SetActive (false);
+			AR_8.SetActive (false);
+			break;
+
+		case 4:
+			AR_1.SetActive (false);
+			AR_2.SetActive (false);
+			AR_3.SetActive (false);
+			AR_4.SetActive (true);
+			AR_5.SetActive (false);
+			AR_6.SetActive (false);
+			AR_7.SetActive (false);
+			AR_8.SetActive (false);
+			break;
+
+		case 5:
+			AR_1.SetActive (false);
+			AR_2.SetActive (false);
+			AR_3.SetActive (false);
+			AR_4.SetActive (false);
+			AR_5.SetActive (true);
+			AR_6.SetActive (false);
+			AR_7.SetActive (false);
+			AR_8.SetActive (false);
+			break;
+
+		case 6:
+			AR_1.SetActive (false);
+			AR_2.SetActive (false);
+			AR_3.SetActive (false);
+			AR_4.SetActive (false);
+			AR_5.SetActive (false);
+			AR_6.SetActive (true);
+			AR_7.SetActive (false);
+			AR_8.SetActive (false);
+			break;
+
+		case 7:
+			AR_1.SetActive (false);
+			AR_2.SetActive (false);
+			AR_3.SetActive (false);
+			AR_4.SetActive (false);
+			AR_5.SetActive (false);
+			AR_6.SetActive (false);
+			AR_7.SetActive (true);
+			AR_8.SetActive (false);
+			break;
+
+		case 8:
+			AR_1.SetActive (false);
+			AR_2.SetActive (false);
+			AR_3.SetActive (false);
+			AR_4.SetActive (false);
+			AR_5.SetActive (false);
+			AR_6.SetActive (false);
+			AR_7.SetActive (false);
+			AR_8.SetActive (true);
+			nextmodel = 1;
+			break;
+
+		
+		}
+
+
 	}
 }
