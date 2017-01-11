@@ -1,107 +1,132 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using HexMap;
 
 public class PathTester : MonoBehaviour {
+	GameObject[] markers;
+	//AStarHex pathfinding;
+	public UnitController player;
 
-	//GameObject[] markers;
-	AStarHex pathfinding;
-	public GameObject player;
+	Vector3 temp;
 
-    public bool active = false;
-    public bool movementAllowed = false;
+	FakeEnemy[] enemies;
+	int enemynum;
+	//FieldOrientationAssistant assist;
 
-    public RaycastHit storedHit;
-
-    FieldOrientationAssistant assist;
-    // Use this for initialization
-    void Start () {
-        assist = FindObjectOfType<FieldOrientationAssistant>();
-        if (HexGrid.instance == null){
+	// Use this for initialization
+	void Start () {
+		//assist = FindObjectOfType<FieldOrientationAssistant>();
+		player.name = "Player";
+		if (HexGrid.instance == null){
 			Debug.LogError("REEEE");
 		}
-		pathfinding = new AStarHex();
-		//markers = new GameObject[10];
+		//pathfinding = new AStarHex();
+		markers = new GameObject[10];
+
+		enemies = FindObjectsOfType<FakeEnemy>();
+
+
 	}
 
-	Vector3[] waypoints;
-	int pathcount;
-	LTDescr tween;
 
-    // Update is called once per frame
-    void Update() {
 
-        if (active) {
-            if (Input.GetMouseButtonDown(0)) {
-                RaycastHit hit = new RaycastHit();
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out hit)) {	
-                    Debug.Log("hit " + hit.point);
-                }
-                if(!movementAllowed)
-                    storedHit = hit;
+	// Update is called once per frame
+	void Update () {
+		if (player != null){
+			if (Input.GetKeyDown(KeyCode.A) || Input.touchCount == 3){
+				player.transform.LookAt(enemies[0].transform);
+				player.GetComponent<FireWeapon>().Shoot();
 
-                active = false;
-            }
+				enemies[0].GetComponent<SelfDestruct>().Execute(2.5f);
+			}
+			if (Input.GetMouseButtonDown(0) && Input.touchCount < 2) {
+			//	ParentStuff();
+				RaycastHit hit = new RaycastHit();
+				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+				if (Physics.Raycast(ray, out hit)){
+					//Vector3 mpos = Input.mousePosition;	
+					Debug.Log("hit "+hit.point);
+					if(!player.isMoving){
+						player.PreparePath(hit.point);
+						//Pathfind(hit.point);
+						//GameObject m1 = SlapMarker(hit.point);
+						ShowPath(player.GetWaypoints());
 
-            if (movementAllowed) {
-                movementAllowed = false;
-                //HexCell target = HexGrid.instance.GetCell(storedHit.point);
-                HexCell target = HexGrid.instance.GetCell(assist.WorldToGrid(storedHit.point));
-                Debug.Log("Clicked " + target.q + ":" + target.r);
-                //waypoints = pathfinding.FindPath(player.transform.position, storedHit.point);
-                waypoints = TransformWaypoints(pathfinding.FindPath(assist.WorldToGrid(player.transform.position), assist.WorldToGrid(storedHit.point)));
-                //foreach (var item in markers) {
-                //    Destroy(item);
-                //}
-                //markers = new GameObject[waypoints.Length];
-                //for (int i = 0; i < waypoints.Length; i++) {
-                //    markers[i] = SlapMarker(waypoints[i]);
-                //    markers[i].name = "Hex mark";
-                //}
+						enemynum = Random.Range(0, enemies.Length);
+						enemies[enemynum].PlotNext();
+					}
+					//GameObject m2 = SlapMarker(assist.GridToWorld(hit.point));
+					//if (m1.transform.position == m2.transform.position){
+					//	Debug.Log("MATCH");
+					//}
+				}
+			}
+			if (Input.GetMouseButtonDown(1) || Input.touchCount == 2){
+				if(!player.isMoving){
+					player.StartPath();
+					enemies[enemynum].GotoNext();
+					foreach (var item in markers) {
+						Destroy(item);
+					}
+				}
+			}
 
-                pathcount = 0;
-                tween = LeanTween.move(player, waypoints[pathcount], 0.2f).setOnComplete(() => TweenNext());
-                // LeanTween.rotate(player, Vector3.zero, 1f);
-                Vector3 myRotation = Quaternion.LookRotation(waypoints[pathcount] - player.transform.position).eulerAngles;
-                LeanTween.rotateLocal(player, myRotation, 0.2f).setEase(LeanTweenType.easeSpring);
-                
-            }
-        }
-    }
-
-    GameObject SlapMarker(Vector3 pos) {
-        GameObject go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        go.transform.localScale = Vector3.one * 0.3f;
-        go.transform.position = pos;
-        return go;
-    }
-
-    void TweenNext(){
-		pathcount++;
-		if (pathcount < waypoints.Length){
-			LeanTween.move(player, waypoints[pathcount], 0.3f).setOnComplete(() => TweenNext());
-
-				//player.transform.LookAt(waypoints[pathcount+1]);
-			Vector3 myRotation =  Quaternion.LookRotation(waypoints[pathcount]-waypoints[pathcount-1]).eulerAngles;
-			LeanTween.rotateLocal(player,myRotation, 0.2f).setEase(LeanTweenType.easeSpring);
-			//}
-			//LeanTween.rotate(player, waypoints[pathcount+1], 0.1f);
 		}
+		if (Input.GetKeyDown(KeyCode.R) || Input.touchCount == 5){
+			//Application.LoadLevel(Application.loadedLevel);
+			//SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+		}
+
+//		Debug.DrawLine(player.transform.position, assist.transform.up);
+//		Debug.DrawLine(player.transform.position, player.transform.position+temp);
+
+//		if (LeanTween.isTweening(player)){
+//			float ratio = tween.passed / tween.time;
+//			player.transform.rotation = Quaternion.Lerp();
+//		}
 	}
 
-    Vector3[] TransformWaypoints(Vector3[] waypoints) {
-        Vector3[] result = new Vector3[waypoints.Length];
-        for (int i = 0; i < result.Length; i++) {
-            result[i] = assist.GridToWorld(waypoints[i]);
-        }
-        return result;
-    }
 
-    public void AllowMovement() {
-        //if(active)
-        active = true;
-        movementAllowed = true;
-    }
+	void ShowPath(Vector3[] points){
+		
+		//Debug.Log(Input.mousePosition);
+		//HexCell target = HexGrid.instance.GetCell(assist.WorldToGrid(point));
+		//HexCell start = HexGrid.instance.GetCell(player.transform.position);
+		//Debug.Log("Clicked "+ target.q+":"+target.r);
+		foreach (var item in markers) {
+			Destroy(item);
+		}
+		markers = new GameObject[points.Length];
+		for (int i = 0; i < points.Length; i++) {
+			
+			markers[i] = SlapMarker(points[i]);
+			markers[i].name = "Hex mark";
+
+		}
+
+
+		//temp = waypoints[pathcount]-player.transform.position;
+		//tween = 
+	}
+
+	GameObject SlapMarker(Vector3 pos){
+		GameObject go = new GameObject("hex");
+		MeshFilter mf = go.AddComponent<MeshFilter>();
+		MeshRenderer mr = go.AddComponent<MeshRenderer>();
+		mf.mesh = MeshGen.Hex(HexLayout.instance.wide_width);
+		go.transform.localScale = Vector3.one*0.3f;
+		go.transform.position = pos;
+		return go;
+	}
+
+
+	//void ParentStuff(){
+	//	GameObject.Find("TheGrid").transform.parent = GameObject.Find("Field").transform;
+	//}
+
+
+
 }

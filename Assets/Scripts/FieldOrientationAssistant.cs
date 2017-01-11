@@ -25,6 +25,7 @@ public class FieldOrientationAssistant : MonoBehaviour {
 		pivotDir =  relative * pivotDir;
 		//pivotDir = pivotDir;
 		return  pivotDir+storedPosition;
+
 	}
 
 	public Vector3 GridToWorld(Vector3 vec){
@@ -33,5 +34,13 @@ public class FieldOrientationAssistant : MonoBehaviour {
 		pivotDir = inverse * pivotDir;
 
 		return pivotDir+transform.position;
+	}
+
+	public Vector3[] ArrayToWorld (Vector3[] points){
+		Vector3[] result = new Vector3[points.Length];
+		for (int i = 0; i < result.Length; i++) {
+			result[i] = GridToWorld(points[i]);
+		}
+		return result;
 	}
 }
