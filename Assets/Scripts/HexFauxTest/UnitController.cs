@@ -50,7 +50,7 @@ public class UnitController : MonoBehaviour {
 				Debug.Log(gameObject.name+" is still tweening!");
 			}
 			pathcount = 0;
-			LeanTween.move(gameObject, waypoints[pathcount], 0.2f).setOnComplete(() => FollowPath());
+			LeanTween.move(gameObject, waypoints[pathcount], 0.2f).setEase(LeanTweenType.easeInCubic).setOnComplete(() => FollowPath());
 			Vector3 myRotation = new Vector3(0, Quaternion.LookRotation(waypoints[pathcount]-transform.position, assist.transform.up).eulerAngles.y, 0);
 
 			LeanTween.rotateLocal(gameObject, myRotation, 0.2f).setEase(LeanTweenType.easeSpring);
