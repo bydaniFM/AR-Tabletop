@@ -5,77 +5,77 @@
 		<Size>15</Size>
     <Cards>
       <!--If not enough cards here they will be generated automatically-->
-      <Card>
+      <Card id="agi4">
         <attr>-4</attr>
         <attr>4</attr>
         <attr>0</attr>
       </Card>
-      <Card>
+      <Card id="agi4">
         <attr>0</attr>
         <attr>-4</attr>
         <attr>4</attr>
       </Card>
-      <Card>
+      <Card id="agi4">
         <attr>4</attr>
         <attr>0</attr>
         <attr>-4</attr>
       </Card>
-      <Card>
+      <Card id="agi4">
         <attr>5</attr>
         <attr>-1</attr>
         <attr>-4</attr>
       </Card>
-      <Card>
+      <Card id="agi4">
         <attr>-4</attr>
         <attr>5</attr>
         <attr>-1</attr>
       </Card>
-      <Card>
+      <Card id="agi4">
         <attr>-1</attr>
         <attr>-4</attr>
         <attr>+5</attr>
       </Card>
-      <Card>
+      <Card id="agi4">
         <attr>7</attr>
         <attr>-1</attr>
         <attr>-6</attr>
       </Card>
-      <Card>
+      <Card id="agi4">
         <attr>-6</attr>
         <attr>7</attr>
         <attr>-1</attr>
       </Card>
-      <Card>
+      <Card id="agi4">
         <attr>-1</attr>
         <attr>-6</attr>
         <attr>7</attr>
       </Card>
-      <Card>
+      <Card id="agi4">
         <attr>10</attr>
         <attr>-9</attr>
         <attr>-1</attr>
       </Card>
-      <Card>
+      <Card id="agi4">
         <attr>-1</attr>
         <attr>10</attr>
         <attr>-9</attr>
       </Card>
-      <Card>
+      <Card id="agi4">
         <attr>-9</attr>
         <attr>-1</attr>
         <attr>10</attr>
       </Card>
-      <Card>
+      <Card id="agi4">
         <attr>2</attr>
         <attr>-1</attr>
         <attr>-1</attr>
       </Card>
-      <Card>
+      <Card id="agi4">
         <attr>-1</attr>
         <attr>2</attr>
         <attr>-1</attr>
       </Card>
-      <Card>
+      <Card id="agi4">
         <attr>-1</attr>
         <attr>-1</attr>
         <attr>2</attr>

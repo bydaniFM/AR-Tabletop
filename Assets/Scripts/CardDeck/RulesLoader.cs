@@ -79,7 +79,7 @@ public class RulesLoader : MonoBehaviour {
 	}
 
 	public static List<PlayingCard> GetPregenCards(){
-		List<PlayingCard> result = instance.rules.deck.cards.ConvertAll( x => new PlayingCard(x.attrs)); 
+		List<PlayingCard> result = instance.rules.deck.cards.ConvertAll( x => new PlayingCard(x.attrs, x.id)); 
 		return result;
 	}
 

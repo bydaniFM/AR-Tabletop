@@ -9,15 +9,17 @@ namespace ARTCards
 
 		public readonly int[] attributes = new int[0];
 		private Action cardAct;
+		public readonly string id;
 
 		public PlayingCard(){
 			
 		}
-		public PlayingCard(int[] attrs){
+		public PlayingCard(int[] attrs, string id){
 			attributes = new int[attrs.Length];
 			for (int i = 0; i < attrs.Length; i++) {
 				attributes[i] = attrs[i];
 			}
+			this.id = id;
 		}
 
 		/// <summary>
@@ -44,9 +46,9 @@ namespace ARTCards
 			//int val1 = UnityEngine.Random.Range(-maxAttr, maxAttr);
 			//int range2 = maxAttr-Mathf.Abs(val1);
 			//int val2 = UnityEngine.Random.Range(-range2, range2);
-
+			string myid = "balanced"+args[0]+args[1]+args[2];
 			Debug.Log("Card "+debugStr);
-			return new PlayingCard(args);
+			return new PlayingCard(args, myid);
 				//cards.Push(card);
 			
 		}
