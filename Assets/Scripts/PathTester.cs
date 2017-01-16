@@ -13,11 +13,11 @@ public class PathTester : MonoBehaviour {
 
 	FakeEnemy[] enemies;
 	int enemynum;
-	//FieldOrientationAssistant assist;
+	FieldOrientationAssistant assist;
 
 	// Use this for initialization
 	void Start () {
-		//assist = FindObjectOfType<FieldOrientationAssistant>();
+		assist = FindObjectOfType<FieldOrientationAssistant>();
 		player.name = "Player";
 		if (HexGrid.instance == null){
 			Debug.LogError("REEEE");
@@ -118,7 +118,9 @@ public class PathTester : MonoBehaviour {
 		MeshRenderer mr = go.AddComponent<MeshRenderer>();
 		mf.mesh = MeshGen.Hex(HexLayout.instance.wide_width);
 		go.transform.localScale = Vector3.one*0.3f;
-		go.transform.position = pos;
+		go.transform.localPosition = pos;
+		transform.localRotation = player.transform.localRotation;
+		go.transform.parent = player.transform.parent;
 		return go;
 	}
 

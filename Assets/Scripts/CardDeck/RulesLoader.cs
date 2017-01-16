@@ -11,7 +11,7 @@ public class RulesLoader : MonoBehaviour {
 	string settingsPath;
 	private Rules rules;
 
-	static RulesLoader instance;
+	public static RulesLoader instance;
 	// Use this for initialization
 	void Awake(){
 		if (instance == null){

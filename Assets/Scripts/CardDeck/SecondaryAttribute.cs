@@ -48,6 +48,9 @@ namespace ARTCards
 				return (int)solver.EvaluateExpression(calc[attr-minAttr]);
 			}
 
+			public int MaxValue{
+				get{ return maxValue; }
+			}
 			public int Value{
 				get{ return curValue; }
 				set{

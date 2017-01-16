@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 //using System.Collections.Generic;
+using System.IO;
 using AK;
 using ARTCards;
 
-public class Player : MonoBehaviour {
+public class Player {
 	public CardDeck deck;
 	public PlayingCard[] hand;
 	public PlayingCard activeCard;
 	public Unit[] units;
 	// Use this for initialization
-	void Start () {
+	public Player () {
 		//ExpressionSolver solver = new ExpressionSolver();
 		//solver.SetGlobalVariable("Strength", strength);
 		//string expr = "sqrt(Strength * 2)";
@@ -26,13 +27,7 @@ public class Player : MonoBehaviour {
 		}
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		/*if (Input.GetMouseButtonDown(0)){
-			PlayingCard card = deck.Draw();
-			PlayCard(units[0], card);
-		}*/
-	}
+
 
 
 	void PlayCard(Unit target, PlayingCard card){
@@ -44,5 +39,30 @@ public class Player : MonoBehaviour {
 		//else{
 			
 		//}
+	}
+
+	public byte[] ToBin(){
+		System.Collections.Generic.List<byte> lst = new System.Collections.Generic.List<byte>();
+		for (int i = 0; i < units.Length; i++) {
+			lst.AddRange(units[i].ToBin());
+		}
+		return lst.ToArray();
+
+	}
+	public void Load (byte[] bytes){
+		using (MemoryStream memoryStream = new MemoryStream(bytes)){
+			using (BinaryReader binaryReader = new BinaryReader(memoryStream)){
+				for (int i = 0; i < units.Length; i++) {
+					string[] keys = new string[units[i].attrs.Count];
+					units[i].attrs.Keys.CopyTo(keys, 0);
+
+					for (int j = 0; j < keys.Length; j++) {
+						units[i].attrs[keys[j]].Value = binaryReader.ReadInt32();	
+					}
+
+					units[i].stats["HP"].Value = binaryReader.ReadInt32();
+				}
+			}
+		}
 	}
 }
