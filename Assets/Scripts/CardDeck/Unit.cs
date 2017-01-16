@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.IO;
 
 namespace ARTCards
 {
@@ -53,6 +54,23 @@ namespace ARTCards
 			}
 
 			damage = Damage();
+		}
+
+		public byte[] ToBin(){
+			using (MemoryStream memoryStream = new MemoryStream()){
+					using (BinaryWriter binaryWriter = new BinaryWriter(memoryStream)){
+
+					foreach (var item in attrs) {
+						binaryWriter.Write(item.Value.Value);
+					}
+					binaryWriter.Write(stats["HP"].Value);
+
+				}
+				memoryStream.Close();
+				byte[] result = memoryStream.ToArray();
+				return result;
+			}
+
 		}
 	}
 }
