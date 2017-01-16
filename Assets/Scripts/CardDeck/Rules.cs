@@ -62,6 +62,8 @@ namespace ARTCards.Rules
 	public class CardData{
 		[XmlElement("attr")]
 		public readonly int[] attrs;
+		[XmlAttribute("id")]
+		public string id;
 	}
 
 	public class AttributeData{
