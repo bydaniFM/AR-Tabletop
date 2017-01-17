@@ -34,19 +34,22 @@ public class ScannedCardActivator : MonoBehaviour
         cardTracked = true;
     }
 
-    public ScannedCardActivator()
+   /* public ScannedCardActivator()
     { 
         cardTracked = true;
-    }
+    }*/
 
     void Update()
     { 
  
         if (cardTracked)
-         {
+        {
             cardID = Int32.Parse(transform.parent.name); 
             Debug.Log("CardID tracked: " + cardID); 
             cardTracked = false;
+            Debug.Log(injector);
+            Debug.Log(injector.players[0]);
+			Debug.Log(injector.players[0].deck);
             injector.players[0].activeCard = injector.players[0].deck.GetCardById(""+cardID);
         } 
     } 

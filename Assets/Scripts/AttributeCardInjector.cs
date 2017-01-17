@@ -49,8 +49,7 @@ namespace ARTCards
         // Use this for initialization
         void Awake()
         {
-        	players = new Player[2];
-			players[0] = new Player();
+        	
            // player1 = new Player();
         }
 
@@ -80,6 +79,9 @@ namespace ARTCards
 
            // unit1 = new ARTCards.Unit();
             unitStatsPreview = GameObject.Find("UnitStatsPreview").GetComponent<Text>();
+
+			players = new Player[2];
+			players[0] = new Player();
         }
 
         /// <summary>

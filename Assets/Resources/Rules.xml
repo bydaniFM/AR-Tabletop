@@ -5,77 +5,77 @@
 		<Size>15</Size>
     <Cards>
       <!--If not enough cards here they will be generated automatically-->
-      <Card id="agi4">
+      <Card id="agi40">
         <attr>-4</attr>
         <attr>4</attr>
         <attr>0</attr>
       </Card>
-      <Card id="agi4">
+      <Card id="agi41">
         <attr>0</attr>
         <attr>-4</attr>
         <attr>4</attr>
       </Card>
-      <Card id="agi4">
+      <Card id="agi42">
         <attr>4</attr>
         <attr>0</attr>
         <attr>-4</attr>
       </Card>
-      <Card id="agi4">
+      <Card id="agi43">
         <attr>5</attr>
         <attr>-1</attr>
         <attr>-4</attr>
       </Card>
-      <Card id="agi4">
+      <Card id="agi44">
         <attr>-4</attr>
         <attr>5</attr>
         <attr>-1</attr>
       </Card>
-      <Card id="agi4">
+      <Card id="agi45">
         <attr>-1</attr>
         <attr>-4</attr>
         <attr>+5</attr>
       </Card>
-      <Card id="agi4">
+      <Card id="agi46">
         <attr>7</attr>
         <attr>-1</attr>
         <attr>-6</attr>
       </Card>
-      <Card id="agi4">
+      <Card id="agi47">
         <attr>-6</attr>
         <attr>7</attr>
         <attr>-1</attr>
       </Card>
-      <Card id="agi4">
+      <Card id="agi48">
         <attr>-1</attr>
         <attr>-6</attr>
         <attr>7</attr>
       </Card>
-      <Card id="agi4">
+      <Card id="agi49">
         <attr>10</attr>
         <attr>-9</attr>
         <attr>-1</attr>
       </Card>
-      <Card id="agi4">
+      <Card id="agi410">
         <attr>-1</attr>
         <attr>10</attr>
         <attr>-9</attr>
       </Card>
-      <Card id="agi4">
+      <Card id="agi411">
         <attr>-9</attr>
         <attr>-1</attr>
         <attr>10</attr>
       </Card>
-      <Card id="agi4">
+      <Card id="agi412">
         <attr>2</attr>
         <attr>-1</attr>
         <attr>-1</attr>
       </Card>
-      <Card id="agi4">
+      <Card id="agi413">
         <attr>-1</attr>
         <attr>2</attr>
         <attr>-1</attr>
       </Card>
-      <Card id="agi4">
+      <Card id="agi414">
         <attr>-1</attr>
         <attr>-1</attr>
         <attr>2</attr>
