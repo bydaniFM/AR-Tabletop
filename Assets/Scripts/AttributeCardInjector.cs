@@ -31,23 +31,27 @@ namespace ARTCards
         public GameObject minimizeProcessButton;
         public GameObject showInjectionProcessButton;
 
-        public Player player1;
-        public Player player2;
+       // public Player player1;
+       // public Player player2;
 
-        public Unit unit1;
-        public Unit unit2;
-        public Unit unit3;
+       public Player[] players;
 
-        public Attribute tmp_strength;
-        public Attribute tmp_agility;
-        public Attribute tmp_range;
+       // public Unit unit1;
+       // public Unit unit2;
+       // public Unit unit3;
+
+	    //public Attribute tmp_strength;
+        //public Attribute tmp_agility;
+        //public Attribute tmp_range;
 
         public ScannedCardActivator scannedCardActivator;
 
         // Use this for initialization
         void Awake()
         {
-            player1 = new Player();
+        	players = new Player[2];
+			players[0] = new Player();
+           // player1 = new Player();
         }
 
 
@@ -74,7 +78,7 @@ namespace ARTCards
             ShowCardImage();
             ActivatePannel();
 
-            unit1 = new ARTCards.Unit();
+           // unit1 = new ARTCards.Unit();
             unitStatsPreview = GameObject.Find("UnitStatsPreview").GetComponent<Text>();
         }
 
@@ -181,9 +185,9 @@ namespace ARTCards
         /// Takes the unit stats and show them with the changes of the card
         /// on the UI as a text
         /// </summary>
-        public void ShowUnitStatsPreview(int unitSelected)
+        public void ShowUnitStatsPreview(int unitID)
         {           
-            Debug.Log("Unit name: " + unit1);
+            Debug.Log("Unit name: " + players[0].units[unitID]);
             //string[] keys = new string[unit1.attrs.Count];
             //unit1.attrs.Keys.CopyTo(keys, 0);
 
@@ -199,16 +203,20 @@ namespace ARTCards
             //STARTS HERE: We need the attributes of the card we are going to apply
             //and the attributes from the Unit chosen
             //When we press on a portrait button, the inspector sends an int with the unit we want
-            Debug.Log("Player " + player1);
-            Debug.Log("Units " + player1.units[0]);
+            Debug.Log("Player " + players[0]);
+            Debug.Log("Units " + players[0].units[0]);
 
-            Attribute[] arr_attributesUnit = new Attribute[player1.units[unitSelected].attrs.Count];
-            player1.units[unitSelected].attrs.Values.CopyTo(arr_attributesUnit, 0);
+            Attribute[] arr_attributesUnit = new Attribute[players[0].units[unitID].attrs.Count];
+            players[0].units[unitID].attrs.Values.CopyTo(arr_attributesUnit, 0);
 
 
             // Attribute[] arr_attributesActiveCard = new Attribute[player1.activeCard.attributes.GetLength(0)];
             //  player1.activeCard.attributes.CopyTo(arr_attributesActiveCard, 0);
-            int[] cardAttrs = player1.activeCard.attributes;
+			if (players[0].activeCard == null){
+            	Debug.LogError("Active card is not setup! Aborting");
+            	return;
+            }
+            int[] cardAttrs = players[0].activeCard.attributes;
 
 
             string[] statBonus = new string[cardAttrs.Length];
@@ -226,7 +234,7 @@ namespace ARTCards
 
             //here we are checking if the card can be applied
             //if not, we will design a function to finish the injection process
-            if (!player1.activeCard.isNotOverflowing(arr_attributesUnit))//if is false
+            if (!players[0].activeCard.isNotOverflowing(arr_attributesUnit))//if is false
             {
                 Debug.LogError("The card overflows unit stats");
                 return;
@@ -242,7 +250,7 @@ namespace ARTCards
             //One this has been done, the player can press Activate Injection
             //Activate Injection button will call the funcion ApplyChangesInjection
             //unitStatsPreview = GameObject.Find("UnitStatsPreview").GetComponent<Text>();
-            unitStatsPreview.text = "StatsChangedPreview\n Unit-> " + player1.units[unitSelected].name +
+            unitStatsPreview.text = "StatsChangedPreview\n Unit-> " + players[0].units[unitID].name +
                     "\nStrenght:" + arr_attributesUnit[0].Value + statBonus[0] 
                     + "\nAgility:" + arr_attributesUnit[1].Value + statBonus[1] 
                     + "\nRange:" + arr_attributesUnit[2].Value + statBonus[2];
@@ -254,13 +262,13 @@ namespace ARTCards
         /// <summary>
         /// Apply the changes of the injection of the card selected on the character
         /// </summary>
-        public void ApplyChangesInjection(int unitSelected)
+        public void ApplyChangesInjection(int unitID)
         {
-            Attribute[] arr = new Attribute[unit1.attrs.Count];
-            unit1.attrs.Values.CopyTo(arr, 0);
+			//Attribute[] arr = new Attribute[players[0].units[unitID].attrs.Count];
+			//players[0].units[unitID].attrs.Values.CopyTo(arr, 0);
 
-            Attribute[] arr_attributesUnit = new Attribute[player1.units[unitSelected].attrs.Count];
-            player1.units[unitSelected].attrs.Values.CopyTo(arr_attributesUnit, 0);
+            Attribute[] arr_attributesUnit = new Attribute[players[0].units[unitID].attrs.Count];
+            players[0].units[unitID].attrs.Values.CopyTo(arr_attributesUnit, 0);
 
             //if (card.isNotOverflowing(arr))
             //{
