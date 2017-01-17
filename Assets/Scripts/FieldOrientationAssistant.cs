@@ -8,10 +8,18 @@ public class FieldOrientationAssistant : MonoBehaviour {
 	Vector3 storedPosition;
 	Quaternion storedRotation;
 
+	FieldOrientationAssistant instance;
 	// Use this for initialization
 	void Start () {
 		storedPosition = transform.position;
 		storedRotation = transform.rotation;
+
+		if(instance = null){
+			instance = this;
+		}
+		else if (instance != this){
+			Debug.LogError("Multiple copies of Field Assistant "+gameObject.name+" is redundant!");
+		}
 	}
 	
 	// Update is called once per frame

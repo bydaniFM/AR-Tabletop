@@ -64,13 +64,13 @@ namespace HexMap{
 			//Remove tile from Frontier
 			int cell_id = frontier.Dequeue();
 			int[] new_ids = OddSearch(cell_id);
-			Debug.Log("Enter Search Loop");
+			//Debug.Log("Enter Search Loop");
 
 			for (int i = 0; i < 6; i++) {
 				int neighbor_id = HexGrid.instance.neighbor_ids[cell_id, new_ids[i]];
 				if (neighbor_id != -1){
 					float new_cost = cost_so_far[cell_id] + HexGrid.instance.GetCost(neighbor_id);
-					Debug.Log("Neighbor "+new_ids[i]+" "+HexGrid.instance.all_cells[neighbor_id].q+" "+HexGrid.instance.all_cells[neighbor_id].r+" number "+neighbor_id + " Cost "+new_cost);
+					//Debug.Log("Neighbor "+new_ids[i]+" "+HexGrid.instance.all_cells[neighbor_id].q+" "+HexGrid.instance.all_cells[neighbor_id].r+" number "+neighbor_id + " Cost "+new_cost);
 					//If the visited tile list doesn't contain this neighbor
 					if (came_from[neighbor_id] == -1 || new_cost < cost_so_far[neighbor_id]){
 						cost_so_far[neighbor_id] = new_cost;
@@ -83,7 +83,7 @@ namespace HexMap{
 						//also add it to visited
 
 						came_from[neighbor_id] = cell_id;
-						Debug.Log("Adding "+ HexGrid.instance.all_cells[neighbor_id].q+":"+ HexGrid.instance.all_cells[neighbor_id].r );
+						//Debug.Log("Adding "+ HexGrid.instance.all_cells[neighbor_id].q+":"+ HexGrid.instance.all_cells[neighbor_id].r );
 					}
 				}
 			}

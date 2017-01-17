@@ -10,12 +10,15 @@ public class FireWeapon : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        anim.GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 	
 	public void Shoot() {
-        anim.Play("Fire");
+		if(anim != null){
+	        anim.Play("Fire");
+       	}
         GameObject prt = (GameObject) Instantiate(particle, hardpoint.position, hardpoint.rotation);
+		prt.transform.parent = hardpoint;
 		Destroy(prt, 3);
 	}
 }

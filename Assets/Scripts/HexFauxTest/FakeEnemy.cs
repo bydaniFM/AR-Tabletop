@@ -12,6 +12,7 @@ public class FakeEnemy : MonoBehaviour {
 
 	FireWeapon weapon;
 	SelfDestruct player;
+	FieldOrientationAssistant assist;
 
 	bool movin;
 	// Use this for initialization
@@ -19,6 +20,7 @@ public class FakeEnemy : MonoBehaviour {
 		unit = GetComponent<UnitController>();
 		weapon = GetComponent<FireWeapon>();
 		player = GameObject.Find("Player").GetComponent<SelfDestruct>();
+		assist = FindObjectOfType<FieldOrientationAssistant>();
 		//Debug.Log(player);
 	}
 
@@ -32,7 +34,7 @@ public class FakeEnemy : MonoBehaviour {
 
 
 	public void PlotNext(){
-		unit.PreparePath(destinations[curdest]);
+		unit.PreparePath(assist.GridToWorld(destinations[curdest]));
 	}
 
 	public void GotoNext(){
