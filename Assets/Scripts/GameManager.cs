@@ -7,13 +7,17 @@ public class GameManager : MonoBehaviour {
 
     private GameObject startMenuUI;
     private GameObject mainUI;
+    private GameObject atributeCardInjectorUI;
+    private GameObject askToUseCardUI;
     private GameObject mainCamera;
     private GameObject ARCamera;
     private GameObject Board;
 
     private Player player1;
     private Player player2;
-    private Unit[] unclaimedUnits;
+    private GameObject[] unclaimedUnits;
+    private RaycastHit plannedRaycast1;
+    private RaycastHit plannedRaycast2;
 
     private TurnManager turnManager;
 
@@ -23,30 +27,33 @@ public class GameManager : MonoBehaviour {
     private bool inSetup;
     private bool inPlacing;
     private bool inClaiming;
+    private bool allowCardScanning;
+    private bool wantToInjectCard;
     private int tTimer;
     private int nTurn;
     private int playerTurn;
     private int index1;
     private int index2;
     private int selectedUnit;
-    
-    public bool wantToInjectCard;
-    public Canvas askToUseCard;
 
     void Start() {
         startMenuUI = GameObject.Find("canvas_start_menu");
         mainUI = GameObject.Find("canvas_main_UI");
+        atributeCardInjectorUI = GameObject.Find("canvas_CardScanning");
+        askToUseCardUI = GameObject.Find("canvas_AskToUseCard");
         mainCamera = GameObject.Find("Main Camera");
         ARCamera = GameObject.Find("ARCamera");
         Board = GameObject.Find("Board");
         
         mainUI.SetActive(false);
+        atributeCardInjectorUI.SetActive(false);
+        askToUseCardUI.SetActive(false);
         ARCamera.SetActive(false);
         Board.SetActive(false);
 
         player1 = new Player();
         player2 = new Player();
-        unclaimedUnits = new Unit[6];
+        unclaimedUnits = new GameObject[6];
 
         timer = Timer();
 
@@ -54,6 +61,7 @@ public class GameManager : MonoBehaviour {
         inSetup = false;
         inPlacing = true;
         inClaiming = false;
+        allowCardScanning = false;
         tTimer = 0;
         playerTurn = 1;
         index1 = 0;
@@ -75,12 +83,20 @@ public class GameManager : MonoBehaviour {
                         Debug.Log("In placing");
                         if (playerTurn == 1) {
                             Debug.Log("Player1 has placed an unit");
-                            unclaimedUnits[index1 + index2] = new Unit(); //This unit has to be placed in "hit"
+                            //unclaimedUnits[index1 + index2] = new Unit(); //This unit has to be placed in "hit"
+                            unclaimedUnits[index1 + index2] = (GameObject)Instantiate(Resources.Load("Scampi"));
+                            unclaimedUnits[index1 + index2].transform.parent = GameObject.Find("ImageTarget_Grid").transform;
+                            unclaimedUnits[index1 + index2].gameObject.transform.position = hit.transform.position;
+                            unclaimedUnits[index1 + index2].gameObject.transform.rotation = Quaternion.identity;//new Quaternion(0, 0, 90, 0);
+                            unclaimedUnits[index1 + index2].gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                             index1++;
                         }
                         if (playerTurn == 2) {
                             Debug.Log("Player2 has placed an unit");
-                            unclaimedUnits[index1 + index2] = new Unit(); //This unit has to be placed in "hit"
+                            //unclaimedUnits[index1 + index2] = new Unit(); //This unit has to be placed in "hit"
+                            unclaimedUnits[index1 + index2] = (GameObject)Instantiate(Resources.Load("Scampi"));
+                            unclaimedUnits[index1 + index2].gameObject.transform.position = hit.transform.position;
+                            unclaimedUnits[index1 + index2].transform.parent = GameObject.Find("ImageTarget_Grid").transform;
                             index2++;
                         }
                         ChangeTurn();
@@ -88,18 +104,20 @@ public class GameManager : MonoBehaviour {
                         Debug.Log("In claiming");
                         if (playerTurn == 1) {
                             if (hit.collider.gameObject.tag == "Unit") {
-                                if (unclaimedUnits[index1 + index2].player == 0) {
-                                    player1.units[index1] = unclaimedUnits[index1 + index2];
+                                //Check if unit selected has owner already, if not, claim it
+                                if (unclaimedUnits[index1 + index2].GetComponent<UnitController>().unit.player == 0) {
                                     player1.units[index1].player = 1;
+                                    player1.units[index1] = unclaimedUnits[index1 + index2].GetComponent<UnitController>().unit;
                                 }
                             }
                             index1++;
                         }
                         if (playerTurn == 2) {
                             if (hit.collider.gameObject.tag == "Unit") {
-                                if (unclaimedUnits[index1 + index2].player == 0) {
-                                    player2.units[index2] = unclaimedUnits[index1 + index2];
+                                //Check if unit selected has owner already, if not, claim it
+                                if (unclaimedUnits[index1 + index2].GetComponent<UnitController>().unit.player == 0) {
                                     player2.units[index2].player = 2;
+                                    player1.units[index1] = unclaimedUnits[index1 + index2].GetComponent<UnitController>().unit;
                                 }
                             }
                             index2++;
@@ -120,17 +138,17 @@ public class GameManager : MonoBehaviour {
                     //2- Turns start: physical attribute card draw
                     //Ask the player if wants to inject. We activate the AskUseCard Canvas
                     Debug.Log("Do you want to inject an attribute card?");
-                    askToUseCard.enabled = true;
-
+                    askToUseCardUI.SetActive(true);
                     if (playerTurn == 1) {
                         //scanning of the card: the Scanned Card Activator calls
                         if (wantToInjectCard) {
                             //activate injection process: put the car in front
                             //of the camera to begin the process
+                            atributeCardInjectorUI.SetActive(true);
                         }
                         //3- Planning phase
                         if (selectedUnit != 0) {
-                            //player1.units[selectedUnit - 1]."MoveUnit(hit.point)";
+                            plannedRaycast1 = hit;
                         }
                     }
                     if (playerTurn == 2) {
@@ -138,10 +156,11 @@ public class GameManager : MonoBehaviour {
                         if (wantToInjectCard) {
                             //activate injection process: put the car in front
                             //of the camera to begin the process
+                            atributeCardInjectorUI.SetActive(true);
                         }
-                        //
+                        //3- Planning phase
                         if (selectedUnit != 0) {
-                            //player2.units[selectedUnit - 1]."MoveUnit(hit.point)";
+                            plannedRaycast2 = hit;
                         }
                     }
                     // Execute phase
@@ -154,6 +173,8 @@ public class GameManager : MonoBehaviour {
                         //Check here if unit is in range with other enemy units
                         //if (player2.units[i].attrs.TryGetValue("Range"))
                     }
+                    //Move units
+
                     //Attack sub-phase. Check the initiative!!
 
                     //Check winning condition
@@ -162,7 +183,7 @@ public class GameManager : MonoBehaviour {
                     } else if (!inSetup && player1.units.Length <= 0) {
                         Debug.Log("Player 2 wins");
                     }
-                    askToUseCard.enabled = false;
+                    askToUseCardUI.SetActive(false);
                     nTurn++;
                     ChangeTurn();
                 }//End setup-normalTurn

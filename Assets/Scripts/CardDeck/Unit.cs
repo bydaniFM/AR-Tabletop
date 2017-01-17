@@ -19,15 +19,15 @@ namespace ARTCards
 			//test
 			damage = Damage();
 		}
-        //Overload of the constructor to place the unit in the field
-        public Unit(RaycastHit hit, string name) {
-            this.name = name;
-            attrs = RulesLoader.GetAttributesDict();
-            stats = RulesLoader.GetStatsDict();
-            //Create a game object in the scene, children of "ImageTarget_Grid"
-            //Put the 3D model
-            //Place it in the position of the raycast
-        }
+        ////Overload of the constructor to place the unit in the field
+        //public Unit(RaycastHit hit, string name) {
+        //    this.name = name;
+        //    attrs = RulesLoader.GetAttributesDict();
+        //    stats = RulesLoader.GetStatsDict();
+        //    //Create a game object in the scene, children of "ImageTarget_Grid"
+        //    //Put the 3D model
+        //    //Place it in the position of the raycast
+        //}
 
         public void Engage(Unit[] targets){
 			int dmg = Damage()/targets.Length;

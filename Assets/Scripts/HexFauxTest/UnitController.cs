@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using HexMap;
+using ARTCards;
 
 public class UnitController : MonoBehaviour {
+
+    public Unit unit;
 
 	public bool _isMoving;
 	private Vector3[] waypoints;
@@ -16,6 +19,8 @@ public class UnitController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        unit = new Unit();
+
 		assist = FindObjectOfType<FieldOrientationAssistant>();
 		pathfinding = new AStarHex();
         anim = GetComponent<Animator>();
