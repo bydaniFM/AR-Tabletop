@@ -272,14 +272,14 @@ namespace ARTCards
             Attribute[] arr_attributesUnit = new Attribute[players[0].units[unitID].attrs.Count];
             players[0].units[unitID].attrs.Values.CopyTo(arr_attributesUnit, 0);
 
-            //if (card.isNotOverflowing(arr))
-            //{
-            //    unit1.Buff(card.attributes);
-            //    // players[i].deck.Bury(players[i].activeCard);
-            //    // players[i].activeCard = null;
+            if (players[0].activeCard.isNotOverflowing(arr_attributesUnit))
+            {
+                players[0].units[unitID].Buff(players[0].activeCard.attributes);
+               // players[i].deck.Bury(players[i].activeCard);
+                // players[i].activeCard = null;
             //    // holdingCard = false;
             //}
-
+            }
             //Once the changes had been applied to the unit, we desactivate the process of injection
             Debug.Log("Finishing the process of injection of the card selected");
             injectionPannel.SetActive(false);
