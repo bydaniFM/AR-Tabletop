@@ -13,15 +13,25 @@ public class GameManager : MonoBehaviour {
 
     private Player player1;
     private Player player2;
+    private Unit[] unclaimedUnits;
 
     private TurnManager turnManager;
 
+    private IEnumerator timer;
+
+    private bool nextPhase;
     private bool inSetup;
     private bool inPlacing;
     private bool inClaiming;
+    private int tTimer;
     private int nTurn;
     private int playerTurn;
-    private int placeIndex;
+    private int index1;
+    private int index2;
+    private int selectedUnit;
+    
+    public bool wantToInjectCard;
+    public Canvas askToUseCard;
 
     void Start() {
         startMenuUI = GameObject.Find("canvas_start_menu");
@@ -36,48 +46,68 @@ public class GameManager : MonoBehaviour {
 
         player1 = new Player();
         player2 = new Player();
+        unclaimedUnits = new Unit[6];
 
+        timer = Timer();
+
+        nextPhase = false;
         inSetup = false;
-        inPlacing = false;
+        inPlacing = true;
         inClaiming = false;
-        playerTurn = 0;
-        placeIndex = 0;
+        tTimer = 0;
+        playerTurn = 1;
+        index1 = 0;
+        index2 = 0;
         nTurn = 1;
+        selectedUnit = 0;
     }
 
     void Update() {
         if (Input.GetMouseButtonDown(0) && Input.touchCount < 2) {
-            Debug.Log("Click!");
             RaycastHit hit = new RaycastHit();
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit)) {
                 Debug.Log("hit " + hit.point);
+                //1.- Setup
                 if (inSetup) {
+                    Debug.Log("In Setup");
                     if (inPlacing) {
+                        Debug.Log("In placing");
                         if (playerTurn == 1) {
-                            player1.units[placeIndex] = new Unit(); //This unit has to be placed in "hit"
+                            Debug.Log("Player1 has placed an unit");
+                            unclaimedUnits[index1 + index2] = new Unit(); //This unit has to be placed in "hit"
+                            index1++;
                         }
                         if (playerTurn == 2) {
-                            player2.units[placeIndex] = new Unit(); //This unit has to be placed in "hit"
+                            Debug.Log("Player2 has placed an unit");
+                            unclaimedUnits[index1 + index2] = new Unit(); //This unit has to be placed in "hit"
+                            index2++;
                         }
-                        placeIndex++;
                         ChangeTurn();
                     } else if (inClaiming) {
+                        Debug.Log("In claiming");
                         if (playerTurn == 1) {
-                            // if(Player has touched a unit) {
-                            player1.units[placeIndex].player = 1;
-                            //}
+                            if (hit.collider.gameObject.tag == "Unit") {
+                                if (unclaimedUnits[index1 + index2].player == 0) {
+                                    player1.units[index1] = unclaimedUnits[index1 + index2];
+                                    player1.units[index1].player = 1;
+                                }
+                            }
+                            index1++;
                         }
                         if (playerTurn == 2) {
-                            // if(Player has touched a unit) {
-                            player2.units[placeIndex].player = 2;
-                            //}
+                            if (hit.collider.gameObject.tag == "Unit") {
+                                if (unclaimedUnits[index1 + index2].player == 0) {
+                                    player2.units[index2] = unclaimedUnits[index1 + index2];
+                                    player2.units[index2].player = 2;
+                                }
+                            }
+                            index2++;
                         }
-                        placeIndex++;
                         ChangeTurn();
                     }
-                    if (placeIndex >= 6) {
-                        placeIndex = 0;
+                    if (index1 >= 3 && index2 >= 3) {
+                        index1 = index2 = 0;
                         if (inPlacing) {
                             inPlacing = false;
                             inClaiming = true;
@@ -86,22 +116,56 @@ public class GameManager : MonoBehaviour {
                         }
                     }
                 } else {    //Normal turn
-                    if (playerTurn == 1) {
+                    Debug.Log("In draw/activate card");
+                    //2- Turns start: physical attribute card draw
+                    //Ask the player if wants to inject. We activate the AskUseCard Canvas
+                    Debug.Log("Do you want to inject an attribute card?");
+                    askToUseCard.enabled = true;
 
+                    if (playerTurn == 1) {
+                        //scanning of the card: the Scanned Card Activator calls
+                        if (wantToInjectCard) {
+                            //activate injection process: put the car in front
+                            //of the camera to begin the process
+                        }
+                        //3- Planning phase
+                        if (selectedUnit != 0) {
+                            //player1.units[selectedUnit - 1]."MoveUnit(hit.point)";
+                        }
                     }
                     if (playerTurn == 2) {
-
+                        //scanning of the card: the Scanned Card Activator calls
+                        if (wantToInjectCard) {
+                            //activate injection process: put the car in front
+                            //of the camera to begin the process
+                        }
+                        //
+                        if (selectedUnit != 0) {
+                            //player2.units[selectedUnit - 1]."MoveUnit(hit.point)";
+                        }
                     }
+                    // Execute phase
+                    //Apply attribute cards
+                    for (int i = 0; i < player1.units.Length; i++) {
+                        //Check here if unit is in range with other enemy units
+                        //if (player1.units[i].attrs.TryGetValue("Range"))
+                    }
+                    for (int i = 0; i < player2.units.Length; i++) {
+                        //Check here if unit is in range with other enemy units
+                        //if (player2.units[i].attrs.TryGetValue("Range"))
+                    }
+                    //Attack sub-phase. Check the initiative!!
+
+                    //Check winning condition
+                    if (!inSetup && player1.units.Length <= 0) {
+                        Debug.Log("Player 1 wins");
+                    } else if (!inSetup && player1.units.Length <= 0) {
+                        Debug.Log("Player 2 wins");
+                    }
+                    askToUseCard.enabled = false;
                     nTurn++;
                     ChangeTurn();
-                }
-                if (!inSetup && player1.units.Length <= 0) { //Check winning condition
-                    Debug.Log("Player 1 wins");
-                }else if(!inSetup && player1.units.Length <= 0) {
-                    Debug.Log("Player 2 wins");
-                }
-                nTurn++;
-                ChangeTurn();
+                }//End setup-normalTurn
             }
         }
     }
@@ -121,6 +185,13 @@ public class GameManager : MonoBehaviour {
         inSetup = true;
     }
 
+    public void ReturnToMenu() {
+        mainUI.SetActive(false);
+        mainCamera.SetActive(true);
+        ARCamera.SetActive(false);
+        Board.SetActive(false);
+    }
+
     private void ChangeTurn() {
         if (playerTurn == 1)
             playerTurn = 2;
@@ -130,221 +201,38 @@ public class GameManager : MonoBehaviour {
         Debug.Log("Turn of player " + playerTurn);
     }
 
+    public void SelectUnit(int nUnit) {
+        Debug.Log("You have selected your unit number " + nUnit);
+        selectedUnit = nUnit;
+    }
+
+    /// <summary>
+    /// Called when the button "accept, i want to inject a card"
+    /// is pressed. Starts the injection process, first with scanning
+    /// </summary>
+    public void WantToInjectCard() {
+        Debug.Log("Player want to use card");
+        wantToInjectCard = true;
+    }
+
+    /// <summary>
+    /// Called when the player press "No, do not inject any att card"
+    /// </summary>
+    public void DoNotWantToInjectCard() {
+        Debug.Log("Player does not want to use card");
+        wantToInjectCard = false;
+    }
+
+    public void StartTimer() {
+        if (tTimer != 0)
+            StopCoroutine(timer);
+        tTimer = 0;
+        StartCoroutine(timer);
+    }
+    IEnumerator Timer() {
+        do {
+            yield return new WaitForSeconds(1);
+            tTimer++;
+        } while (true);
+    }
 }
-
-
-
-
-
-
-
-
-
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
-
-//public class GameManager : MonoBehaviour {
-
-//    public static GameManager instance = null;
-
-//    private int Map = 1;
-
-//    public PlayerScript Player1;
-//    public PlayerScript Player2;
-//    public BoardScript Board;
-
-//    public int nTurn;
-//    public int nPlayers;
-//    public int tTimer;
-//    public bool bNextPhase;
-//    public int nWinner;
-//    //      -1 -> No winner
-//    //       0 -> Tie
-//    // nPlayer -> Player "n" wins
-//    public bool exit;
-
-//    private Vector2 touchOrigin = -Vector2.one; //Used to store location of screen touch origin for mobile controls.
-
-//    //Awake is called before Start function
-
-//    void Awake () {
-//        do {
-//            nTurn = 1;
-//            nPlayers = 2;
-//            tTimer = 0;
-//            bNextPhase = false;
-//            nWinner = -1;
-
-//            StartCoroutine(Timer());
-
-//            Player1 = new PlayerScript();
-//            Player2 = new PlayerScript();
-
-//            Setup();
-
-//            do {
-//                for (int i = 0; i < nPlayers; i++) {
-//                    //Changing functions into coroutines
-//                    DrawPhase(i);
-//                    PlanningPhase(i);
-//                    ExecutePhase(i);
-
-//                    nWinner = CheckWinCondition();
-//                    if (nWinner == 0) {
-//                        //Display Tie
-//                    } else if (nWinner == 1) {
-//                        //Display winner 1
-//                    } else if (nWinner == 2) {
-//                        //Display winner 2
-//                    }
-//                }
-//            } while (nWinner == -1);
-//            exit = CheckPlayAgain();
-//        } while (!exit);
-//    }
-
-//	// Touch Controls
-//	void Update () {
-//        int horizontal = 0;     //Used to store the horizontal move direction.
-//        int vertical = 0;       //Used to store the vertical move direction.
-//        //Check if Input has registered more than zero touches
-//        if (Input.touchCount > 0) {
-//            //Store the first touch detected.
-//            Touch myTouch = Input.touches[0];
-
-//            //Check if the phase of that touch equals Began
-//            if (myTouch.phase == TouchPhase.Began) {
-//                //If so, set touchOrigin to the position of that touch
-//                touchOrigin = myTouch.position;
-//            }
-
-//            //If the touch phase is not Began, and instead is equal to Ended and the x of touchOrigin is greater or equal to zero:
-//            else if (myTouch.phase == TouchPhase.Ended && touchOrigin.x >= 0) {
-//                //Set touchEnd to equal the position of this touch
-//                Vector2 touchEnd = myTouch.position;
-
-//                //Calculate the difference between the beginning and end of the touch on the x axis.
-//                float x = touchEnd.x - touchOrigin.x;
-
-//                //Calculate the difference between the beginning and end of the touch on the y axis.
-//                float y = touchEnd.y - touchOrigin.y;
-
-//                //Set touchOrigin.x to -1 so that our else if statement will evaluate false and not repeat immediately.
-//                touchOrigin.x = -1;
-
-//                //Check if the difference along the x axis is greater than the difference along the y axis.
-//                if (Mathf.Abs(x) > Mathf.Abs(y))
-//                    //If x is greater than zero, set horizontal to 1, otherwise set it to -1
-//                    horizontal = x > 0 ? 1 : -1;
-//                else
-//                    //If y is greater than zero, set horizontal to 1, otherwise set it to -1
-//                    vertical = y > 0 ? 1 : -1;
-//            }
-//        }
-//    }
-
-
-
-//    /*_________________________________________________________________________________________________________*/
-
-
-
-//    public void Setup() {
-//        UnitScript Unit;
-//        UnitScript[] UnitsTemp = new UnitScript[5];
-//        HexScript Hex;
-//        //Players place the units
-//        for (int i = 0; i < (nPlayers*3-1); i++) {
-//            for (int j = 1; j <= nPlayers; j++) {
-//                Unit = new UnitScript(0);
-//                if (j == 1) {
-//                    Hex = Player1.PlanMovement(Unit);
-//                    Player1.ApplyMovement(Unit, Hex);
-//                    UnitsTemp[i] = Unit;
-//                } else if (j == 2) {
-//                    Hex = Player2.PlanMovement(Unit);
-//                    Player2.ApplyMovement(Unit, Hex);
-//                    UnitsTemp[i] = Unit;
-//                }
-//                i++;
-//            }
-//        }
-//        //Players claim the placed units
-//        for (int i = 0; i < 5; i++) {
-//            for (int j = 1; j <= nPlayers; j++) {
-//                if(j == 1) {
-//                    UnitsTemp[i].player = 1;
-//                }else if(j == 2) {
-//                    UnitsTemp[i].player = 2;
-//                }
-//            }
-//        }
-//        //Last player place and claim the last unit
-//        Unit = new UnitScript(0);
-//        Hex = Player2.PlanMovement(Unit);
-//        Player1.ApplyMovement(Unit, Hex);
-//        UnitsTemp[nPlayers*3].player = 2;
-//    }
-
-//    //Shows a message saying which player is playing this turn
-//    public void NextPlayer(int nPlayer) {
-
-//    }
-
-//    public void DrawPhase(int nPlayer) {
-//        if (nPlayer == 1)
-//            Player1.DrawPhase();
-//        else if (nPlayer == 2)
-//            Player2.DrawPhase();
-//    }
-
-//    public void PlanningPhase(int nPlayer) {
-//        if (nPlayer == 1)
-//            Player1.DrawPhase();
-//        else if (nPlayer == 2)
-//            Player2.DrawPhase();
-//    }
-
-//    public void ExecutePhase(int nPlayer) {
-//        if (nPlayer == 1)
-//            Player1.DrawPhase();
-//        else if (nPlayer == 2)
-//            Player2.DrawPhase();
-//    }
-
-//    public int CheckWinCondition() {
-//        int win = 0;
-//        int unitsleft1 = 0;
-//        int unitsleft2 = 0;
-//        for (int i = 0; i < Player1.Units.Length; i++)
-//            if (Player1.Units[i] != null)
-//                unitsleft1++;
-//        for (int i = 0; i < Player2.Units.Length; i++)
-//            if (Player1.Units[i] != null)
-//                unitsleft2++;
-
-//        if (unitsleft1 == 0 && unitsleft1 == unitsleft2)
-//            win = -1;   //tie
-//        else if (unitsleft1 == 0)
-//            win = 2;
-//        else if (unitsleft2 == 0)
-//            win = 1;
-//        else
-//            win = 0;
-
-//        return win;
-//    }
-
-//    //Ask players if they want to play another game
-//    public bool CheckPlayAgain() {
-//        return false;
-//    }
-
-//    IEnumerator Timer() {
-//        do {
-//            yield return new WaitForSeconds(1);
-//            tTimer++;
-//        } while (true);
-//    }
-//}
