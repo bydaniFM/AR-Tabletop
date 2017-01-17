@@ -6,6 +6,7 @@ namespace ARTCards
 {
 	public class Unit {
 		public string name;
+        public int player;
 		public Dictionary<string, Attribute> attrs;
 		public Dictionary<string, SecondaryAttribute> stats;
 		public int damage;
