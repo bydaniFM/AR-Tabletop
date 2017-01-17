@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour {
     private bool inSetup;
     private bool inPlacing;
     private bool inClaiming;
+    private int nTurn;
     private int playerTurn;
     private int placeIndex;
 
@@ -41,16 +42,17 @@ public class GameManager : MonoBehaviour {
         inClaiming = false;
         playerTurn = 0;
         placeIndex = 0;
+        nTurn = 1;
     }
 
     void Update() {
-        if (inSetup) {
-            if (Input.GetMouseButtonDown(0) && Input.touchCount < 2) {
-                Debug.Log("Click!");
-                RaycastHit hit = new RaycastHit();
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out hit)) {
-                    Debug.Log("hit " + hit.point);
+        if (Input.GetMouseButtonDown(0) && Input.touchCount < 2) {
+            Debug.Log("Click!");
+            RaycastHit hit = new RaycastHit();
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit)) {
+                Debug.Log("hit " + hit.point);
+                if (inSetup) {
                     if (inPlacing) {
                         if (playerTurn == 1) {
                             player1.units[placeIndex] = new Unit(); //This unit has to be placed in "hit"
@@ -60,9 +62,8 @@ public class GameManager : MonoBehaviour {
                         }
                         placeIndex++;
                         ChangeTurn();
-                    }
-                    else if (inClaiming) {
-                        if(playerTurn == 1) {
+                    } else if (inClaiming) {
+                        if (playerTurn == 1) {
                             // if(Player has touched a unit) {
                             player1.units[placeIndex].player = 1;
                             //}
@@ -75,16 +76,32 @@ public class GameManager : MonoBehaviour {
                         placeIndex++;
                         ChangeTurn();
                     }
+                    if (placeIndex >= 6) {
+                        placeIndex = 0;
+                        if (inPlacing) {
+                            inPlacing = false;
+                            inClaiming = true;
+                        } else {
+                            inSetup = false;
+                        }
+                    }
+                } else {    //Normal turn
+                    if (playerTurn == 1) {
+
+                    }
+                    if (playerTurn == 2) {
+
+                    }
+                    nTurn++;
+                    ChangeTurn();
                 }
-            }
-            if(placeIndex >= 6) {
-                placeIndex = 0;
-                if (inPlacing) {
-                    inPlacing = false;
-                    inClaiming = true;
-                } else {
-                    inSetup = false;
+                if (!inSetup && player1.units.Length <= 0) { //Check winning condition
+                    Debug.Log("Player 1 wins");
+                }else if(!inSetup && player1.units.Length <= 0) {
+                    Debug.Log("Player 2 wins");
                 }
+                nTurn++;
+                ChangeTurn();
             }
         }
     }
@@ -109,6 +126,8 @@ public class GameManager : MonoBehaviour {
             playerTurn = 2;
         else
             playerTurn = 1;
+
+        Debug.Log("Turn of player " + playerTurn);
     }
 
 }
