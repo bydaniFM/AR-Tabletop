@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -154,7 +154,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!43 &615670144
+--- !u!43 &567701802
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -325,7 +325,7 @@ Prefab:
         type: 2}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 615670144}
+      objectReference: {fileID: 567701802}
     - target: {fileID: 1818690482442976, guid: a25a8e08113f4a647a289b2bebf698f4, type: 2}
       propertyPath: m_IsActive
       value: 1
@@ -531,7 +531,7 @@ Prefab:
     - target: {fileID: 114784300644453514, guid: 12e019c268794154e86825e29166fcc3,
         type: 2}
       propertyPath: m_ScaleFactor
-      value: 0.51
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114934641499000304, guid: 12e019c268794154e86825e29166fcc3,
         type: 2}
