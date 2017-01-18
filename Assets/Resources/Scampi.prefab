@@ -140,8 +140,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4039498952801146}
   m_Layer: 0
-  m_Name: joint1
-  m_TagString: Untagged
+  m_Name: Joint
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -321,8 +321,8 @@ GameObject:
   - component: {fileID: 4378582864355850}
   - component: {fileID: 137811097673860664}
   m_Layer: 0
-  m_Name: Cube.002
-  m_TagString: Untagged
+  m_Name: Model
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -638,9 +638,10 @@ GameObject:
   - component: {fileID: 95107980840886182}
   - component: {fileID: 114679536300285368}
   - component: {fileID: 114763458883604414}
+  - component: {fileID: 136441107233876630}
   m_Layer: 0
   m_Name: Scampi
-  m_TagString: Untagged
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1048,15 +1049,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1960871072098624}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 3.7408667, y: 13.136654, z: -3.0820363}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.914259, y: -13.87763, z: 7.7335396}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4378582864355850}
   - {fileID: 4039498952801146}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4552719350401354
 Transform:
   m_ObjectHideFlags: 1
@@ -1385,7 +1386,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1960871072098624}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e5bc0559635d421c9fee9dc441b7529, type: 3}
   m_Name: 
@@ -1393,6 +1394,19 @@ MonoBehaviour:
   hardpoint: {fileID: 0}
   particle: {fileID: 0}
   anim: {fileID: 95107980840886182}
+--- !u!136 &136441107233876630
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1960871072098624}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &137811097673860664
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

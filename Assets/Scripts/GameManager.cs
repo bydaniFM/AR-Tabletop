@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using ARTCards;
+using HexMap;
 
 public class GameManager : MonoBehaviour {
 
@@ -9,13 +10,16 @@ public class GameManager : MonoBehaviour {
     private GameObject mainUI;
     private GameObject atributeCardInjectorUI;
     private GameObject askToUseCardUI;
+    private GameObject finishPlanningUI;
     private GameObject mainCamera;
     private GameObject ARCamera;
     private GameObject Board;
 
     private Player player1;
     private Player player2;
+    private GameObject imageTarget;
     private GameObject[] unclaimedUnits;
+    private GameObject tempUnit;
     private RaycastHit plannedRaycast1;
     private RaycastHit plannedRaycast2;
 
@@ -23,12 +27,13 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator timer;
 
-    private bool nextPhase;
     private bool inSetup;
     private bool inPlacing;
     private bool inClaiming;
     private bool allowCardScanning;
     private bool wantToInjectCard;
+    private bool unitSelected;
+    private bool inExecute;
     private int tTimer;
     private int nTurn;
     private int playerTurn;
@@ -36,32 +41,40 @@ public class GameManager : MonoBehaviour {
     private int index2;
     private int selectedUnit;
 
+    private FieldOrientationAssistant assist;
+
     void Start() {
         startMenuUI = GameObject.Find("canvas_start_menu");
         mainUI = GameObject.Find("canvas_main_UI");
         atributeCardInjectorUI = GameObject.Find("canvas_CardScanning");
         askToUseCardUI = GameObject.Find("canvas_AskToUseCard");
+        finishPlanningUI = GameObject.Find("canvas_FinishPlanning");
         mainCamera = GameObject.Find("Main Camera");
         ARCamera = GameObject.Find("ARCamera");
         Board = GameObject.Find("Board");
+        imageTarget = GameObject.Find("ImageTarget_Grid");
+        assist = FindObjectOfType<FieldOrientationAssistant>();
         
         mainUI.SetActive(false);
         atributeCardInjectorUI.SetActive(false);
         askToUseCardUI.SetActive(false);
+        finishPlanningUI.SetActive(false);
         ARCamera.SetActive(false);
         Board.SetActive(false);
 
         player1 = new Player();
         player2 = new Player();
         unclaimedUnits = new GameObject[6];
+        tempUnit = new GameObject();
 
         timer = Timer();
 
-        nextPhase = false;
+        inExecute = false;
         inSetup = false;
         inPlacing = true;
         inClaiming = false;
         allowCardScanning = false;
+        unitSelected = false;
         tTimer = 0;
         playerTurn = 1;
         index1 = 0;
@@ -75,7 +88,7 @@ public class GameManager : MonoBehaviour {
             RaycastHit hit = new RaycastHit();
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit)) {
-                Debug.Log("hit " + hit.point);
+                Debug.Log("hit " + hit.point + ". In object: " + hit.collider.gameObject);
                 //1.- Setup
                 if (inSetup) {
                     Debug.Log("In Setup");
@@ -83,46 +96,51 @@ public class GameManager : MonoBehaviour {
                         Debug.Log("In placing");
                         if (playerTurn == 1) {
                             Debug.Log("Player1 has placed an unit");
-                            //unclaimedUnits[index1 + index2] = new Unit(); //This unit has to be placed in "hit"
                             unclaimedUnits[index1 + index2] = (GameObject)Instantiate(Resources.Load("Scampi"));
-                            unclaimedUnits[index1 + index2].transform.parent = GameObject.Find("ImageTarget_Grid").transform;
-                            unclaimedUnits[index1 + index2].gameObject.transform.position = hit.transform.position;
-                            unclaimedUnits[index1 + index2].gameObject.transform.rotation = Quaternion.identity;//new Quaternion(0, 0, 90, 0);
+                            int hexid = HexGrid.instance.GetCellId(assist.WorldToGrid(hit.point));
+                            Debug.Log("There are "+HexGrid.instance.positions.Length+" coordinates and id is "+hexid);
+                            Vector3 pos = assist.GridToWorld(HexGrid.instance.positions[hexid]);
+                            unclaimedUnits[index1 + index2].gameObject.transform.position = pos;
+                            unclaimedUnits[index1 + index2].transform.parent = imageTarget.transform;
+                            unclaimedUnits[index1 + index2].gameObject.transform.rotation = imageTarget.transform.rotation;
                             unclaimedUnits[index1 + index2].gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                             index1++;
                         }
                         if (playerTurn == 2) {
                             Debug.Log("Player2 has placed an unit");
-                            //unclaimedUnits[index1 + index2] = new Unit(); //This unit has to be placed in "hit"
                             unclaimedUnits[index1 + index2] = (GameObject)Instantiate(Resources.Load("Scampi"));
-                            unclaimedUnits[index1 + index2].gameObject.transform.position = hit.transform.position;
-                            unclaimedUnits[index1 + index2].transform.parent = GameObject.Find("ImageTarget_Grid").transform;
+                            int hexid = HexGrid.instance.GetCellId(assist.WorldToGrid(hit.point));
+                            Debug.Log("There are " + HexGrid.instance.positions.Length + " coordinates and id is " + hexid);
+                            Vector3 pos = assist.GridToWorld(HexGrid.instance.positions[hexid]);
+                            unclaimedUnits[index1 + index2].gameObject.transform.position = pos;
+                            unclaimedUnits[index1 + index2].transform.parent = imageTarget.transform;
+                            unclaimedUnits[index1 + index2].gameObject.transform.rotation = imageTarget.transform.rotation;
+                            unclaimedUnits[index1 + index2].gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                             index2++;
                         }
                         ChangeTurn();
                     } else if (inClaiming) {
                         Debug.Log("In claiming");
-                        if (playerTurn == 1) {
-                            if (hit.collider.gameObject.tag == "Unit") {
+                        if (hit.collider.gameObject.tag == "Unit") {
+                            Debug.Log("Unit Claimed");
+                            if (playerTurn == 1) {
                                 //Check if unit selected has owner already, if not, claim it
                                 if (unclaimedUnits[index1 + index2].GetComponent<UnitController>().unit.player == 0) {
                                     player1.units[index1].player = 1;
                                     player1.units[index1] = unclaimedUnits[index1 + index2].GetComponent<UnitController>().unit;
                                 }
+                                index1++;
                             }
-                            index1++;
-                        }
-                        if (playerTurn == 2) {
-                            if (hit.collider.gameObject.tag == "Unit") {
-                                //Check if unit selected has owner already, if not, claim it
+                            if (playerTurn == 2) {
+                                    //Check if unit selected has owner already, if not, claim it
                                 if (unclaimedUnits[index1 + index2].GetComponent<UnitController>().unit.player == 0) {
                                     player2.units[index2].player = 2;
                                     player1.units[index1] = unclaimedUnits[index1 + index2].GetComponent<UnitController>().unit;
                                 }
+                                index2++;
                             }
-                            index2++;
+                            ChangeTurn();
                         }
-                        ChangeTurn();
                     }
                     if (index1 >= 3 && index2 >= 3) {
                         index1 = index2 = 0;
@@ -131,6 +149,7 @@ public class GameManager : MonoBehaviour {
                             inClaiming = true;
                         } else {
                             inSetup = false;
+                            finishPlanningUI.SetActive(true);
                         }
                     }
                 } else {    //Normal turn
@@ -147,8 +166,16 @@ public class GameManager : MonoBehaviour {
                             atributeCardInjectorUI.SetActive(true);
                         }
                         //3- Planning phase
-                        if (selectedUnit != 0) {
-                            plannedRaycast1 = hit;
+                        if (!unitSelected) {
+                            if (hit.collider.gameObject.tag == "Unit" && hit.collider.gameObject.GetComponent<UnitController>().unit.player == 1) {
+                                Debug.Log("Unit Selected");
+                                tempUnit = hit.collider.gameObject;
+                                unitSelected = true;
+                            }
+                        } else {
+                            Debug.Log("Path created");
+                            tempUnit.GetComponent<UnitController>().PreparePath(hit.point);
+                            unitSelected = false;
                         }
                     }
                     if (playerTurn == 2) {
@@ -159,33 +186,50 @@ public class GameManager : MonoBehaviour {
                             atributeCardInjectorUI.SetActive(true);
                         }
                         //3- Planning phase
-                        if (selectedUnit != 0) {
-                            plannedRaycast2 = hit;
+                        if (!unitSelected) {
+                            if (hit.collider.gameObject.tag == "Unit" && hit.collider.gameObject.GetComponent<UnitController>().unit.player == 2) {
+                                Debug.Log("Unit Selected");
+                                tempUnit = hit.collider.gameObject;
+                                unitSelected = true;
+                            }
+                        } else {
+                            Debug.Log("Path created");
+                            tempUnit.GetComponent<UnitController>().PreparePath(hit.point);
+                            unitSelected = false;
                         }
                     }
                     // Execute phase
-                    //Apply attribute cards
-                    for (int i = 0; i < player1.units.Length; i++) {
-                        //Check here if unit is in range with other enemy units
-                        //if (player1.units[i].attrs.TryGetValue("Range"))
-                    }
-                    for (int i = 0; i < player2.units.Length; i++) {
-                        //Check here if unit is in range with other enemy units
-                        //if (player2.units[i].attrs.TryGetValue("Range"))
-                    }
-                    //Move units
+                    if (inExecute) {
+                        Debug.Log("EXECUTE PHASE");
+                        finishPlanningUI.SetActive(false);
+                        //Move units
+                        tempUnit.GetComponent<UnitController>().StartPath();
+                        tempUnit.GetComponent<UnitController>().FollowPath();
 
-                    //Attack sub-phase. Check the initiative!!
+                        //Attack sub-phase. Check the initiative!!
+                        for (int i = 0; i < player1.units.Length; i++) {
+                            //Check here if unit is in range with other enemy units
+                            //if (player1.units[i].attrs.TryGetValue("Range"))
+                        }
+                        for (int i = 0; i < player2.units.Length; i++) {
+                            //Check here if unit is in range with other enemy units
+                            //if (player2.units[i].attrs.TryGetValue("Range"))
+                        }
+                        
+                        finishPlanningUI.SetActive(true);
 
-                    //Check winning condition
-                    if (!inSetup && player1.units.Length <= 0) {
-                        Debug.Log("Player 1 wins");
-                    } else if (!inSetup && player1.units.Length <= 0) {
-                        Debug.Log("Player 2 wins");
+                        //Check winning condition
+                        if (!inSetup && player1.units.Length <= 0) {
+                            Debug.Log("Player 1 wins");
+                            finishPlanningUI.SetActive(true);
+                        } else if (!inSetup && player1.units.Length <= 0) {
+                            Debug.Log("Player 2 wins");
+                            finishPlanningUI.SetActive(true);
+                        }
+                        askToUseCardUI.SetActive(false);
+                        nTurn++;
+                        ChangeTurn();
                     }
-                    askToUseCardUI.SetActive(false);
-                    nTurn++;
-                    ChangeTurn();
                 }//End setup-normalTurn
             }
         }
@@ -242,6 +286,10 @@ public class GameManager : MonoBehaviour {
     public void DoNotWantToInjectCard() {
         Debug.Log("Player does not want to use card");
         wantToInjectCard = false;
+    }
+
+    public void StartExecutePhase() {
+        inExecute = true;
     }
 
     public void StartTimer() {

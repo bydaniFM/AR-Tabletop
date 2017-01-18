@@ -61,7 +61,7 @@ public class UnitController : MonoBehaviour {
 			LeanTween.rotateLocal(gameObject, myRotation, 0.2f).setEase(LeanTweenType.easeSpring);
 		}
 	}
-	void FollowPath(){
+	public void FollowPath(){
 		pathcount++;
 
 		if (pathcount < waypoints.Length){
