@@ -26,10 +26,14 @@ namespace ARTCards
         public GameObject declineInjectionButton;
         public GameObject abortInjectionButton;
         public GameObject injectionPannel;
-        public GameObject cardImage;
+        public Image cardImage;
         public Text unitStatsPreview;
         public GameObject minimizeProcessButton;
         public GameObject showInjectionProcessButton;
+
+
+
+		public Sprite[] spriteArray;
 
        // public Player player1;
        // public Player player2;
@@ -53,7 +57,6 @@ namespace ARTCards
            // player1 = new Player();
         }
 
-
         void Start()
         {
             portraitButton1 = GameObject.Find("PortraitButton1");
@@ -64,7 +67,7 @@ namespace ARTCards
             declineInjectionButton = GameObject.Find("DeclineInjectionButton");
             abortInjectionButton = GameObject.Find("AbortInjectionButton");
             injectionPannel = GameObject.Find("InjectionPannel");
-            cardImage = GameObject.Find("CardImage");
+           // cardImage = GameObject.Find("CardImage");
             minimizeProcessButton = GameObject.Find("MinimizeProcessButton");
             showInjectionProcessButton = GameObject.Find("ShowInjectionProcessButton");
 
@@ -83,6 +86,15 @@ namespace ARTCards
 			players = new Player[2];
 			players[0] = new Player();
         }
+
+		/// <summary>
+		/// Loads the source image preview.
+		/// </summary>
+		/// <param name="sourceImage">Source image.</param>
+		public void LoadSourceImagePreview(int sourceImage)
+		{
+			cardImage.sprite = spriteArray [sourceImage];
+		}
 
         /// <summary>
         /// Shows the injection button.

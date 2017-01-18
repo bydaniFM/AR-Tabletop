@@ -8,12 +8,18 @@ using UnityEngine;
 
 namespace Vuforia
 {
+
+
     /// <summary>
     /// A custom handler that implements the ITrackableEventHandler interface.
     /// </summary>
     public class DefaultTrackableEventHandler : MonoBehaviour,
                                                 ITrackableEventHandler
     {
+
+
+		public bool isFound;
+
         #region PRIVATE_MEMBER_VARIABLES
  
         private TrackableBehaviour mTrackableBehaviour;
@@ -84,6 +90,10 @@ namespace Vuforia
             }
 
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
+
+
+
+			isFound = true;
         }
 
 
@@ -105,6 +115,10 @@ namespace Vuforia
             }
 
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
+
+
+
+			isFound = false;
         }
 
         #endregion // PRIVATE_METHODS

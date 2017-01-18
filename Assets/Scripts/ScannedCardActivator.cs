@@ -1,15 +1,11 @@
 ﻿using System.Collections;
-
 using System.Collections.Generic;
-
 using UnityEngine;
-
 using Vuforia;
-
 using System;
-
 using System.Linq;
 using ARTCards;
+
 
 
 /// <summary>
@@ -21,39 +17,59 @@ using ARTCards;
 /// His name contains the cardID that we are going to use
 /// We will need to search for it with the Card scripting stuff
 /// </summary>
-public class ScannedCardActivator : MonoBehaviour
+public class ScannedCardActivator : MonoBehaviour, ITrackableEventHandler 
 {
-    public TrackableBehaviour mTrackableBehaviour;
+    //public TrackableBehaviour mTrackableBehaviour;
     public bool cardTracked;
-    public int cardID;
-    private AttributeCardInjector injector;
+    public int cardID;//ALSO for card source image
+	private AttributeCardInjector injector;
+
+	public GameObject imageTarget;
+
+	private TrackableBehaviour mTrackableBehaviour;
 
     void Start()
     {
+		cardTracked = false;
         injector = FindObjectOfType<AttributeCardInjector>();
-        cardTracked = true;
+		mTrackableBehaviour = GetComponent<TrackableBehaviour> ();
+
+		imageTarget = GameObject.Find ("1");
+		cardTracked = imageTarget.gameObject.GetComponent<DefaultTrackableEventHandler> ().isFound;
+
     }
 
-   /* public ScannedCardActivator()
-    { 
-        cardTracked = true;
-    }*/
+	public void OnTrackableStateChanged(TrackableBehaviour.Status previousStatus, TrackableBehaviour.Status newStatus)
+	{
+		if (newStatus == TrackableBehaviour.Status.DETECTED ||
+		   newStatus == TrackableBehaviour.Status.TRACKED ||
+		   newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED) 
+		{
+			Activate ();
+		}
+	}
 
-    void Update()
-    { 
- 
-        if (cardTracked)
-        {
-            cardID = Int32.Parse(transform.parent.name); 
-            Debug.Log("CardID tracked: " + cardID); 
-            cardTracked = false;
-            Debug.Log(injector);
-            Debug.Log(injector.players[0]);
-			Debug.Log(injector.players[0].deck);
-            injector.players[0].activeCard = injector.players[0].deck.GetCardById(""+cardID);
-        } 
-    } 
+	void Update()
+	{
+		if (cardTracked)
+			Activate ();
+	}
+
+	public void Activate()
+	{
+		cardID = Int32.Parse(transform.parent.name); 
+		Debug.Log("CardID tracked: " + cardID); 
+		cardTracked = true;
+		Debug.Log(injector);
+		Debug.Log(injector.players[0]);
+		Debug.Log(injector.players[0].deck);
+		injector.players[0].activeCard = injector.players[0].deck.GetCardById(""+cardID);
+
+		//getting the correct source image for the preview
+		Debug.Log("Load source image preview");
+		injector.LoadSourceImagePreview (cardID);
 
 
+	}
 }
  
