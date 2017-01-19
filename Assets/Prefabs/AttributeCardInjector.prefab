@@ -61,7 +61,24 @@ MonoBehaviour:
   abortInjectionButton: {fileID: 0}
   injectionPannel: {fileID: 0}
   cardImage: {fileID: 0}
+  cardStatsPreview: {fileID: 0}
   unitStatsPreview: {fileID: 0}
   minimizeProcessButton: {fileID: 0}
   showInjectionProcessButton: {fileID: 0}
+  spriteArray:
+  - {fileID: 21300000, guid: 22347527259b42745b08cf14a69f21a8, type: 3}
+  - {fileID: 21300000, guid: 5abe822ad8ccf794ea99de6d00eaa0fa, type: 3}
+  - {fileID: 21300000, guid: 052988171468aea42999e6ebffd91b4d, type: 3}
+  - {fileID: 21300000, guid: 54bdd089fc3a31b4daf7901ce50bac87, type: 3}
+  - {fileID: 21300000, guid: 221ffbb5d1cdea94498ce81c94a29697, type: 3}
+  - {fileID: 21300000, guid: 98033cb1368623b4b869c5cbe3df06a5, type: 3}
+  - {fileID: 21300000, guid: 7ef3d739103b12e47be8edf45ced41e1, type: 3}
+  - {fileID: 21300000, guid: 7057b1665ab64cf4081b85f6fbed81c4, type: 3}
+  - {fileID: 21300000, guid: b1f2051654540004dab7c03c584d13cf, type: 3}
+  - {fileID: 21300000, guid: 325808bc8faa2d5409087c53519fa45f, type: 3}
+  - {fileID: 21300000, guid: 3bd8d37023afb5b4f9186bbf0584d771, type: 3}
+  - {fileID: 21300000, guid: 04df055e939739b4e82d56ad308d1a61, type: 3}
+  - {fileID: 21300000, guid: e7f4e253a715c314f9f7f176153cd8a9, type: 3}
+  - {fileID: 21300000, guid: ec8c972b13423454bb74ceed9077eabd, type: 3}
+  - {fileID: 21300000, guid: 03930980e4e9d6146992140de89e5246, type: 3}
   scannedCardActivator: {fileID: 0}

@@ -34,8 +34,8 @@ public class ScannedCardActivator : MonoBehaviour//, ITrackableEventHandler
         injector = FindObjectOfType<AttributeCardInjector>();
 		mTrackableBehaviour = GetComponent<TrackableBehaviour> ();
 
-		imageTarget = GameObject.Find ("1");
-		//cardTracked = imageTarget.gameObject.GetComponent<DefaultTrackableEventHandler> ().isFound;
+		imageTarget = GameObject.Find(transform.name);
+        //cardTracked = imageTarget.gameObject.GetComponent<DefaultTrackableEventHandler> ().isFound;
 
     }
 
@@ -65,13 +65,13 @@ public class ScannedCardActivator : MonoBehaviour//, ITrackableEventHandler
 		cardID = Int32.Parse(transform.name); 
 		Debug.Log("CardID tracked: " + cardID);
 		Debug.Log(injector);
-		Debug.Log(injector.players[0]);
-		//Debug.Log(injector.players[0].deck);
-		//injector.players[0].activeCard = injector.players[0].deck.GetCardById(""+cardID);
+        Debug.Log(injector.players[0]);
+        Debug.Log(injector.players[0].deck);
+        injector.players[0].activeCard = injector.players[0].deck.GetCardById("" + cardID);
 
-		//getting the correct source image for the preview
-		//Debug.Log("Load source image preview");
-		injector.LoadSourceImagePreview (cardID);
+        //getting the correct source image for the preview
+        //Debug.Log("Load source image preview");
+        injector.LoadSourceImagePreview (cardID);
 
 
 	}
