@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="card_attribute_test" size="1.000000 1.550000" />
+    <ImageTarget name="Card_effect_test" size="1.000000 1.542056" />
     <ImageTarget name="Test_test" size="1.000000 1.335294" />
     <ImageTarget name="dense_pattern-16" size="1.000000 1.387626" />
     <ImageTarget name="dense_pattern-15_2" size="1.000000 1.387626" />

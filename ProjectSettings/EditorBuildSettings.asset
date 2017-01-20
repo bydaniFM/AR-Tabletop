@@ -9,5 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Presentation_scene.unity
   - enabled: 0
     path: Assets/Scenes/TestAnimations.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestRoundManager.unity
+  - enabled: 1
+    path: Assets/Scenes/CardScannerSimplified.unity

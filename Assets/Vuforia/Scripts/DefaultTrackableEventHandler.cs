@@ -21,7 +21,7 @@ namespace Vuforia
 		public bool isFound;
 
         #region PRIVATE_MEMBER_VARIABLES
- 
+
         private TrackableBehaviour mTrackableBehaviour;
     
         #endregion // PRIVATE_MEMBER_VARIABLES

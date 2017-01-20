@@ -17,26 +17,30 @@ using ARTCards;
 /// His name contains the cardID that we are going to use
 /// We will need to search for it with the Card scripting stuff
 /// </summary>
-public class ScannedCardActivator : MonoBehaviour//, ITrackableEventHandler 
+public class ScannedCardActivator : MonoBehaviour, ITrackableEventHandler 
 {
     //public TrackableBehaviour mTrackableBehaviour;
     public bool cardTracked;
     public int cardID;//ALSO for card source image
 	private AttributeCardInjector injector;
+    private CardScannerSimplified cs_simplified;
 
 	public GameObject imageTarget;
 
-	private TrackableBehaviour mTrackableBehaviour;
+	//private TrackableBehaviour mTrackableBehaviour;
+    
+
 
     void Start()
     {
 		cardTracked = true;
         injector = FindObjectOfType<AttributeCardInjector>();
-		mTrackableBehaviour = GetComponent<TrackableBehaviour> ();
+        cs_simplified = FindObjectOfType<CardScannerSimplified>();
+        //mTrackableBehaviour = GetComponent<TrackableBehaviour> ();
 
-		imageTarget = GameObject.Find ("1");
-		//cardTracked = imageTarget.gameObject.GetComponent<DefaultTrackableEventHandler> ().isFound;
-
+		imageTarget = GameObject.Find(transform.name);
+        //cardTracked = imageTarget.gameObject.GetComponent<DefaultTrackableEventHandler> ().isFound;
+        
     }
 
 	//public void OnTrackableStateChanged(TrackableBehaviour.Status previousStatus, TrackableBehaviour.Status newStatus)
@@ -51,6 +55,7 @@ public class ScannedCardActivator : MonoBehaviour//, ITrackableEventHandler
 
 	void Update()
 	{
+        //if(mTrackableBehaviour.)
         if (imageTarget.gameObject.GetComponent<DefaultTrackableEventHandler>().isFound) {
             if (cardTracked) {
                 Debug.Log("Activating");
@@ -64,16 +69,33 @@ public class ScannedCardActivator : MonoBehaviour//, ITrackableEventHandler
 	{
 		cardID = Int32.Parse(transform.name); 
 		Debug.Log("CardID tracked: " + cardID);
-		Debug.Log(injector);
-		Debug.Log(injector.players[0]);
-		//Debug.Log(injector.players[0].deck);
-		//injector.players[0].activeCard = injector.players[0].deck.GetCardById(""+cardID);
+		//Debug.Log(injector);
+  //      Debug.Log(injector.players[0]);
+  //      Debug.Log(injector.players[0].deck);
 
-		//getting the correct source image for the preview
-		//Debug.Log("Load source image preview");
-		injector.LoadSourceImagePreview (cardID);
+        Debug.Log(cs_simplified);
+        Debug.Log(cs_simplified.players[0]);
+        Debug.Log(cs_simplified.players[0].deck);
+
+        //injector.players[0].activeCard = injector.players[0].deck.GetCardById("" + cardID);
+
+        cs_simplified.players[0].activeCard = cs_simplified.players[0].deck.GetCardById("" + cardID);
 
 
-	}
+        //getting the correct source image for the preview
+        //Debug.Log("Load source image preview");
+        //injector.LoadSourceImagePreview (cardID);
+
+        cs_simplified.LoadSourceImagePreview(cardID);
+        
+    }
+
+    public void OnTrackableStateChanged(TrackableBehaviour.Status previousStatus, TrackableBehaviour.Status newStatus) {
+        if (newStatus == TrackableBehaviour.Status.DETECTED || newStatus == TrackableBehaviour.Status.TRACKED || newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED) {
+            Debug.Log("FOUND");
+        } else {
+            Debug.Log("LOST");
+        }
+    }
 }
  

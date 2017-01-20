@@ -1,249 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Rules>
-
-	<Deck>
-		<Size>15</Size>
-    <Cards>
-      <!--If not enough cards here they will be generated automatically-->
-      <Card id="agi40">
-        <attr>-4</attr>
-        <attr>4</attr>
-        <attr>0</attr>
-      </Card>
-      <Card id="agi41">
-        <attr>0</attr>
-        <attr>-4</attr>
-        <attr>4</attr>
-      </Card>
-      <Card id="agi42">
-        <attr>4</attr>
-        <attr>0</attr>
-        <attr>-4</attr>
-      </Card>
-      <Card id="agi43">
-        <attr>5</attr>
-        <attr>-1</attr>
-        <attr>-4</attr>
-      </Card>
-      <Card id="agi44">
-        <attr>-4</attr>
-        <attr>5</attr>
-        <attr>-1</attr>
-      </Card>
-      <Card id="agi45">
-        <attr>-1</attr>
-        <attr>-4</attr>
-        <attr>+5</attr>
-      </Card>
-      <Card id="agi46">
-        <attr>7</attr>
-        <attr>-1</attr>
-        <attr>-6</attr>
-      </Card>
-      <Card id="agi47">
-        <attr>-6</attr>
-        <attr>7</attr>
-        <attr>-1</attr>
-      </Card>
-      <Card id="agi48">
-        <attr>-1</attr>
-        <attr>-6</attr>
-        <attr>7</attr>
-      </Card>
-      <Card id="agi49">
-        <attr>10</attr>
-        <attr>-9</attr>
-        <attr>-1</attr>
-      </Card>
-      <Card id="agi410">
-        <attr>-1</attr>
-        <attr>10</attr>
-        <attr>-9</attr>
-      </Card>
-      <Card id="agi411">
-        <attr>-9</attr>
-        <attr>-1</attr>
-        <attr>10</attr>
-      </Card>
-      <Card id="agi412">
-        <attr>2</attr>
-        <attr>-1</attr>
-        <attr>-1</attr>
-      </Card>
-      <Card id="agi413">
-        <attr>-1</attr>
-        <attr>2</attr>
-        <attr>-1</attr>
-      </Card>
-      <Card id="agi414">
-        <attr>-1</attr>
-        <attr>-1</attr>
-        <attr>2</attr>
-      </Card>
-    </Cards>
-  </Deck>
-	
-    <Attributes>
-        <Attribute name = "Strength" min = "1" max = "14"/>
-		<Attribute name = "Agility" min = "1" max = "14"/>
-		<Attribute name = "Range" min = "1" max = "14"/>
-    </Attributes>
-    
-	<Stats>
-		<Stat name = "Dmg" attr = "Strength">
-			<Calc>
-				<value>4</value> <!--Can be a math expression!-->
-				<value>6</value>
-				<value>8</value>
-				<value>9</value>
-				<value>10</value>
-				<value>12</value>
-				<value>14</value>
-				<value>16</value>
-				<value>18</value>
-				<value>20</value>
-				<value>22</value>
-				<value>24</value>
-				<value>26</value>
-				<value>34</value>
-			</Calc>
-		</Stat>
-		
-		<Stat name = "HP" attr = "Strength">	
-			<Calc>	
-				<value>20</value>
-				<value>40</value>
-				<value>50</value>
-				<value>60</value>
-				<value>80</value>
-				<value>100</value>
-				<value>130</value>
-				<value>150</value>
-				<value>180</value>
-				<value>190</value>
-				<value>210</value>
-				<value>230</value>
-				<value>240</value>
-				<value>250</value>
-			</Calc>
-		</Stat>
-        <Stat name = "Atk" attr = "Agility">	
-			<Calc>	
-				<value>1</value>
-				<value>2</value>
-				<value>2</value>
-				<value>2</value>
-				<value>3</value>
-				<value>3</value>
-				<value>3</value>
-				<value>4</value>
-				<value>4</value>
-				<value>4</value>
-				<value>5</value>
-				<value>5</value>
-				<value>5</value>
-				<value>6</value>
-			</Calc>
-		</Stat>
-                <Stat name = "ValueAtk" attr = "Agility">	
-			<Calc>	
-				<value>0</value>
-				<value>0</value>
-				<value>0</value>
-				<value>0</value>
-				<value>0</value>
-				<value>1</value>
-				<value>2</value>
-				<value>1</value>
-				<value>2</value>
-				<value>3</value>
-				<value>1</value>
-				<value>2</value>
-				<value>3</value>
-				<value>4</value>
-			</Calc>
-		</Stat>
-                <Stat name = "Mov" attr = "Agility">	
-			<Calc>	
-				<value>1</value>
-				<value>1</value>
-				<value>2</value>
-				<value>2</value>
-				<value>2</value>
-				<value>3</value>
-				<value>3</value>
-				<value>3</value>
-				<value>4</value>
-				<value>4</value>
-				<value>4</value>
-				<value>5</value>
-				<value>5</value>
-				<value>6</value>
-			</Calc>
-		</Stat>
-        <Stat name = "Ran" attr = "Range">	
-			<Calc>	
-				<value>1</value>
-				<value>1</value>
-				<value>1</value>
-				<value>2</value>
-				<value>2</value>
-				<value>2</value>
-				<value>3</value>
-				<value>3</value>
-				<value>3</value>
-				<value>4</value>
-				<value>4</value>
-				<value>5</value>
-				<value>5</value>
-				<value>6</value>
-			</Calc>
-		</Stat>
-                <Stat name = "ValueRan" attr = "Range">	
-			<Calc>	
-				<value>0</value>
-				<value>1</value>
-				<value>1</value>
-				<value>2</value>
-				<value>2</value>
-				<value>3</value>
-				<value>4</value>
-				<value>4</value>
-				<value>5</value>
-				<value>6</value>
-				<value>7</value>
-				<value>8</value>
-				<value>9</value>
-				<value>10</value>
-			</Calc>
-		</Stat>
-                <Stat name = "Ini" attr = "Range">	
-			<Calc>	
-				<value>1.5</value>
-				<value>2.5</value>
-				<value>3.5</value>
-				<value>4.5</value>
-				<value>5.5</value>
-				<value>6.5</value>
-				<value>7.5</value>
-				<value>7</value>
-				<value>6</value>
-				<value>5</value>
-				<value>4</value>
-				<value>3</value>
-				<value>2</value>
-				<value>1</value>
-			</Calc>
-		</Stat>
-	</Stats>
-	
-	<Units formula = "(Dmg+ValueAtk+ValueRan)*Atk">
-		<!--DamageFormula formula = "(ValueDmg+ValueAtk+ValueRan)*Atk"/-->
-	</Units>
-	
-	<Player>
-		<Hand>3</Hand>
-		<Units>3</Units>
-		<CommandPoints>1</CommandPoints>
-	</Player>
-</Rules>
+<?xml version="1.0" encoding="UTF-8"?><Rules>    <Deck>    <Size>15</Size>    <Cards>      <!--If not enough cards here they will be generated automatically-->      <!-- Str, Agi, Ran -->      <Card id="0">        <attr>0</attr>        <attr>4</attr>        <attr>-4</attr>      </Card>      <Card id="1">        <attr>-4</attr>        <attr>0</attr>        <attr>4</attr>      </Card>      <Card id="2">        <attr>4</attr>        <attr>-4</attr>        <attr>0</attr>      </Card>      <Card id="3">        <attr>5</attr>        <attr>-4</attr>        <attr>-1</attr>      </Card>      <Card id="4">        <attr>-1</attr>        <attr>5</attr>        <attr>-4</attr>      </Card>      <Card id="5">        <attr>-4</attr>        <attr>-1</attr>        <attr>+5</attr>      </Card>      <Card id="6">        <attr>7</attr>        <attr>-6</attr>        <attr>-1</attr>      </Card>      <Card id="7">        <attr>-1</attr>        <attr>7</attr>        <attr>-6</attr>      </Card>      <Card id="8">        <attr>-6</attr>        <attr>-1</attr>        <attr>7</attr>      </Card>      <Card id="9">        <attr>10</attr>        <attr>-9</attr>        <attr>-1</attr>      </Card>      <Card id="10">        <attr>-1</attr>        <attr>10</attr>        <attr>-9</attr>      </Card>      <Card id="11">        <attr>-9</attr>        <attr>-1</attr>        <attr>10</attr>      </Card>      <Card id="12">        <attr>2</attr>        <attr>-1</attr>        <attr>-1</attr>      </Card>      <Card id="13">        <attr>-1</attr>        <attr>2</attr>        <attr>-1</attr>      </Card>      <Card id="14">        <attr>-1</attr>        <attr>-1</attr>        <attr>2</attr>      </Card>    </Cards>  </Deck>  <Attributes>    <Attribute name = "Strength" min = "1" max = "19"/>    <Attribute name = "Agility" min = "1" max = "19"/>    <Attribute name = "Range" min = "1" max = "19"/>  </Attributes>  <Stats>    <Stat name = "Dmg" attr = "Strength">      <Calc>        <value>4</value>        <!--Can be a math expression!-->        <value>6</value>        <value>8</value>        <value>9</value>        <value>10</value>        <value>12</value>        <value>14</value>        <value>16</value>        <value>18</value>        <value>20</value>        <value>25</value>        <value>30</value>        <value>35</value>        <value>40</value>        <value>42</value>        <value>44</value>        <value>45</value>        <value>47</value>        <value>50</value>      </Calc>    </Stat>    <Stat name = "HP" attr = "Strength">      <Calc>        <value>20</value>        <value>40</value>        <value>50</value>        <value>60</value>        <value>80</value>        <value>90</value>        <value>100</value>        <value>120</value>        <value>140</value>        <value>170</value>        <value>200</value>        <value>220</value>        <value>240</value>        <value>250</value>        <value>260</value>        <value>270</value>        <value>280</value>        <value>290</value>        <value>300</value>      </Calc>    </Stat>    <Stat name = "Atk" attr = "Agility">      <Calc>        <value>1</value>        <value>2</value>        <value>2</value>        <value>2</value>        <value>3</value>        <value>3</value>        <value>3</value>        <value>4</value>        <value>4</value>        <value>4</value>        <value>5</value>        <value>5</value>        <value>5</value>        <value>6</value>        <value>6</value>        <value>6</value>        <value>7</value>        <value>7</value>        <value>8</value>      </Calc>    </Stat>    <Stat name = "ValueAtk" attr = "Agility">      <Calc>        <value>0</value>        <value>0</value>        <value>0</value>        <value>0</value>        <value>0</value>        <value>1</value>        <value>2</value>        <value>1</value>        <value>2</value>        <value>3</value>        <value>1</value>        <value>2</value>        <value>3</value>        <value>4</value>        <value>5</value>        <value>6</value>        <value>1</value>        <value>2</value>        <value>4</value>      </Calc>    </Stat>    <Stat name = "Mov" attr = "Agility">      <Calc>        <value>1</value>        <value>1</value>        <value>2</value>        <value>2</value>        <value>2</value>        <value>3</value>        <value>3</value>        <value>3</value>        <value>4</value>        <value>4</value>        <value>4</value>        <value>5</value>        <value>5</value>        <value>6</value>        <value>6</value>        <value>6</value>        <value>7</value>        <value>7</value>        <value>8</value>      </Calc>    </Stat>    <Stat name = "Ran" attr = "Range">      <Calc>        <value>1</value>        <value>1</value>        <value>1</value>        <value>2</value>        <value>2</value>        <value>2</value>        <value>3</value>        <value>3</value>        <value>3</value>        <value>4</value>        <value>4</value>        <value>5</value>        <value>5</value>        <value>6</value>        <value>6</value>        <value>7</value>        <value>7</value>        <value>7</value>        <value>8</value>      </Calc>    </Stat>    <Stat name = "ValueRan" attr = "Range">      <Calc>        <value>0</value>        <value>1</value>        <value>21</value>        <value>3</value>        <value>4</value>        <value>5</value>        <value>6</value>        <value>7</value>        <value>8</value>        <value>9</value>        <value>10</value>        <value>11</value>        <value>12</value>        <value>13</value>        <value>14</value>        <value>15</value>        <value>16</value>        <value>17</value>        <value>18</value>      </Calc>    </Stat>    <Stat name = "Ini" attr = "Range">      <Calc>        <value>14</value>        <value>13</value>        <value>12</value>        <value>11</value>        <value>10</value>        <value>9</value>        <value>8</value>        <value>7</value>        <value>6</value>        <value>5</value>        <value>4</value>        <value>3</value>        <value>2</value>        <value>1</value>        <value>1</value>        <value>2</value>        <value>3</value>        <value>4</value>        <value>5</value>      </Calc>    </Stat>  </Stats>  <Units formula = "(Dmg+ValueAtk+ValueRan)*Atk">    <!--DamageFormula formula = "(ValueDmg+ValueAtk+ValueRan)*Atk"/-->  </Units>  <Player>    <Hand>3</Hand>    <Units>3</Units>    <CommandPoints>1</CommandPoints>  </Player></Rules>
