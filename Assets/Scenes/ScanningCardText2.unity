@@ -316,6 +316,7 @@ Prefab:
       value: 
       objectReference: {fileID: 1788253698}
     - target: {fileID: 33447312131022338, guid: 1338c639100a4ae4cb6f2434646d9d83,
+<<<<<<< HEAD
         type: 2}
       propertyPath: m_Mesh
       value: 
@@ -334,16 +335,45 @@ Prefab:
         type: 2}
       propertyPath: m_Mesh
       value: 
+=======
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 2094180831}
+    - target: {fileID: 33996820990596758, guid: 1338c639100a4ae4cb6f2434646d9d83,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 2117333191}
+    - target: {fileID: 33382517166928318, guid: 1338c639100a4ae4cb6f2434646d9d83,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 550196314}
+    - target: {fileID: 33284840228387682, guid: 1338c639100a4ae4cb6f2434646d9d83,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+>>>>>>> CardScanningPt2
       objectReference: {fileID: 978295219}
     - target: {fileID: 33063979744670626, guid: 1338c639100a4ae4cb6f2434646d9d83,
         type: 2}
       propertyPath: m_Mesh
+<<<<<<< HEAD
       value: 
       objectReference: {fileID: 125147486}
     - target: {fileID: 33501284827290120, guid: 1338c639100a4ae4cb6f2434646d9d83,
         type: 2}
       propertyPath: m_Mesh
       value: 
+=======
+      value: 
+      objectReference: {fileID: 125147486}
+    - target: {fileID: 33501284827290120, guid: 1338c639100a4ae4cb6f2434646d9d83,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+>>>>>>> CardScanningPt2
       objectReference: {fileID: 481429197}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1338c639100a4ae4cb6f2434646d9d83, type: 2}
@@ -2646,6 +2676,25 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 86424150}
+<<<<<<< HEAD
+=======
+    - target: {fileID: 1292378591809998, guid: 12e019c268794154e86825e29166fcc3, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1506176305942016, guid: 12e019c268794154e86825e29166fcc3, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1902128211147642, guid: 12e019c268794154e86825e29166fcc3, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1922824830015816, guid: 12e019c268794154e86825e29166fcc3, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+>>>>>>> CardScanningPt2
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 12e019c268794154e86825e29166fcc3, type: 2}
   m_IsPrefabParent: 0
