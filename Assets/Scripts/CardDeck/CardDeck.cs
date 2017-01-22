@@ -7,6 +7,7 @@ namespace ARTCards
 
 		private Stack<PlayingCard> cards;
 		private Stack<PlayingCard> grave;
+		private Dictionary<string, PlayingCard> cardDict;
 
 		public CardDeck(int number) 
 		: this (new PlayingCard[0], number){}
@@ -14,9 +15,12 @@ namespace ARTCards
 		public CardDeck(PlayingCard[] pregen, int number){
 			cards = new Stack<PlayingCard>();
 			grave = new Stack<PlayingCard>();
+			cardDict = new Dictionary<string, PlayingCard>();
+
 			for (int i = 0; i < pregen.Length; i++) {
 				cards.Push(pregen[i]);
 				//Debug.Log("Added a card");
+				cardDict.Add(pregen[i].id, pregen[i]);
 			}
 
 			for (int i = 0; i < number-pregen.Length; i++) {
@@ -61,6 +65,18 @@ namespace ARTCards
 		}
 		public int graveSize{
 			get{return grave.Count;}
+		}
+		public bool inGrave(PlayingCard card){
+			return grave.Contains(card);
+		}
+
+		public PlayingCard GetCardById(string id){
+			PlayingCard result = null;
+			cardDict.TryGetValue(id, out result);
+			if (result == null){
+				Debug.LogError("Card with id "+id + " is not in the deck!");
+			}
+			return result;
 		}
 	}
 }
