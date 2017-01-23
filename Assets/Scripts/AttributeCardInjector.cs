@@ -26,10 +26,13 @@ namespace ARTCards
         public GameObject declineInjectionButton;
         public GameObject abortInjectionButton;
         public GameObject injectionPannel;
-        public GameObject cardImage;
+        public Image cardImage;
+        public Text cardStatsPreview;
         public Text unitStatsPreview;
         public GameObject minimizeProcessButton;
         public GameObject showInjectionProcessButton;
+
+		public Sprite[] spriteArray;
 
        // public Player player1;
        // public Player player2;
@@ -53,7 +56,6 @@ namespace ARTCards
            // player1 = new Player();
         }
 
-
         void Start()
         {
             portraitButton1 = GameObject.Find("PortraitButton1");
@@ -64,7 +66,7 @@ namespace ARTCards
             declineInjectionButton = GameObject.Find("DeclineInjectionButton");
             abortInjectionButton = GameObject.Find("AbortInjectionButton");
             injectionPannel = GameObject.Find("InjectionPannel");
-            cardImage = GameObject.Find("CardImage");
+           // cardImage = GameObject.Find("CardImage");
             minimizeProcessButton = GameObject.Find("MinimizeProcessButton");
             showInjectionProcessButton = GameObject.Find("ShowInjectionProcessButton");
 
@@ -79,9 +81,28 @@ namespace ARTCards
 
            // unit1 = new ARTCards.Unit();
             unitStatsPreview = GameObject.Find("UnitStatsPreview").GetComponent<Text>();
+            cardStatsPreview = GameObject.Find("CardStatsPreview").GetComponent<Text>();
 
-			players = new Player[2];
+            players = new Player[2];
 			players[0] = new Player();
+        }
+
+		/// <summary>
+		/// Loads the source image preview.
+		/// </summary>
+		/// <param name="sourceImage">Source image.</param>
+		public void LoadSourceImagePreview(int sourceImage)
+		{
+            //players[]
+            Debug.Log("Source image: " + sourceImage);
+			cardImage.sprite = spriteArray [sourceImage];
+
+            int[] cardAttrs = players[0].activeCard.attributes;
+
+            cardStatsPreview.text = "CardStatsPreview " +
+                    "\nStrenght:" + cardAttrs[0]
+                    + "\nAgility:" + cardAttrs[1]
+                    + "\nRange:" + cardAttrs[2];
         }
 
         /// <summary>
@@ -188,19 +209,10 @@ namespace ARTCards
         /// on the UI as a text
         /// </summary>
         public void ShowUnitStatsPreview(int unitID)
-        {           
+        {
+            Debug.Log("ShowUnitStatsPreview called ");
             Debug.Log("Unit name: " + players[0].units[unitID]);
             //string[] keys = new string[unit1.attrs.Count];
-            //unit1.attrs.Keys.CopyTo(keys, 0);
-
-            ////access to the Unit related to the portrait
-            //unit1.attrs.TryGetValue(keys[0], out tmp_strength);
-            //unit1.attrs.TryGetValue(keys[1], out tmp_agility);
-            //unit1.attrs.TryGetValue(keys[2], out tmp_range);
-
-            ////unit1.attrs.TryGetValue("Strength", out tmp_strength);
-            ////unit1.attrs.TryGetValue("Agility", out tmp_agility);
-            ////unit1.attrs.TryGetValue("Range", out tmp_range);
 
             //STARTS HERE: We need the attributes of the card we are going to apply
             //and the attributes from the Unit chosen
@@ -218,6 +230,7 @@ namespace ARTCards
             	Debug.LogError("Active card is not setup! Aborting");
             	return;
             }
+
             int[] cardAttrs = players[0].activeCard.attributes;
 
 
@@ -252,12 +265,14 @@ namespace ARTCards
             //One this has been done, the player can press Activate Injection
             //Activate Injection button will call the funcion ApplyChangesInjection
             //unitStatsPreview = GameObject.Find("UnitStatsPreview").GetComponent<Text>();
+
+            Debug.Log("Debug CARD STATS ----> STR" + cardAttrs[0]+ "AGI" + cardAttrs[1] + "RNG" + cardAttrs[2]);
             unitStatsPreview.text = "StatsChangedPreview\n Unit-> " + players[0].units[unitID].name +
                     "\nStrenght:" + arr_attributesUnit[0].Value + statBonus[0] 
                     + "\nAgility:" + arr_attributesUnit[1].Value + statBonus[1] 
                     + "\nRange:" + arr_attributesUnit[2].Value + statBonus[2];
 
-            Debug.Log("wbiwbv");
+            Debug.Log("Unit stats preview loaded on screen");
         }
 
 
