@@ -34,7 +34,7 @@ namespace ARTCards
        // public Player player1;
        // public Player player2;
 
-       public Player[] players;
+       public Player player;
 
        // public Unit unit1;
        // public Unit unit2;
@@ -80,8 +80,9 @@ namespace ARTCards
            // unit1 = new ARTCards.Unit();
             unitStatsPreview = GameObject.Find("UnitStatsPreview").GetComponent<Text>();
 
-			players = new Player[2];
-			players[0] = new Player();
+            //player = new Player[2];
+            //player = new Player();
+            player = new Player();
         }
 
         /// <summary>
@@ -189,7 +190,7 @@ namespace ARTCards
         /// </summary>
         public void ShowUnitStatsPreview(int unitID)
         {           
-            Debug.Log("Unit name: " + players[0].units[unitID]);
+            //Debug.Log("Unit name: " + player.units[unitID]);
             //string[] keys = new string[unit1.attrs.Count];
             //unit1.attrs.Keys.CopyTo(keys, 0);
 
@@ -205,20 +206,22 @@ namespace ARTCards
             //STARTS HERE: We need the attributes of the card we are going to apply
             //and the attributes from the Unit chosen
             //When we press on a portrait button, the inspector sends an int with the unit we want
-            Debug.Log("Player " + players[0]);
-            Debug.Log("Units " + players[0].units[0]);
+            //Debug.Log("Player " + player);
+            //Debug.Log("Units " + player.units[0]);
 
-            Attribute[] arr_attributesUnit = new Attribute[players[0].units[unitID].attrs.Count];
-            players[0].units[unitID].attrs.Values.CopyTo(arr_attributesUnit, 0);
-
+            Attribute[] arr_attributesUnit = new Attribute[player.units[unitID].attrs.Count];
+            //player.units[unitID].attrs.Values.CopyTo(arr_attributesUnit, 0);
+            player.units[unitID].attrs.Values.CopyTo(arr_attributesUnit, 0);
 
             // Attribute[] arr_attributesActiveCard = new Attribute[player1.activeCard.attributes.GetLength(0)];
             //  player1.activeCard.attributes.CopyTo(arr_attributesActiveCard, 0);
-			if (players[0].activeCard == null){
-            	Debug.LogError("Active card is not setup! Aborting");
+            //if (player.activeCard == null){
+            if (player.activeCard == null) {
+                Debug.LogError("Active card is not setup! Aborting");
             	return;
             }
-            int[] cardAttrs = players[0].activeCard.attributes;
+            //int[] cardAttrs = player.activeCard.attributes;
+            int[] cardAttrs = player.activeCard.attributes;
 
 
             string[] statBonus = new string[cardAttrs.Length];
@@ -236,8 +239,8 @@ namespace ARTCards
 
             //here we are checking if the card can be applied
             //if not, we will design a function to finish the injection process
-            if (!players[0].activeCard.isNotOverflowing(arr_attributesUnit))//if is false
-            {
+            //if (!player.activeCard.isNotOverflowing(arr_attributesUnit))//if is false
+            if (!player.activeCard.isNotOverflowing(arr_attributesUnit)) {
                 Debug.LogError("The card overflows unit stats");
                 return;
             }
@@ -252,7 +255,8 @@ namespace ARTCards
             //One this has been done, the player can press Activate Injection
             //Activate Injection button will call the funcion ApplyChangesInjection
             //unitStatsPreview = GameObject.Find("UnitStatsPreview").GetComponent<Text>();
-            unitStatsPreview.text = "StatsChangedPreview\n Unit-> " + players[0].units[unitID].name +
+            //unitStatsPreview.text = "StatsChangedPreview\n Unit-> " + player.units[unitID].name +
+            unitStatsPreview.text = "StatsChangedPreview\n Unit-> " + player.units[unitID].name +
                     "\nStrenght:" + arr_attributesUnit[0].Value + statBonus[0] 
                     + "\nAgility:" + arr_attributesUnit[1].Value + statBonus[1] 
                     + "\nRange:" + arr_attributesUnit[2].Value + statBonus[2];
@@ -266,19 +270,20 @@ namespace ARTCards
         /// </summary>
         public void ApplyChangesInjection(int unitID)
         {
-			//Attribute[] arr = new Attribute[players[0].units[unitID].attrs.Count];
-			//players[0].units[unitID].attrs.Values.CopyTo(arr, 0);
+			//Attribute[] arr = new Attribute[player.units[unitID].attrs.Count];
+			//player.units[unitID].attrs.Values.CopyTo(arr, 0);
 
-            Attribute[] arr_attributesUnit = new Attribute[players[0].units[unitID].attrs.Count];
-            players[0].units[unitID].attrs.Values.CopyTo(arr_attributesUnit, 0);
-
-            if (players[0].activeCard.isNotOverflowing(arr_attributesUnit))
-            {
-                players[0].units[unitID].Buff(players[0].activeCard.attributes);
-               // players[i].deck.Bury(players[i].activeCard);
-                // players[i].activeCard = null;
-            //    // holdingCard = false;
-            //}
+            Attribute[] arr_attributesUnit = new Attribute[player.units[unitID].attrs.Count];
+            //player.units[unitID].attrs.Values.CopyTo(arr_attributesUnit, 0);
+            player.units[unitID].attrs.Values.CopyTo(arr_attributesUnit, 0);
+            //if (player.activeCard.isNotOverflowing(arr_attributesUnit))
+            if (player.activeCard.isNotOverflowing(arr_attributesUnit)) {
+                //player.units[unitID].Buff(player.activeCard.attributes);
+                player.units[unitID].Buff(player.activeCard.attributes);
+                // player[i].deck.Bury(player[i].activeCard);
+                // player[i].activeCard = null;
+                //    // holdingCard = false;
+                //}
             }
             //Once the changes had been applied to the unit, we desactivate the process of injection
             Debug.Log("Finishing the process of injection of the card selected");
@@ -294,7 +299,7 @@ namespace ARTCards
 
         /// <summary>
         /// hides the pannel with the procces of injection
-        /// lets the players see whats happening on the field
+        /// lets the player see whats happening on the field
         /// </summary>
         public void ActivateMinimizeButton()
         {
