@@ -66,8 +66,11 @@ public class ScannedCardActivator : MonoBehaviour
         //injector.player.activeCard = injector.player.deck.GetCardById("" + cardID);
         //injector.LoadSourceImagePreview(cardID);
 
-        UIController.player.activeCard = injector.player.deck.GetCardById("" + cardID);
+        UIController.player.activeCard = UIController.player.deck.GetCardById(UIController.cardImageArray[cardID].textId);
         UIController.LoadSourceImagePreview(cardID);
+        UIController.LoadAttributeCardButtons();
+
+        Debug.Log("Scanned card"+ UIController.player.activeCard.id);
     }
 
 
