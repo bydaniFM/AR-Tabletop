@@ -11,6 +11,7 @@ namespace ARTCards
 		private int curValue;
 		public readonly int minValue;
 		public readonly int maxValue;
+		private int bonus;
 
 		public Attribute(){
 			
@@ -32,7 +33,7 @@ namespace ARTCards
 		}
 
 		public int Value{
-			get{return curValue+minValue;}
+			get{return curValue + minValue + bonus;}
 			set{
 				if (curValue+minValue <= maxValue && curValue >= 0){
 					curValue = value-minValue;
@@ -57,6 +58,9 @@ namespace ARTCards
 
 		public static implicit operator int(Attribute a){
 			return a.curValue + a.minValue;
+		}
+		public void SetBonus(int n){
+			bonus = n;
 		}
 	}
 

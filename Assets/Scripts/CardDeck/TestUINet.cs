@@ -41,30 +41,7 @@ namespace ARPNet{
 
 					//units
 					for (int j = 0; j < players[i].units.Length; j++) {
-						string buttonLabel = players[i].units[j].name + ButtonLabel(players[i].units[j].attrs);
-						if (!(holdingCard && players[i].activeCard == null) && players[i].units[j].stats["HP"].Value > 0){
-							if(GUI.Button(new Rect(10+65*j,10+170*i, 60, 80), buttonLabel)){
-								if (cur_unit != players[i].units[j]){
-									cur_unit = players[i].units[j];
-								}
-								else if (holdingCard){
-									Attribute[] arr = new Attribute[players[i].units[j].attrs.Count];
-									players[i].units[j].attrs.Values.CopyTo(arr, 0);
-									if (players[i].activeCard.isNotOverflowing(arr)){
-										players[i].units[j].Buff(players[i].activeCard.attributes);
-										players[i].deck.Bury(players[i].activeCard);
-										players[i].activeCard = null;
-										holdingCard = false;
-
-										photonView.RPC("ForceEnemyInfoUpdate", PhotonTargets.Others, players[0].ToBin());
-									}
-								
-								}
-							}
-						}
-						else{
-							GUI.Box(new Rect(10+65*j,10+170*i, 60, 80), buttonLabel);
-						}
+						UnitButton(j);
 					}
 					//cards
 					for (int j = 0; j < 3; j++) {
@@ -239,6 +216,33 @@ namespace ARPNet{
 			return "STR:"+arr[0]
 					+'\n'+"AGI:"+arr[1]
 					+'\n'+"RNG:"+arr[2];
+		}
+
+		void UnitButton(int id){
+			string buttonLabel = players[0].units[id].name + ButtonLabel(players[0].units[id].attrs);
+			if (!(holdingCard && players[0].activeCard == null) && players[0].units[id].stats["HP"].Value > 0){
+				if(GUI.Button(new Rect(10+65*id,10+170*0, 60, 80), buttonLabel)){
+					if (cur_unit != players[0].units[id]){
+						cur_unit = players[0].units[id];
+					}
+					else if (holdingCard){
+						Attribute[] arr = new Attribute[players[0].units[id].attrs.Count];
+						players[0].units[id].attrs.Values.CopyTo(arr, 0);
+						if (players[0].activeCard.isNotOverflowing(arr)){
+							players[0].units[id].Buff(players[0].activeCard.attributes);
+							players[0].deck.Bury(players[0].activeCard);
+							players[0].activeCard = null;
+							holdingCard = false;
+
+							photonView.RPC("ForceEnemyInfoUpdate", PhotonTargets.Others, players[0].ToBin());
+						}
+					
+					}
+				}
+			}
+			else{
+				GUI.Box(new Rect(10+65*id,10+170*0, 60, 80), buttonLabel);
+			}
 		}
 
 	//	if (players[i].hand[j] == null && players[i].activeCard != null){

@@ -3,10 +3,17 @@ using System;
 using System.Collections.Generic;
 
 
+
 namespace ARTCards
 {	
+	public enum EffectTypes	{
+		Inject,
+		Boost,
+		Teleport,
+		Shutdown
+	}
 	public class PlayingCard {
-
+		public EffectTypes type;
 		public readonly int[] attributes = new int[0];
 		private Action cardAct;
 		public readonly string id;
