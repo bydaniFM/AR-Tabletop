@@ -232,26 +232,41 @@ public class UIController : MonoBehaviour {
     {
         injectButton.SetActive(true);
         abortInjectionButton.SetActive(true);
-        activateChangesButtonAttributeCard = GameObject.Find("ActivateChangesButton");
-        declineInjectionButtonAttributeCard = GameObject.Find("DeclineInjectionButton");
-        minimizeProcessButtonAttributeCard = GameObject.Find("MinimizeProcessButton");
-        showInjectionProcessButtonAttributeCard = GameObject.Find("ShowInjectionProcessButton");
-        
+        activateChangesButtonAttributeCard.SetActive(true);
+        declineInjectionButtonAttributeCard.SetActive(true);
+        minimizeProcessButtonAttributeCard.SetActive(true);
+        showInjectionProcessButtonAttributeCard.SetActive(true);
+
     }
 
     public void desactivateAttributeCardButtons()
     {
-
+        injectButton.SetActive(false);
+        abortInjectionButton.SetActive(false);
+        activateChangesButtonAttributeCard.SetActive(false);
+        declineInjectionButtonAttributeCard.SetActive(false);
+        minimizeProcessButtonAttributeCard.SetActive(false);
+        showInjectionProcessButtonAttributeCard.SetActive(false);
     }
 
     public void activateEffectCardButtons()
     {
-
+        activateEffectCardButton.SetActive(true);
+        exitEffectCardButton.SetActive(true);
+        activateChangesEffectCardButton.SetActive(true);
+        declineChangesEffectCardButton.SetActive(true);
+        minimizeEffectCardButton.SetActive(true);
+        showEffectCardProcessButton.SetActive(true);
     }
 
     public void desactivateEffectCardButtons()
     {
-
+        activateEffectCardButton.SetActive(false);
+        exitEffectCardButton.SetActive(false);
+        activateChangesEffectCardButton.SetActive(false);
+        declineChangesEffectCardButton.SetActive(false);
+        minimizeEffectCardButton.SetActive(false);
+        showEffectCardProcessButton.SetActive(false);
     }
 
     #endregion

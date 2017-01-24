@@ -28,6 +28,8 @@ public class ScannedCardActivator : MonoBehaviour
     public int cardID;
     public AttributeCardInjector injector;
 
+    public UIController UIController;
+
     public GameObject plane;
 
     void Start()
@@ -61,8 +63,11 @@ public class ScannedCardActivator : MonoBehaviour
     public void Activate()
     {
         Debug.Log("Activate");
-        injector.player.activeCard = injector.player.deck.GetCardById("" + cardID);
-        injector.LoadSourceImagePreview(cardID);
+        //injector.player.activeCard = injector.player.deck.GetCardById("" + cardID);
+        //injector.LoadSourceImagePreview(cardID);
+
+        UIController.player.activeCard = injector.player.deck.GetCardById("" + cardID);
+        UIController.LoadSourceImagePreview(cardID);
     }
 
 
