@@ -22,19 +22,26 @@ namespace ARTCards
         public GameObject portraitButton3;
 
         public GameObject injectButton;
+        public GameObject abortInjectionButton;
+
         public GameObject activateChangesButton;
         public GameObject declineInjectionButton;
-        public GameObject abortInjectionButton;
+        
         public GameObject injectionPannel;
+
         public GameObject cardImage;
+        public Text cardStatsPreview;
         public Text unitStatsPreview;
+
         public GameObject minimizeProcessButton;
         public GameObject showInjectionProcessButton;
 
-       // public Player player1;
-       // public Player player2;
+        public Sprite[] spriteArray;
 
-       public Player player;
+        // public Player player1;
+        // public Player player2;
+
+        public Player player;
 
        // public Unit unit1;
        // public Unit unit2;
@@ -65,6 +72,7 @@ namespace ARTCards
             abortInjectionButton = GameObject.Find("AbortInjectionButton");
             injectionPannel = GameObject.Find("InjectionPannel");
             cardImage = GameObject.Find("CardImage");
+            //cardImage = GetComponent<Image>();
             minimizeProcessButton = GameObject.Find("MinimizeProcessButton");
             showInjectionProcessButton = GameObject.Find("ShowInjectionProcessButton");
 
@@ -74,7 +82,6 @@ namespace ARTCards
             showInjectionProcessButton.SetActive(false);
 
             ShowInjectionButton();
-            ShowCardImage();
             ActivatePannel();
 
            // unit1 = new ARTCards.Unit();
@@ -93,13 +100,6 @@ namespace ARTCards
             injectButton.SetActive(true);
         }
 
-        /// <summary>
-        /// Shows the image of the card that we are going
-        /// to use as preview
-        /// </summary>
-        public void ShowCardImage()
-        {
-        }
 
         public void HideCardImage()
         {
@@ -169,6 +169,32 @@ namespace ARTCards
         }
 
         /// <summary>
+        /// Loads the source image preview.
+        /// </summary>
+        /// <param name="sourceImage">Source image.</param>
+        public void LoadSourceImagePreview(int sourceImage)
+        {
+            //players[]
+            Debug.Log("Source image: " + sourceImage);
+            cardImage.GetComponent<Image>().sprite = spriteArray[sourceImage];
+
+            //for (int i = 0; i < 16; i++)
+            //{
+
+            //    cardImages[i].SetActive(false);
+            //}
+
+            //cardImages[sourceImage].SetActive(true);
+
+            int[] cardAttrs = player.activeCard.attributes;
+
+            cardStatsPreview.text = "CardStatsPreview " +
+                    "\nStrenght:" + cardAttrs[0]
+                    + "\nAgility:" + cardAttrs[1]
+                    + "\nRange:" + cardAttrs[2];
+        }
+
+        /// <summary>
         /// This function will be called when the playes has pressed
         /// a portrait
         /// The unit portrait on the UI will need to have a
@@ -191,21 +217,6 @@ namespace ARTCards
         public void ShowUnitStatsPreview(int unitID)
         {           
             //Debug.Log("Unit name: " + player.units[unitID]);
-            //string[] keys = new string[unit1.attrs.Count];
-            //unit1.attrs.Keys.CopyTo(keys, 0);
-
-            ////access to the Unit related to the portrait
-            //unit1.attrs.TryGetValue(keys[0], out tmp_strength);
-            //unit1.attrs.TryGetValue(keys[1], out tmp_agility);
-            //unit1.attrs.TryGetValue(keys[2], out tmp_range);
-
-            ////unit1.attrs.TryGetValue("Strength", out tmp_strength);
-            ////unit1.attrs.TryGetValue("Agility", out tmp_agility);
-            ////unit1.attrs.TryGetValue("Range", out tmp_range);
-
-            //STARTS HERE: We need the attributes of the card we are going to apply
-            //and the attributes from the Unit chosen
-            //When we press on a portrait button, the inspector sends an int with the unit we want
             //Debug.Log("Player " + player);
             //Debug.Log("Units " + player.units[0]);
 

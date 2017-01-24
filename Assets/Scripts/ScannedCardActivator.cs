@@ -26,7 +26,7 @@ public class ScannedCardActivator : MonoBehaviour
     public TrackableBehaviour mTrackableBehaviour;
     public bool cardTracked;
     public int cardID;
-    private AttributeCardInjector injector;
+    public AttributeCardInjector injector;
 
     public GameObject plane;
 
@@ -34,6 +34,7 @@ public class ScannedCardActivator : MonoBehaviour
     {
         injector = FindObjectOfType<AttributeCardInjector>();
         cardTracked = true;
+        cardID = Int32.Parse(transform.name);
     }
 
    /* public ScannedCardActivator()
@@ -45,16 +46,24 @@ public class ScannedCardActivator : MonoBehaviour
     {
         if (plane.gameObject.GetComponent<MeshRenderer>().enabled) {
             if (cardTracked) {
-                cardID = Int32.Parse(transform.parent.name);
+                //cardID = Int32.Parse(transform.name);
                 Debug.Log("CardID tracked: " + cardID);
+                this.Activate();
                 cardTracked = false;
-                Debug.Log(injector);
-                Debug.Log(injector.player);
-                Debug.Log(injector.player.deck);
-                injector.player.activeCard = injector.player.deck.GetCardById("" + cardID);
+                //Debug.Log(injector);
+                //Debug.Log(injector.player);
+                //Debug.Log(injector.player.deck);
+                
             }
         }
     } 
+
+    public void Activate()
+    {
+        Debug.Log("Activate");
+        injector.player.activeCard = injector.player.deck.GetCardById("" + cardID);
+        injector.LoadSourceImagePreview(cardID);
+    }
 
 
 }

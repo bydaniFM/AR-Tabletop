@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
-    <ImageTarget name="layout_cardback_v1_1" size="1.000000 1.426426" />
-    <ImageTarget name="layout_cardback_v2_1" size="1.000000 1.425684" />
+    <ImageTarget name="card_attribute_test" size="1.000000 1.550000" />
+    <ImageTarget name="Card_effect_test" size="1.000000 1.542056" />
+    <ImageTarget name="Test_test" size="1.000000 1.335294" />
+    <ImageTarget name="dense_pattern-16" size="1.000000 1.387626" />
+    <ImageTarget name="dense_pattern-15_2" size="1.000000 1.387626" />
+    <ImageTarget name="dense_pattern-14" size="1.000000 1.387626" />
+    <ImageTarget name="dense_pattern-13" size="1.000000 1.387626" />
+    <ImageTarget name="dense_pattern-12" size="1.000000 1.387626" />
+    <ImageTarget name="dense_pattern-11" size="1.000000 1.387626" />
+    <ImageTarget name="dense_pattern-10" size="1.000000 1.387626" />
+    <ImageTarget name="dense_pattern-09" size="1.000000 1.387626" />
+    <ImageTarget name="dense_pattern-08" size="1.000000 1.387626" />
+    <ImageTarget name="dense_pattern-07" size="1.000000 1.387626" />
+    <ImageTarget name="dense_pattern-06" size="1.000000 1.387626" />
+    <ImageTarget name="dense_pattern-03" size="1.000000 1.387626" />
+    <ImageTarget name="dense_pattern-04" size="1.000000 1.387626" />
+    <ImageTarget name="dense_pattern-05" size="1.000000 1.387626" />
+    <ImageTarget name="dense_pattern-01" size="1.000000 1.387626" />
+    <ImageTarget name="dense_pattern-02" size="1.000000 1.387626" />
     <ImageTarget name="Play_Card_Test" size="1.000000 1.425684" />
     <ImageTarget name="Pattern_test_24bit" size="1.000000 1.000000" />
     <ImageTarget name="AR_element_5" size="1.000000 1.000000" />

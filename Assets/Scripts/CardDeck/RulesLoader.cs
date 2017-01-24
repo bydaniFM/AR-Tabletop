@@ -22,17 +22,17 @@ public class RulesLoader : MonoBehaviour {
 			Debug.LogError("An instance of RulesLoader already exists");
 		}
 		settingsPath = Application.dataPath + "/Settings/";
-		#if UNITY_STANDALONE_WIN
-			path = path.Replace('/', '\\');
-		#endif    
+		//#if UNITY_STANDALONE_WIN
+		//	path = path.Replace('/', '\\');
+		//#endif    
 
-		#if !UNITY_EDITOR
-		FirstRun();
+		//#if !UNITY_EDITOR
+		//FirstRun();
 
-		rules = Rules.Load(File.ReadAllText(settingsPath+"_rules.xml"));
-		#else
+		//rules = Rules.Load(File.ReadAllText(settingsPath+"_rules.xml"));
+		//#else
 		rules = Rules.Load(Resources.Load<TextAsset>("Rules").text); 
-		#endif
+		//#endif
 	}
 	void Start () {
 		
