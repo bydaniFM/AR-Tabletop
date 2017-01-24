@@ -1,0 +1,328 @@
+fileFormatVersion: 2
+guid: 2d8d57237cfd848dfa83bbe797786435
+timeCreated: 1485258990
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Cube
+    100002: //RootNode
+    100004: joint1
+    100006: joint10
+    100008: joint103
+    100010: joint11
+    100012: joint112
+    100014: joint12
+    100016: joint122
+    100018: joint13
+    100020: joint132
+    100022: joint133
+    100024: joint14
+    100026: joint15
+    100028: joint16
+    100030: joint17
+    100032: joint18
+    100034: joint19
+    100036: joint2
+    100038: joint20
+    100040: joint21
+    100042: joint22
+    100044: joint23
+    100046: joint24
+    100048: joint24 1
+    100050: joint27
+    100052: joint27 1
+    100054: joint28
+    100056: joint28 1
+    100058: joint29
+    100060: joint29 1
+    100062: joint3
+    100064: joint30
+    100066: joint30 1
+    100068: joint31
+    100070: joint31 1
+    100072: joint32
+    100074: joint32 1
+    100076: joint33
+    100078: joint33 1
+    100080: joint34
+    100082: joint34 1
+    100084: joint35
+    100086: joint35 1
+    100088: joint36
+    100090: joint36 1
+    100092: joint37
+    100094: joint37 1
+    100096: joint38
+    100098: joint38 1
+    100100: joint39
+    100102: joint39 1
+    100104: joint4
+    100106: joint40
+    100108: joint40 1
+    100110: joint41
+    100112: joint41 1
+    100114: joint42
+    100116: joint42 1
+    100118: joint43
+    100120: joint43 1
+    100122: joint44
+    100124: joint44 1
+    100126: joint45
+    100128: joint45 1
+    100130: joint46
+    100132: joint46 1
+    100134: joint47
+    100136: joint47 1
+    100138: joint48
+    100140: joint48 1
+    100142: joint49
+    100144: joint49 1
+    100146: joint5
+    100148: joint50
+    100150: joint50 1
+    100152: joint51
+    100154: joint51 1
+    100156: joint52
+    100158: joint52 1
+    100160: joint53
+    100162: joint53 1
+    100164: joint54
+    100166: joint54 1
+    100168: joint55
+    100170: joint55 1
+    100172: joint56
+    100174: joint56 1
+    100176: joint57
+    100178: joint57 1
+    100180: joint58
+    100182: joint58 1
+    100184: joint59
+    100186: joint59 1
+    100188: joint6
+    100190: joint60
+    100192: joint60 1
+    100194: joint61
+    100196: joint61 1
+    100198: joint62
+    100200: joint62 1
+    100202: joint63
+    100204: joint63 1
+    100206: joint64
+    100208: joint64 1
+    100210: joint65
+    100212: joint66
+    100214: joint67
+    100216: joint67 1
+    100218: joint68
+    100220: joint69
+    100222: joint69 1
+    100224: joint7
+    100226: joint72
+    100228: joint73
+    100230: joint73 1
+    100232: joint74
+    100234: joint75
+    100236: joint75 1
+    100238: joint76
+    100240: joint76 1
+    100242: joint8
+    100244: joint85
+    100246: joint9
+    100248: joint94
+    400000: Cube
+    400002: //RootNode
+    400004: joint1
+    400006: joint10
+    400008: joint103
+    400010: joint11
+    400012: joint112
+    400014: joint12
+    400016: joint122
+    400018: joint13
+    400020: joint132
+    400022: joint133
+    400024: joint14
+    400026: joint15
+    400028: joint16
+    400030: joint17
+    400032: joint18
+    400034: joint19
+    400036: joint2
+    400038: joint20
+    400040: joint21
+    400042: joint22
+    400044: joint23
+    400046: joint24
+    400048: joint24 1
+    400050: joint27
+    400052: joint27 1
+    400054: joint28
+    400056: joint28 1
+    400058: joint29
+    400060: joint29 1
+    400062: joint3
+    400064: joint30
+    400066: joint30 1
+    400068: joint31
+    400070: joint31 1
+    400072: joint32
+    400074: joint32 1
+    400076: joint33
+    400078: joint33 1
+    400080: joint34
+    400082: joint34 1
+    400084: joint35
+    400086: joint35 1
+    400088: joint36
+    400090: joint36 1
+    400092: joint37
+    400094: joint37 1
+    400096: joint38
+    400098: joint38 1
+    400100: joint39
+    400102: joint39 1
+    400104: joint4
+    400106: joint40
+    400108: joint40 1
+    400110: joint41
+    400112: joint41 1
+    400114: joint42
+    400116: joint42 1
+    400118: joint43
+    400120: joint43 1
+    400122: joint44
+    400124: joint44 1
+    400126: joint45
+    400128: joint45 1
+    400130: joint46
+    400132: joint46 1
+    400134: joint47
+    400136: joint47 1
+    400138: joint48
+    400140: joint48 1
+    400142: joint49
+    400144: joint49 1
+    400146: joint5
+    400148: joint50
+    400150: joint50 1
+    400152: joint51
+    400154: joint51 1
+    400156: joint52
+    400158: joint52 1
+    400160: joint53
+    400162: joint53 1
+    400164: joint54
+    400166: joint54 1
+    400168: joint55
+    400170: joint55 1
+    400172: joint56
+    400174: joint56 1
+    400176: joint57
+    400178: joint57 1
+    400180: joint58
+    400182: joint58 1
+    400184: joint59
+    400186: joint59 1
+    400188: joint6
+    400190: joint60
+    400192: joint60 1
+    400194: joint61
+    400196: joint61 1
+    400198: joint62
+    400200: joint62 1
+    400202: joint63
+    400204: joint63 1
+    400206: joint64
+    400208: joint64 1
+    400210: joint65
+    400212: joint66
+    400214: joint67
+    400216: joint67 1
+    400218: joint68
+    400220: joint69
+    400222: joint69 1
+    400224: joint7
+    400226: joint72
+    400228: joint73
+    400230: joint73 1
+    400232: joint74
+    400234: joint75
+    400236: joint75 1
+    400238: joint76
+    400240: joint76 1
+    400242: joint8
+    400244: joint85
+    400246: joint9
+    400248: joint94
+    4300000: Cube
+    9500000: //RootNode
+    13700000: Cube
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
