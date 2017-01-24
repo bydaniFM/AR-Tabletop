@@ -5,7 +5,7 @@ using UnityEngine;
 namespace HexMap{
 	public class GridBuilder : MonoBehaviour {
 
-		public Material gridMaterial;
+		//public Material gridMaterial;
 		public int gridWidth;
 		public int gridHeight;
 		public float gridElevation; // height of grid above surface
@@ -13,7 +13,7 @@ namespace HexMap{
 		public Vector3 offset;
 		public float hexRad; //inner radius of hexes
 
-		GameObject gridHolder;
+		//GameObject gridHolder;
 
 		Vector3[] coords;
 
@@ -31,17 +31,26 @@ namespace HexMap{
 	//			go.name = "Hex mark";
 	//		}
 			HexGrid.instance = new HexGrid(coords);
+			if (HexMark.instance == null){
+				HexMark.instance = new HexMark();
+			}
+			HexMark.instance.GetRoot().gameObject.AddComponent<FieldOrientationAssistant>();
+			#if UNITY_EDITOR
+			QualitySettings.vSyncCount = 0;
+			Application.targetFrameRate = 30;
+			#else
 			Application.targetFrameRate = 50;
+			#endif
+
 		}
 		// Use this for initialization
 		void Start () {
+			HexMark.instance.MarkGrid("Grid", coords, new Color(1, 1, 0, 0.5f));
 
-			
-			CreateGridObj();
 
-//			GridUI gui = GameObject.Find("Canvas").GetComponent<GridUI>();
-//
-//
+			//GridUI gui = GameObject.Find("Canvas").GetComponent<GridUI>();
+
+
 //			foreach (Vector3 vec in coords) {
 //				
 //				//Vector2 uv = vec.x * X_QR + vec.y * Y_QR;
@@ -117,19 +126,7 @@ namespace HexMap{
 			return result.ToArray();
 		}
 
-		void CreateGridObj(){
-			gridHolder = new GameObject("TheGrid");
-			gridHolder.transform.parent = transform.parent;//GameObject.Find("ImageTarget 1").transform;
-			MeshFilter mf = gridHolder.AddComponent <MeshFilter>();
-			MeshRenderer mr = gridHolder.AddComponent <MeshRenderer>();
 
-			mf.mesh = MeshGen.CreateGridMesh(MeshGen.Hex(layout.wide_width/2), coords);//MeshGen.Square(0.5f);
-			mf.mesh.name = "GridMesh";
-			//RecalculateMeshHeights(mf.mesh);
-			mf.mesh.RecalculateBounds();
-			mf.mesh.RecalculateNormals();
-			mr.material = gridMaterial;//tile.GetComponent<MeshRenderer>().sharedMaterial;
-		}
 
 
 

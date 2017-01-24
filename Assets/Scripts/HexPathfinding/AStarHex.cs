@@ -33,7 +33,6 @@ namespace HexMap{
 			frontier = new SimplePriorityQueue<int>();
 			frontier.Enqueue(start_id, 0);
 			InitGridData();
-            Debug.Log("Start: "+start);
 			came_from[start] = -2;
 			cost_so_far[start] = 0;
 			searchcount = 0;
@@ -76,6 +75,7 @@ namespace HexMap{
 						cost_so_far[neighbor_id] = new_cost;
 						//Add it to frontier
 						float priority = new_cost + ManhattanDist(neighbor_id, destination);
+						//float priority = new_cost + Vector3.Distance(Vector3.zero, Vector3.zero);
 						frontier.Enqueue(neighbor_id, priority);
 						//Mark step 
 						searchcount++;
@@ -88,6 +88,7 @@ namespace HexMap{
 				}
 			}
 		}
+
 		int ManhattanDist(int a, int b){
 	//		int x_diff = Mathf.Abs(HexGrid.instance.all_cells[a].x - HexGrid.instance.all_cells[b].x);
 	//		int y_diff = Mathf.Abs(HexGrid.instance.all_cells[a].y - HexGrid.instance.all_cells[b].y);
@@ -238,5 +239,7 @@ namespace HexMap{
 
 			}
 		}
+
+
 	}
 }

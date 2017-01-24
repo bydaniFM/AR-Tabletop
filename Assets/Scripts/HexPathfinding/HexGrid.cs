@@ -29,7 +29,7 @@ namespace HexMap{
 				instance = this;
 			}
 			if (instance != this){
-				Debug.LogError("HexGrid object already exists");
+				//Debug.LogError("HexGrid object already exists");
 			}
 
 		}
