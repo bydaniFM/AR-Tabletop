@@ -9,8 +9,10 @@ public class SelfDestruct : MonoBehaviour {
 	
 	public void Execute(float t){
 		Destroy(gameObject, t);
+		Invoke("Gibs", t-0.1f);
 	}
-	void OnDestroy(){
+
+	void Gibs(){
 		GameObject go = (GameObject)Instantiate(gibs, transform.position+Vector3.up*0.1f, transform.rotation);
 		Rigidbody[] rb = FindObjectsOfType<Rigidbody>();
 		foreach (var item in rb) {

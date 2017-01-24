@@ -51,7 +51,7 @@ public class FakeEnemy : MonoBehaviour {
 		player = GameObject.Find("Player").GetComponent<SelfDestruct>();
 		if (Vector3.Distance(player.transform.position, transform.position) < 4){
 			transform.LookAt(player.transform);
-			weapon.Shoot();
+			weapon.Shoot(player.transform, 3);
 			player.Execute(2.5f);
 		}
 	}

@@ -5,17 +5,18 @@ using UnityEngine.SceneManagement;
 using HexMap;
 
 public class PathTester : MonoBehaviour {
-	GameObject[] markers;
+	
 	//AStarHex pathfinding;
 	public UnitController player;
 
-	Vector3 temp;
+
+	//Vector3 temp;
 
 	FakeEnemy[] enemies;
 	int enemynum;
 	public Transform field;
 	//FieldOrientationAssistant assist;
-
+	bool haverange;
 	// Use this for initialization
 	void Start () {
 		//assist = FindObjectOfType<FieldOrientationAssistant>();
@@ -24,7 +25,7 @@ public class PathTester : MonoBehaviour {
 			Debug.LogError("REEEE");
 		}
 		//pathfinding = new AStarHex();
-		markers = new GameObject[10];
+		//markers = new GameObject[10];
 
 		enemies = FindObjectsOfType<FakeEnemy>();
 
@@ -38,7 +39,7 @@ public class PathTester : MonoBehaviour {
 		if (player != null){
 			if (Input.GetKeyDown(KeyCode.A) || Input.touchCount == 3){
 				player.transform.LookAt(enemies[0].transform);
-				player.GetComponent<FireWeapon>().Shoot();
+				player.GetComponent<FireWeapon>().Shoot(enemies[0].transform, 3f);
 
 				enemies[0].GetComponent<SelfDestruct>().Execute(2.5f);
 			}
@@ -53,12 +54,17 @@ public class PathTester : MonoBehaviour {
 						player.PreparePath(hit.point);
 						//Pathfind(hit.point);
 						//GameObject m1 = SlapMarker(hit.point);
-						if (player.hasPath){
-							ShowPath(player.GetWorldWaypoints());
+						if (player.hasPath && player.GetWaypoints().Length <= player.move){
+							//ShowPath(player.GetWorldWaypoints());
+							HexMark.instance.Unmark("Path");
+							HexMark.instance.MarkGrid("Path", player.GetWaypoints(), new Color(0, 1, 0, 0.5f));
+						}
+						else{
+							HexMark.instance.Unmark("Path");
 						}
 
-						enemynum = Random.Range(0, enemies.Length);
-						enemies[enemynum].PlotNext();
+						//enemynum = Random.Range(0, enemies.Length);
+						//enemies[enemynum].PlotNext();
 					}
 					//GameObject m2 = SlapMarker(assist.GridToWorld(hit.point));
 					//if (m1.transform.position == m2.transform.position){
@@ -67,12 +73,13 @@ public class PathTester : MonoBehaviour {
 				}
 			}
 			if (Input.GetMouseButtonDown(1) || Input.touchCount == 2){
-				if(!player.isMoving){
+				if(!player.isMoving && player.GetWaypoints().Length <= player.move){
+					HexMark.instance.Unmark("Path");
+					HexMark.instance.Unmark("Range");
 					player.StartPath();
-					enemies[enemynum].GotoNext();
-					foreach (var item in markers) {
-						Destroy(item);
-					}
+					haverange = false;
+					//enemies[enemynum].GotoNext();
+
 				}
 			}
 
@@ -83,6 +90,12 @@ public class PathTester : MonoBehaviour {
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		}
 
+		if (!player.isMoving && !player.hasPath && !haverange){
+			HexMark.instance.MarkGrid("Range", player.GetMoveRange(), new Color(0, 0, 1, 0.5f));
+			haverange = true;
+			//Vector3[] moveRad =
+			//HexMark.instance.MarkGrid();
+		}
 //		Debug.DrawLine(player.transform.position, assist.transform.up);
 //		Debug.DrawLine(player.transform.position, player.transform.position+temp);
 
@@ -93,32 +106,32 @@ public class PathTester : MonoBehaviour {
 	}
 
 
-	void ShowPath(Vector3[] points){
-		
-		//Debug.Log(Input.mousePosition);
-		//HexCell target = HexGrid.instance.GetCell(assist.WorldToGrid(point));
-		//HexCell start = HexGrid.instance.GetCell(player.transform.position);
-		//Debug.Log("Clicked "+ target.q+":"+target.r);
-		foreach (var item in markers) {
-			Destroy(item);
-		}
-		markers = new GameObject[points.Length];
-		for (int i = 0; i < points.Length; i++) {
-			
-			markers[i] = SlapMarker(points[i]);
-			markers[i].name = "Hex mark";
-
-		}
-
-
-		//temp = waypoints[pathcount]-player.transform.position;
-		//tween = 
-	}
+//	void ShowPath(Vector3[] points){
+//		
+//		//Debug.Log(Input.mousePosition);
+//		//HexCell target = HexGrid.instance.GetCell(assist.WorldToGrid(point));
+//		//HexCell start = HexGrid.instance.GetCell(player.transform.position);
+//		//Debug.Log("Clicked "+ target.q+":"+target.r);
+//		foreach (var item in markers) {
+//			Destroy(item);
+//		}
+//		markers = new GameObject[points.Length];
+//		for (int i = 0; i < points.Length; i++) {
+//			
+//			markers[i] = SlapMarker(points[i]);
+//			markers[i].name = "Hex mark";
+//
+//		}
+//
+//
+//		//temp = waypoints[pathcount]-player.transform.position;
+//		//tween = 
+//	}
 
 	GameObject SlapMarker(Vector3 pos){
 		GameObject go = new GameObject("hex");
 		MeshFilter mf = go.AddComponent<MeshFilter>();
-		MeshRenderer mr = go.AddComponent<MeshRenderer>();
+		go.AddComponent<MeshRenderer>();
 		mf.mesh = MeshGen.Hex(HexLayout.instance.wide_width);
 		go.transform.localScale = Vector3.one*0.3f;
 		go.transform.position = pos;
