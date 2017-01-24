@@ -37,7 +37,7 @@ public class EffectCardInjector : MonoBehaviour {
     public Player[] player;
 
     //sprite array for the images of the effect cards
-    public Sprite[] spriteArray;
+    public Sprite[] spriteArrayEffectCards;
 
     // Use this for initialization
     void Start()
@@ -99,138 +99,138 @@ public class EffectCardInjector : MonoBehaviour {
         activateChangesEffectCardButton.SetActive(false);
     }
 
-    /// <summary>
-    /// Loads the source image preview.
-    /// </summary>
-    /// <param name="sourceImage">Source image.</param>
-    public void LoadSourceImagePreview(int sourceImage)
-    {
-        //players[]
-        Debug.Log("Source image: " + sourceImage);
-        effectCardImage.GetComponent<Image>().sprite = spriteArray[sourceImage];
+    ///// <summary>
+    ///// Loads the source image preview.
+    ///// </summary>
+    ///// <param name="sourceImage">Source image.</param>
+    //public void LoadSourceImagePreview(int sourceImage)
+    //{
+    //    //players[]
+    //    Debug.Log("Source image: " + sourceImage);
+    //    effectCardImage.GetComponent<Image>().sprite = spriteArrayEffectCards[sourceImage];
 
-        //for (int i = 0; i < 16; i++)
-        //{
+    //    //for (int i = 0; i < 16; i++)
+    //    //{
 
-        //    cardImages[i].SetActive(false);
-        //}
+    //    //    cardImages[i].SetActive(false);
+    //    //}
 
-        //cardImages[sourceImage].SetActive(true);
+    //    //cardImages[sourceImage].SetActive(true);
 
-        int[] cardAttrs = player.activeCard.attributes;
+    //    int[] cardAttrs = player.activeCard.attributes;
 
-        effectCardInfo.text = "Info about the effect card activated";
-    }
+    //    effectCardInfo.text = "Info about the effect card activated";
+    //}
 
-    /// <summary>
-    /// This function will be called when the playes has pressed
-    /// a portrait
-    /// The unit portrait on the UI will need to have a
-    /// call to this function
-    /// Thhis funcion will show the changes provides on the card choosed
-    /// </summary>
+    ///// <summary>
+    ///// This function will be called when the playes has pressed
+    ///// a portrait
+    ///// The unit portrait on the UI will need to have a
+    ///// call to this function
+    ///// Thhis funcion will show the changes provides on the card choosed
+    ///// </summary>
 
-    public void ShowChangesOnThisCard(int unitSelected)
-    {
-        activateChangesEffectCardButton.SetActive(true);
-        declineChangesEffectCardButton.SetActive(true);
+    //public void ShowChangesOnThisCard(int unitSelected)
+    //{
+    //    activateChangesEffectCardButton.SetActive(true);
+    //    declineChangesEffectCardButton.SetActive(true);
 
-        ShowUnitStatsPreview(unitSelected);
-    }
+    //    ShowUnitStatsPreview(unitSelected);
+    //}
 
-    /// <summary>
-    /// Needed for effect cards that boost the units
-    /// </summary>
-    public void ShowUnitStatsPreview(int unitID)
-    {
-        //Debug.Log("Unit name: " + player.units[unitID]);
-        //Debug.Log("Player " + player);
-        //Debug.Log("Units " + player.units[0]);
+    ///// <summary>
+    ///// Needed for effect cards that boost the units
+    ///// </summary>
+    //public void ShowUnitStatsPreview(int unitID)
+    //{
+    //    //Debug.Log("Unit name: " + player.units[unitID]);
+    //    //Debug.Log("Player " + player);
+    //    //Debug.Log("Units " + player.units[0]);
 
-        Attribute[] arr_attributesUnit = new Attribute[player.units[unitID].attrs.Count];
-        //player.units[unitID].attrs.Values.CopyTo(arr_attributesUnit, 0);
-        player.units[unitID].attrs.Values.CopyTo(arr_attributesUnit, 0);
+    //    Attribute[] arr_attributesUnit = new Attribute[player.units[unitID].attrs.Count];
+    //    //player.units[unitID].attrs.Values.CopyTo(arr_attributesUnit, 0);
+    //    player.units[unitID].attrs.Values.CopyTo(arr_attributesUnit, 0);
 
-        // Attribute[] arr_attributesActiveCard = new Attribute[player1.activeCard.attributes.GetLength(0)];
-        //  player1.activeCard.attributes.CopyTo(arr_attributesActiveCard, 0);
-        //if (player.activeCard == null){
-        if (player.activeCard == null)
-        {
-            Debug.LogError("Active card is not setup! Aborting");
-            return;
-        }
-        //int[] cardAttrs = player.activeCard.attributes;
-        int[] cardAttrs = player.activeCard.attributes;
-
-
-        string[] statBonus = new string[cardAttrs.Length];
-        for (int i = 0; i < statBonus.Length; i++)
-        {
-            if (cardAttrs[i] < 0)
-            {
-                statBonus[i] = "<color=#ff0000ff> " + cardAttrs[i] + " </color>";
-            }
-            else
-            {
-
-                statBonus[i] = "<color=#00ff00ff> +" + cardAttrs[i] + " </color>";
-            }
-        }
-
-        //here we are checking if the card can be applied
-        //if not, we will design a function to finish the injection process
-        //if (!player.activeCard.isNotOverflowing(arr_attributesUnit))//if is false
-        if (!player.activeCard.isNotOverflowing(arr_attributesUnit))
-        {
-            Debug.LogError("The card overflows unit stats");
-            return;
-        }
-
-        //we need to make calculations of the attributes to show then on the
-        //following text value, which belongs to the UI
-
-        Debug.Log("debug for unit stats" + unitStatsPreview);
-
-        ////Here we upload the unit stats preview with the 
-        //values calculated with card functions
-        //One this has been done, the player can press Activate Injection
-        //Activate Injection button will call the funcion ApplyChangesInjection
-        //unitStatsPreview = GameObject.Find("UnitStatsPreview").GetComponent<Text>();
-        //unitStatsPreview.text = "StatsChangedPreview\n Unit-> " + player.units[unitID].name +
-        unitStatsPreviewEffectCard.text = "StatsChangedPreview\n Unit-> " + player.units[unitID].name +
-                "\nStrenght:" + arr_attributesUnit[0].Value + statBonus[0]
-                + "\nAgility:" + arr_attributesUnit[1].Value + statBonus[1]
-                + "\nRange:" + arr_attributesUnit[2].Value + statBonus[2];
-
-        Debug.Log("wbiwbv");
-    }
+    //    // Attribute[] arr_attributesActiveCard = new Attribute[player1.activeCard.attributes.GetLength(0)];
+    //    //  player1.activeCard.attributes.CopyTo(arr_attributesActiveCard, 0);
+    //    //if (player.activeCard == null){
+    //    if (player.activeCard == null)
+    //    {
+    //        Debug.LogError("Active card is not setup! Aborting");
+    //        return;
+    //    }
+    //    //int[] cardAttrs = player.activeCard.attributes;
+    //    int[] cardAttrs = player.activeCard.attributes;
 
 
-    /// <summary>
-    /// Apply the changes of the injection of the card selected on the character
-    /// </summary>
-    public void ApplyChangesInjection(int unitID)
-    {
-        //Attribute[] arr = new Attribute[player.units[unitID].attrs.Count];
-        //player.units[unitID].attrs.Values.CopyTo(arr, 0);
+    //    string[] statBonus = new string[cardAttrs.Length];
+    //    for (int i = 0; i < statBonus.Length; i++)
+    //    {
+    //        if (cardAttrs[i] < 0)
+    //        {
+    //            statBonus[i] = "<color=#ff0000ff> " + cardAttrs[i] + " </color>";
+    //        }
+    //        else
+    //        {
 
-        Attribute[] arr_attributesUnit = new Attribute[player.units[unitID].attrs.Count];
-        //player.units[unitID].attrs.Values.CopyTo(arr_attributesUnit, 0);
-        player.units[unitID].attrs.Values.CopyTo(arr_attributesUnit, 0);
-        //if (player.activeCard.isNotOverflowing(arr_attributesUnit))
-        if (player.activeCard.isNotOverflowing(arr_attributesUnit))
-        {
-            //player.units[unitID].Buff(player.activeCard.attributes);
-            player.units[unitID].Buff(player.activeCard.attributes);
-            // player[i].deck.Bury(player[i].activeCard);
-            // player[i].activeCard = null;
-            //    // holdingCard = false;
-            //}
-        }
-        //Once the changes had been applied to the unit, we desactivate the process of injection
-        Debug.Log("Finishing the process of injection of the card selected");
-        effectCardPannel.SetActive(false);
-    }
+    //            statBonus[i] = "<color=#00ff00ff> +" + cardAttrs[i] + " </color>";
+    //        }
+    //    }
+
+    //    //here we are checking if the card can be applied
+    //    //if not, we will design a function to finish the injection process
+    //    //if (!player.activeCard.isNotOverflowing(arr_attributesUnit))//if is false
+    //    if (!player.activeCard.isNotOverflowing(arr_attributesUnit))
+    //    {
+    //        Debug.LogError("The card overflows unit stats");
+    //        return;
+    //    }
+
+    //    //we need to make calculations of the attributes to show then on the
+    //    //following text value, which belongs to the UI
+
+    //    Debug.Log("debug for unit stats" + unitStatsPreview);
+
+    //    ////Here we upload the unit stats preview with the 
+    //    //values calculated with card functions
+    //    //One this has been done, the player can press Activate Injection
+    //    //Activate Injection button will call the funcion ApplyChangesInjection
+    //    //unitStatsPreview = GameObject.Find("UnitStatsPreview").GetComponent<Text>();
+    //    //unitStatsPreview.text = "StatsChangedPreview\n Unit-> " + player.units[unitID].name +
+    //    unitStatsPreviewEffectCard.text = "StatsChangedPreview\n Unit-> " + player.units[unitID].name +
+    //            "\nStrenght:" + arr_attributesUnit[0].Value + statBonus[0]
+    //            + "\nAgility:" + arr_attributesUnit[1].Value + statBonus[1]
+    //            + "\nRange:" + arr_attributesUnit[2].Value + statBonus[2];
+
+    //    Debug.Log("wbiwbv");
+    //}
+
+
+    ///// <summary>
+    ///// Apply the changes of the injection of the card selected on the character
+    ///// </summary>
+    //public void ApplyChangesInjection(int unitID)
+    //{
+    //    //Attribute[] arr = new Attribute[player.units[unitID].attrs.Count];
+    //    //player.units[unitID].attrs.Values.CopyTo(arr, 0);
+
+    //    Attribute[] arr_attributesUnit = new Attribute[player.units[unitID].attrs.Count];
+    //    //player.units[unitID].attrs.Values.CopyTo(arr_attributesUnit, 0);
+    //    player.units[unitID].attrs.Values.CopyTo(arr_attributesUnit, 0);
+    //    //if (player.activeCard.isNotOverflowing(arr_attributesUnit))
+    //    if (player.activeCard.isNotOverflowing(arr_attributesUnit))
+    //    {
+    //        //player.units[unitID].Buff(player.activeCard.attributes);
+    //        player.units[unitID].Buff(player.activeCard.attributes);
+    //        // player[i].deck.Bury(player[i].activeCard);
+    //        // player[i].activeCard = null;
+    //        //    // holdingCard = false;
+    //        //}
+    //    }
+    //    //Once the changes had been applied to the unit, we desactivate the process of injection
+    //    Debug.Log("Finishing the process of injection of the card selected");
+    //    effectCardPannel.SetActive(false);
+    //}
 
     //here we place some effect card needed behaviours
 
