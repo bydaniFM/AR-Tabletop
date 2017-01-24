@@ -10,10 +10,13 @@ namespace ARPNet{
 		
 		public PhotonLogLevel Loglevel = PhotonLogLevel.Informational;
 		public byte MaxPlayersPerRoom = 2;
+		public string levelToLoad;
 		string gameVersion = "1";
+
 
 		public GameObject playPanel;
 		public GameObject loadingLabel;
+
 
 		bool isConnecting;
 
@@ -69,7 +72,7 @@ namespace ARPNet{
 
 		public override void OnJoinedRoom(){
 			Debug.Log("Reeeee joined!");
-			SceneManager.LoadScene("CardFight");
+			SceneManager.LoadScene(levelToLoad);
 		}
 
 
