@@ -17,9 +17,9 @@ public class UIController : MonoBehaviour {
 
     public GameObject[] portraitButtons;
 
-    public GameObject portraitButton1;
-    public GameObject portraitButton2;
-    public GameObject portraitButton3;
+    //public GameObject portraitButton1;
+    //public GameObject portraitButton2;
+    //public GameObject portraitButton3;
 
     public GameObject actionBarButtonAttributeCards;
     public GameObject actionBarButtonEffectCards;
