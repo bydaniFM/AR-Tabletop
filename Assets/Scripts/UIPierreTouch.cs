@@ -104,9 +104,6 @@ public class UIPierreTouch: MonoBehaviour {
 		}
 	}
 
-
-
-
 	public void SwitchCharSheet (){
 		animationState = charsheet.GetBool ("isopen");
 		if (animationState == false) {
