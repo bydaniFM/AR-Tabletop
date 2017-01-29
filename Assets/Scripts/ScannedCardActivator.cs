@@ -1,13 +1,8 @@
 ﻿using System.Collections;
-
 using System.Collections.Generic;
-
 using UnityEngine;
-
 using Vuforia;
-
 using System;
-
 using System.Linq;
 using ARTCards;
 
@@ -54,8 +49,6 @@ public class ScannedCardActivator : MonoBehaviour
                 cardTracked = false;
                 //Debug.Log(injector);
                 //Debug.Log(injector.player);
-                //Debug.Log(injector.player.deck);
-                
             }
         }
     } 
@@ -65,10 +58,10 @@ public class ScannedCardActivator : MonoBehaviour
         Debug.Log("Activate");
         //injector.player.activeCard = injector.player.deck.GetCardById("" + cardID);
         //injector.LoadSourceImagePreview(cardID);
-
+        UIController.ResetAttributeCardInjection();
         UIController.player.activeCard = UIController.player.deck.GetCardById(UIController.cardImageArray[cardID].textId);
         UIController.LoadSourceImagePreview(cardID);
-        UIController.LoadAttributeCardButtons();
+        UIController.LoadAttributeCardsActionBar();        
 
         Debug.Log("Scanned card"+ UIController.player.activeCard.id);
     }

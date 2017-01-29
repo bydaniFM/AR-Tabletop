@@ -32,7 +32,13 @@ public class UIController : MonoBehaviour {
     public Animator actionPlusAttributeCard;
     public Animator actionPlusEffectCard;
 
-    private bool animationState = false;
+    public bool animationStateActionBarAttributeCard;
+    public bool animationStateActionBarEffectCard;
+    public bool animationStateCharSheetAttributeCard;
+    public bool animationStateCharSheetEffectCard;
+
+    //used as a parameter for showCHangesOnthiscRad and ApplyChanges functions
+    public int unitSelected;
 
     #endregion
 
@@ -45,7 +51,7 @@ public class UIController : MonoBehaviour {
     public GameObject abortInjectionButton;
 
     public GameObject activateChangesButtonAttributeCard;
-    public GameObject declineInjectionButtonAttributeCard;
+    //public GameObject declineInjectionButtonAttributeCard;
 
     public GameObject finishInjectionButton;
 
@@ -85,14 +91,14 @@ public class UIController : MonoBehaviour {
 
     //to continue the proces of using a card
     public GameObject activateEffectCardButton;
-    public GameObject declineUseEffectCardButton;
+    //public GameObject declineUseEffectCardButton;
 
     //to end the process
     public GameObject exitEffectCardButton;
 
     //to apply boost on units
     public GameObject activateChangesEffectCardButton;
-    public GameObject declineChangesEffectCardButton;
+    //public GameObject declineChangesEffectCardButton;
 
     public GameObject minimizeEffectCardButton;
     public GameObject showEffectCardProcessButton;
@@ -110,8 +116,11 @@ public class UIController : MonoBehaviour {
         #region General variable Initialization
 
         player = new Player();
+
+        animationStateCharSheetAttributeCard = false;
+        animationStateCharSheetEffectCard = false;
  
-        actionBarButtonAttributeCards = GameObject.Find("actionBarButtonAttributeCards");
+        //actionBarButtonAttributeCards = GameObject.Find("actionBarButtonAttributeCards");
         //actionBarButtonEffectCards = GameObject.Find("actionBarButtonEffectCards");
 
     #endregion
@@ -120,23 +129,25 @@ public class UIController : MonoBehaviour {
 
     #region Attribute Card Initialization
 
-        injectButton = GameObject.Find("InjectButton");
-        activateChangesButtonAttributeCard = GameObject.Find("ActivateChangesButton");
-        declineInjectionButtonAttributeCard = GameObject.Find("DeclineInjectionButton");
-        abortInjectionButton = GameObject.Find("AbortInjectionButton");
-        finishInjectionButton = GameObject.Find("FinishInjectionButton");
-        cardImageAttributeCard = GameObject.Find("CardImage");
-        //cardImage = GetComponent<Image>();
-        minimizeProcessButtonAttributeCard = GameObject.Find("MinimizeProcessButton");
-        showInjectionProcessButtonAttributeCard = GameObject.Find("ShowInjectionProcessButton");
-        //unitStatsPreviewAttributeCard = GameObject.Find("UnitStatsPreviewAttributeCards");
-        unitStatsPreviewAttributeCard = GameObject.Find("UnitStatsPreviewAttributeCards").GetComponent<Text>();
-        cardStatsPreviewAttributeCard = GameObject.Find("CardStatsPreview").GetComponent<Text>();
+        //injectButton = GameObject.Find("InjectButton");
+        //activateChangesButtonAttributeCard = GameObject.Find("ActivateChangesButton");
+        //declineInjectionButtonAttributeCard = GameObject.Find("DeclineInjectionButton");
+        //abortInjectionButton = GameObject.Find("AbortInjectionButton");
+        //finishInjectionButton = GameObject.Find("FinishInjectionButton");
+        //cardImageAttributeCard = GameObject.Find("CardImage");
+        ////cardImage = GetComponent<Image>();
+        //minimizeProcessButtonAttributeCard = GameObject.Find("MinimizeProcessButton");
+        //showInjectionProcessButtonAttributeCard = GameObject.Find("ShowInjectionProcessButton");
+        ////unitStatsPreviewAttributeCard = GameObject.Find("UnitStatsPreviewAttributeCards");
+        //unitStatsPreviewAttributeCard = GameObject.Find("UnitStatsPreviewAttributeCards").GetComponent<Text>();
+        //cardStatsPreviewAttributeCard = GameObject.Find("CardStatsPreview").GetComponent<Text>();
 
         activateChangesButtonAttributeCard.SetActive(false);
-        declineInjectionButtonAttributeCard.SetActive(false);
+        //declineInjectionButtonAttributeCard.SetActive(false);
         abortInjectionButton.SetActive(false);
         showInjectionProcessButtonAttributeCard.SetActive(false);
+        finishInjectionButton.SetActive(false);
+        minimizeProcessButtonAttributeCard.SetActive(false);
 
         actionBarButtonAttributeCards.SetActive(false);
         Debug.Assert(actionBarButtonEffectCards != null, "Effect card button not set!");
@@ -155,16 +166,16 @@ public class UIController : MonoBehaviour {
 
     #region Effect Card Initialization
 
-    activateEffectCardButton = GameObject.Find("activateEffectCardButton");
-        activateChangesEffectCardButton = GameObject.Find("activateChangesEffectCardButton");
-        declineUseEffectCardButton = GameObject.Find("declineUseEffectCardButton ");
-        declineChangesEffectCardButton = GameObject.Find("declineChangesEffectCardButton");
-        exitEffectCardButton = GameObject.Find("ExitEffectCardButton");
-        effectCardImage = GameObject.Find("effectCardImage");
-        //unitStatsPreviewEffectCard = GameObject.Find("unitStatsPreviewEffectCard").GetComponent<Text>();
+    //activateEffectCardButton = GameObject.Find("activateEffectCardButton");
+    //    activateChangesEffectCardButton = GameObject.Find("activateChangesEffectCardButton");
+    //    declineUseEffectCardButton = GameObject.Find("declineUseEffectCardButton ");
+    //    declineChangesEffectCardButton = GameObject.Find("declineChangesEffectCardButton");
+    //    exitEffectCardButton = GameObject.Find("ExitEffectCardButton");
+    //    effectCardImage = GameObject.Find("effectCardImage");
+    //    //unitStatsPreviewEffectCard = GameObject.Find("unitStatsPreviewEffectCard").GetComponent<Text>();
 
-        minimizeEffectCardButton = GameObject.Find("MinimizeEffectCardButton");
-        showEffectCardProcessButton = GameObject.Find("ShowInjectionProcessButton");
+    //    minimizeEffectCardButton = GameObject.Find("MinimizeEffectCardButton");
+    //    showEffectCardProcessButton = GameObject.Find("ShowInjectionProcessButton");
 
         #endregion
     }
@@ -181,36 +192,36 @@ public class UIController : MonoBehaviour {
     /// Loads the UI needed to make an injection of an
     /// attribute card
     /// </summary>
-    public void LoadAttributeCardButtons()
+    public void LoadAttributeCardsActionBar()
     {
         actionBarButtonAttributeCards.SetActive(true);
+        injectButton.SetActive(true);
     }
-
 
     /// <summary>
     /// Loads the UI needed to make an injection of an
     /// attribute card
     /// </summary>
-    public void LoadEffectCardButtons()
+    public void LoadEffectCardsActionBar()
     {
         actionBarButtonEffectCards.SetActive(true);
     }
 
     public void SwitchActionBarAttributeCard()
     {
-        animationState = actionBarButtonAttributeCardsAnimator.GetBool("actionbar_open");
-        if (animationState == false)
+        animationStateCharSheetAttributeCard = actionBarButtonAttributeCardsAnimator.GetBool("actionbar_open");
+        if (animationStateCharSheetAttributeCard == false)
         {
             actionBarButtonAttributeCardsAnimator.SetBool("actionbar_open", true);
             //actionBarButtonAttributeCardsAnimator.SetBool("action_closed", true);
-            activateAttributeCardButtons();
+            ActivateAttributeCardButtons();
             //Debug.Log ("open");
         }
         else
         {
             actionBarButtonAttributeCardsAnimator.SetBool("actionbar_open", false);
             //actionBarButtonAttributeCardsAnimator.SetBool("action_closed", false);
-            desactivateAttributeCardButtons();
+            DesactivateAttributeCardButtons();
             //Debug.Log ("close");
 
         }
@@ -218,19 +229,19 @@ public class UIController : MonoBehaviour {
 
     public void SwitchActionBarEffectCard()
     {
-        animationState = actionBarButtonEffectCardsAnimator.GetBool("actionbar_open");
-        if (animationState == false)
+        animationStateCharSheetEffectCard = actionBarButtonEffectCardsAnimator.GetBool("actionbar_open");
+        if (animationStateCharSheetEffectCard == false)
         {
             actionBarButtonEffectCardsAnimator.SetBool("actionbar_open", true);
-            actionBarButtonEffectCardsAnimator.SetBool("action_closed", true);
-            activateEffectCardButtons();
+            //actionBarButtonEffectCardsAnimator.SetBool("action_closed", true);
+            ActivateEffectCardButtons();
             //Debug.Log ("open");
         }
         else
         {
             actionBarButtonEffectCardsAnimator.SetBool("actionbar_open", false);
-            actionBarButtonEffectCardsAnimator.SetBool("action_closed", false);
-            desactivateEffectCardButtons();
+            //actionBarButtonEffectCardsAnimator.SetBool("action_closed", false);
+            DesactivateEffectCardButtons();
             //Debug.Log ("close");
 
         }
@@ -238,21 +249,21 @@ public class UIController : MonoBehaviour {
 
     public void SwitchCharSheetAttributeCard()
     {
-        animationState = charsheetAttributeCards.GetBool("isopen");
-        if (animationState == false)
+        animationStateCharSheetAttributeCard = charsheetAttributeCards.GetBool("isopen");
+        if (animationStateCharSheetAttributeCard == false)
         {
-            charsheetAttributeCards.SetBool("isopen", true);
+            charsheetAttributeCards.SetBool("isopen", false);
         }
         else
         {
-            charsheetAttributeCards.SetBool("isopen", false);
+            charsheetAttributeCards.SetBool("isopen", true);
         }
     }
 
     public void SwitchCharSheetEffectCard()
     {
-        animationState = charsheetEffectCards.GetBool("isopen");
-        if (animationState == false)
+        animationStateCharSheetEffectCard = charsheetEffectCards.GetBool("isopen");
+        if (animationStateCharSheetEffectCard == false)
         {
             charsheetEffectCards.SetBool("isopen", true);
         }
@@ -262,51 +273,66 @@ public class UIController : MonoBehaviour {
         }
     }
 
-    public void activateAttributeCardButtons()
+    public void ActivateAttributeCardButtons()
     {
-        injectButton.SetActive(true);
-        abortInjectionButton.SetActive(true);
-        //activateChangesButtonAttributeCard.SetActive(true);
+        //injectButton.SetActive(true);
+        //abortInjectionButton.SetActive(true);
+        activateChangesButtonAttributeCard.SetActive(true);
         //declineInjectionButtonAttributeCard.SetActive(true);
         minimizeProcessButtonAttributeCard.SetActive(true);
         showInjectionProcessButtonAttributeCard.SetActive(true);
         finishInjectionButton.SetActive(true);
     }
 
-    public void desactivateAttributeCardButtons()
+    public void DesactivateAttributeCardButtons()
     {
-        injectButton.SetActive(false);
-        abortInjectionButton.SetActive(false);
+        //injectButton.SetActive(false);
+        //abortInjectionButton.SetActive(false);
         activateChangesButtonAttributeCard.SetActive(false);
-        declineInjectionButtonAttributeCard.SetActive(false);
+        //declineInjectionButtonAttributeCard.SetActive(false);
         minimizeProcessButtonAttributeCard.SetActive(false);
         showInjectionProcessButtonAttributeCard.SetActive(false);
+        finishInjectionButton.SetActive(false);
     }
 
-    public void activateEffectCardButtons()
+    public void ActivateEffectCardButtons()
     {
         activateEffectCardButton.SetActive(true);
-        exitEffectCardButton.SetActive(true);
         //activateChangesEffectCardButton.SetActive(true);
         //declineChangesEffectCardButton.SetActive(true);
         minimizeEffectCardButton.SetActive(true);
         showEffectCardProcessButton.SetActive(true);
+        exitEffectCardButton.SetActive(true);
     }
 
-    public void desactivateEffectCardButtons()
+    public void DesactivateEffectCardButtons()
     {
-        activateEffectCardButton.SetActive(false);
-        exitEffectCardButton.SetActive(false);
+        //activateEffectCardButton.SetActive(false);
         activateChangesEffectCardButton.SetActive(false);
-        declineChangesEffectCardButton.SetActive(false);
+        //declineChangesEffectCardButton.SetActive(false);
         minimizeEffectCardButton.SetActive(false);
         showEffectCardProcessButton.SetActive(false);
+        exitEffectCardButton.SetActive(false);
     }
 
     #endregion
 
 
     #region Attribute Card Functions
+
+    public void ResetAttributeCardInjection()
+    {
+        activateChangesButtonAttributeCard.SetActive(false);
+        //declineInjectionButtonAttributeCard.SetActive(false);
+        abortInjectionButton.SetActive(false);
+        showInjectionProcessButtonAttributeCard.SetActive(false);
+        finishInjectionButton.SetActive(false);
+        minimizeProcessButtonAttributeCard.SetActive(false);
+
+        actionBarButtonAttributeCards.SetActive(false);
+        Debug.Assert(actionBarButtonEffectCards != null, "Effect card button not set!");
+        actionBarButtonEffectCards.SetActive(false);
+    }
 
     void DisableOverflowingUnitsAttributeCard()
     {
@@ -343,17 +369,23 @@ public class UIController : MonoBehaviour {
         if (injectionPerTurn == false) //&& this button is pressed
         {
             //HighlightPortrait();
-            //injectButton.SetActive(false);
+            injectButton.SetActive(false);
             cardImageAttributeCard.SetActive(false);
-            abortInjectionButton.SetActive(false);
+            //abortInjectionButton.SetActive(false);
             //minimizeProcessButtonAttributeCard.SetActive(true);
             //showInjectionProcessButtonAttributeCard.SetActive(true);
             //exitEffectCardButton.SetActive(true);
+
+            SwitchActionBarAttributeCard();
 
             DisableOverflowingUnitsAttributeCard();
         }
         else
             Debug.Log("You cannot inject another card on the same turn.");
+
+
+        //needes to be false at the beginnign fo the new turn
+        injectionPerTurn = true;
     }
 
     /// <summary>
@@ -364,17 +396,9 @@ public class UIController : MonoBehaviour {
         actionBarButtonAttributeCards.SetActive(false);
     }
 
-    /// <summary>
-    /// Goes back, highlights again the portraits of the units and 
-    /// </summary>
-    public void ShowDeclineInjectionButton()
-    {
-        declineInjectionButtonAttributeCard.SetActive(true);
-    }
-
     public void ActivateDeclineInjectionButton()
     {
-        declineInjectionButtonAttributeCard.SetActive(false);
+        //declineInjectionButtonAttributeCard.SetActive(false);
         //HighlightPortrait();
         injectButton.SetActive(true);
         cardImageAttributeCard.SetActive(true);
@@ -416,12 +440,12 @@ public class UIController : MonoBehaviour {
     /// Thhis funcion will show the changes provides on the card choosed
     /// </summary>
 
-    public void ShowChangesOnThisCard(int unitSelected)
+    public void ShowChangesOnThisCard(int unitID)
     {
-        activateChangesButtonAttributeCard.SetActive(true);
-        declineInjectionButtonAttributeCard.SetActive(true);
-
-        ShowUnitStatsPreview(unitSelected);
+        SwitchActionBarAttributeCard();
+        //declineInjectionButtonAttributeCard.SetActive(true);
+        this.unitSelected = unitID;
+        ShowUnitStatsPreview(this.unitSelected);
     }
 
     /// <summary>
@@ -430,13 +454,14 @@ public class UIController : MonoBehaviour {
     /// </summary>
     public void ShowUnitStatsPreview(int unitID)
     {
-        //Debug.Log("Unit name: " + player.units[unitID]);
+        this.unitSelected = unitID;
+        Debug.Log("Unit numberrrr: " + unitID);
         //Debug.Log("Player " + player);
         //Debug.Log("Units " + player.units[0]);
 
-        Attribute[] arr_attributesUnit = new Attribute[player.units[unitID].attrs.Count];
+        Attribute[] arr_attributesUnit = new Attribute[player.units[this.unitSelected].attrs.Count];
         //player.units[unitID].attrs.Values.CopyTo(arr_attributesUnit, 0);
-        player.units[unitID].attrs.Values.CopyTo(arr_attributesUnit, 0);
+        player.units[this.unitSelected].attrs.Values.CopyTo(arr_attributesUnit, 0);
 
         // Attribute[] arr_attributesActiveCard = new Attribute[player1.activeCard.attributes.GetLength(0)];
         //  player1.activeCard.attributes.CopyTo(arr_attributesActiveCard, 0);
@@ -484,7 +509,7 @@ public class UIController : MonoBehaviour {
         //Activate Injection button will call the funcion ApplyChangesInjection
         //unitStatsPreview = GameObject.Find("UnitStatsPreview").GetComponent<Text>();
         //unitStatsPreview.text = "StatsChangedPreview\n Unit-> " + player.units[unitID].name +
-        unitStatsPreviewAttributeCard.text = "StatsChangedPreview\n Unit-> " + player.units[unitID].name +
+        unitStatsPreviewAttributeCard.text = "StatsChangedPreview\n Unit-> " + player.units[this.unitSelected].name +
                 "\nStrenght:" + arr_attributesUnit[0].Value + statBonus[0]
                 + "\nAgility:" + arr_attributesUnit[1].Value + statBonus[1]
                 + "\nRange:" + arr_attributesUnit[2].Value + statBonus[2];
@@ -496,19 +521,19 @@ public class UIController : MonoBehaviour {
     /// <summary>
     /// Apply the changes of the injection of the card selected on the character
     /// </summary>
-    public void ApplyChangesInjection(int unitID)
+    public void ApplyChangesInjection()
     {
         //Attribute[] arr = new Attribute[player.units[unitID].attrs.Count];
         //player.units[unitID].attrs.Values.CopyTo(arr, 0);
 
-        Attribute[] arr_attributesUnit = new Attribute[player.units[unitID].attrs.Count];
+        Attribute[] arr_attributesUnit = new Attribute[player.units[this.unitSelected].attrs.Count];
         //player.units[unitID].attrs.Values.CopyTo(arr_attributesUnit, 0);
-        player.units[unitID].attrs.Values.CopyTo(arr_attributesUnit, 0);
+        player.units[this.unitSelected].attrs.Values.CopyTo(arr_attributesUnit, 0);
         //if (player.activeCard.isNotOverflowing(arr_attributesUnit))
         if (player.activeCard.isNotOverflowing(arr_attributesUnit))
         {
             //player.units[unitID].Buff(player.activeCard.attributes);
-            player.units[unitID].Buff(player.activeCard.attributes);
+            player.units[this.unitSelected].Buff(player.activeCard.attributes);
             // player[i].deck.Bury(player[i].activeCard);
             // player[i].activeCard = null;
             //    // holdingCard = false;
@@ -517,6 +542,8 @@ public class UIController : MonoBehaviour {
         //Once the changes had been applied to the unit, we desactivate the process of injection
         Debug.Log("Finishing the process of injection of the card selected");
         //injectionPannel.SetActive(false);
+
+        AbortInjectionButton();
     }
 
     //------------------------------------------------------------------------------
@@ -527,8 +554,10 @@ public class UIController : MonoBehaviour {
     /// </summary>
     public void ActivateMinimizeButton()
     {
-       // injectionPannelAttributeCard.SetActive(false);
-        showInjectionProcessButtonAttributeCard.SetActive(true);
+        // injectionPannelAttributeCard.SetActive(false);
+        SwitchActionBarAttributeCard();
+        cardImageAttributeCard.SetActive(false);
+        //showInjectionProcessButtonAttributeCard.SetActive(true);
     }
 
 
@@ -546,7 +575,7 @@ public class UIController : MonoBehaviour {
     public void ActivateShowInjectionProcessButton()
     {
         showInjectionProcessButtonAttributeCard.SetActive(false);
-        //ActivatePannel();
+        SwitchActionBarAttributeCard();
     }
 
     #endregion
@@ -554,6 +583,31 @@ public class UIController : MonoBehaviour {
 
     #region Effect Card Functions
 
+    void DisableOverflowingUnitsEffectCard()
+    {
+        //first, we activate them as this function is called when
+        //a new injection of att card has started
+        for (int i = 0; i < player.units.Length; i++)
+        {
+            portraitButtons[i].GetComponent<Button>().interactable = true;
+            Debug.Log("activating portrait button " + portraitButtons[i]);
+        }
+
+        for (int i = 0; i < player.units.Length; i++)
+        {
+            Attribute[] unitAttrArray = new Attribute[player.units[i].attrs.Count];
+            player.units[i].attrs.Values.CopyTo(unitAttrArray, 0);
+
+            if (!player.activeCard.isNotOverflowing(unitAttrArray))
+            {
+                portraitButtons[i].GetComponent<Button>().interactable = false;
+                Debug.Log("Disable portrait button" + portraitButtons[i]);
+            }
+        }
+
+    }
+
+    //needs to contain code related to effect cards
     public void ActivateEffectCard()
     {
         if (effectCardPerTurn == false) //&& this button is pressed
@@ -574,8 +628,7 @@ public class UIController : MonoBehaviour {
     /// </summary>
     public void ExitEffectCard()
     {
-        effectCardPannel.SetActive(false);
-
+        actionBarButtonEffectCards.SetActive(false);
     }
 
     /// <summary>
@@ -584,7 +637,7 @@ public class UIController : MonoBehaviour {
     /// </summary>
     public void ActivateDeclineEffectCardButton()
     {
-        declineUseEffectCardButton.SetActive(false);
+        //declineUseEffectCardButton.SetActive(false);
         //HighlightPortrait();
         activateEffectCardButton.SetActive(false);
         effectCardImage.SetActive(false);
@@ -623,12 +676,12 @@ public class UIController : MonoBehaviour {
     /// Thhis funcion will show the changes provides on the card choosed
     /// </summary>
 
-    public void ShowChangesOnThisCardEffectCard(int unitSelected)
+    public void ShowChangesOnThisCardEffectCard(int unitID)
     {
-        activateChangesEffectCardButton.SetActive(true);
-        declineChangesEffectCardButton.SetActive(true);
-
-        ShowUnitStatsPreview(unitSelected);
+        SwitchActionBarEffectCard();
+        //declineInjectionButtonAttributeCard.SetActive(true);
+        this.unitSelected = unitID;
+        ShowUnitStatsPreview(this.unitSelected);
     }
 
     /// <summary>
@@ -636,13 +689,14 @@ public class UIController : MonoBehaviour {
     /// </summary>
     public void ShowUnitStatsPreviewEffectCard(int unitID)
     {
+        this.unitSelected = unitID;
         //Debug.Log("Unit name: " + player.units[unitID]);
         //Debug.Log("Player " + player);
         //Debug.Log("Units " + player.units[0]);
 
-        Attribute[] arr_attributesUnit = new Attribute[player.units[unitID].attrs.Count];
+        Attribute[] arr_attributesUnit = new Attribute[player.units[this.unitSelected].attrs.Count];
         //player.units[unitID].attrs.Values.CopyTo(arr_attributesUnit, 0);
-        player.units[unitID].attrs.Values.CopyTo(arr_attributesUnit, 0);
+        player.units[this.unitSelected].attrs.Values.CopyTo(arr_attributesUnit, 0);
 
         // Attribute[] arr_attributesActiveCard = new Attribute[player1.activeCard.attributes.GetLength(0)];
         //  player1.activeCard.attributes.CopyTo(arr_attributesActiveCard, 0);
@@ -690,7 +744,7 @@ public class UIController : MonoBehaviour {
         //Activate Injection button will call the funcion ApplyChangesInjection
         //unitStatsPreview = GameObject.Find("UnitStatsPreview").GetComponent<Text>();
         //unitStatsPreview.text = "StatsChangedPreview\n Unit-> " + player.units[unitID].name +
-        unitStatsPreviewEffectCard.text = "StatsChangedPreview\n Unit-> " + player.units[unitID].name +
+        unitStatsPreviewEffectCard.text = "StatsChangedPreview\n Unit-> " + player.units[this.unitSelected].name +
                 "\nStrenght:" + arr_attributesUnit[0].Value + statBonus[0]
                 + "\nAgility:" + arr_attributesUnit[1].Value + statBonus[1]
                 + "\nRange:" + arr_attributesUnit[2].Value + statBonus[2];
@@ -722,7 +776,8 @@ public class UIController : MonoBehaviour {
         }
         //Once the changes had been applied to the unit, we desactivate the process of injection
         Debug.Log("Finishing the process of injection of the card selected");
-        effectCardPannel.SetActive(false);
+
+        actionBarButtonEffectCards.SetActive(false);
     }
 
     //here we place some effect card needed behaviours
@@ -746,8 +801,10 @@ public class UIController : MonoBehaviour {
     /// </summary>
     public void ActivateMinimizeEffectCardProcess()
     {
-        effectCardPannel.SetActive(false);
-        showEffectCardProcessButton.SetActive(true);
+        SwitchActionBarEffectCard();
+        effectCardInfo.enabled = false;
+
+        //showEffectCardProcessButton.SetActive(true);
     }
 
     /// <summary>
@@ -755,19 +812,17 @@ public class UIController : MonoBehaviour {
     /// related to the injection of cards
     /// Called by the ShowInjectionProcessButton button button
     /// </summary>
-    public void ActivateEffectCardPannel()
-    {
-        effectCardPannel.SetActive(true);
-    }
+    //public void ActivateEffectCardPannel()
+    //{
+    //    effectCardPannel.SetActive(true);
+    //}
 
     public void ActivateShowEffectCardProcessButton()
     {
-        showEffectCardProcessButton.SetActive(false);
-        ActivateEffectCardPannel();
+        SwitchActionBarEffectCard();
+        //ActivateEffectCardPannel();
+        effectCardImage.SetActive(false);
     }
-
-
-
 
     #endregion
 
